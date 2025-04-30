@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +37,9 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        h2, h3, h4 {
+        h2,
+        h3,
+        h4 {
             margin-top: 0;
             color: #4b0082;
         }
@@ -273,10 +276,21 @@
         }
 
         /* Прогресс по шагам (1–4) */
-        .status-bar[data-step="1"]::after { width: 25%; }
-        .status-bar[data-step="2"]::after { width: 50%; }
-        .status-bar[data-step="3"]::after { width: 75%; }
-        .status-bar[data-step="4"]::after { width: 100%; }
+        .status-bar[data-step="1"]::after {
+            width: 25%;
+        }
+
+        .status-bar[data-step="2"]::after {
+            width: 50%;
+        }
+
+        .status-bar[data-step="3"]::after {
+            width: 75%;
+        }
+
+        .status-bar[data-step="4"]::after {
+            width: 100%;
+        }
 
         .status-step {
             flex: 1;
@@ -321,7 +335,7 @@
             margin-top: 5px;
             background-color: #6c757d;
             padding: 7px 30px;
-            margin-left:10px;
+            margin-left: 10px;
             font-size: 0.9em;
         }
 
@@ -352,7 +366,7 @@
             text-align: center;
             margin: 20px 0;
         }
-        
+
         .form-actions {
             margin-top: 30px;
         }
@@ -394,7 +408,7 @@
         .nav-menu li:hover {
             background-color: #e0d0f0;
         }
-        
+
         /* Сообщение об успешном анализе */
         .analysis-success {
             margin: 20px 0;
@@ -405,22 +419,23 @@
             border: 1px solid #c8e6c9;
             display: none;
         }
-        
+
         .analysis-success i {
             color: #4caf50;
             font-size: 2em;
             margin-bottom: 10px;
         }
-        
+
         .analysis-success h3 {
             color: #2e7d32;
             margin: 10px 0;
         }
-        
+
         .analysis-success p {
             color: #424242;
             margin: 5px 0;
         }
+
         .radio-group-horizontal {
             display: flex;
             gap: 70px;
@@ -451,6 +466,7 @@
         .condition-block {
             margin-bottom: 20px;
         }
+
         /* Добавляем стили для кастомной кнопки загрузки файла */
         .custom-file-input {
             display: inline-block;
@@ -466,11 +482,14 @@
             height: 20px;
             width: 150px;
         }
+
         .custom-file-input:hover {
             background-color: #6a1b9a;
         }
+
         #participation-condition {
-            display: none; /* Скрываем оригинальный инпут */
+            display: none;
+            /* Скрываем оригинальный инпут */
         }
 
         /* Стили для подсказок */
@@ -479,9 +498,11 @@
             margin-left: 5px;
             cursor: help;
         }
+
         [data-tooltip] {
             position: relative;
         }
+
         [data-tooltip]:hover::after {
             content: attr(data-tooltip);
             position: absolute;
@@ -499,13 +520,14 @@
             min-width: 240px;
             text-align: left;
             line-height: 1.3;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         /* Исправленные стили для полей участников */
         .team-member-input input[type="email"] {
             flex: 2;
         }
+
         .team-member-input select {
             flex: 1;
         }
@@ -519,25 +541,33 @@
             border: 2px solid #4b0082;
             padding: 20px;
             border-radius: 8px;
-            z-index: 2147483647; /* Максимальный возможный z-index */
+            z-index: 2147483647;
+            /* Максимальный возможный z-index */
             white-space: pre-wrap;
             width: 320px;
             text-align: left;
             line-height: 1.6;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
             font-size: 14px;
             pointer-events: none;
             animation: tooltipFade 0.3s ease;
         }
 
         @keyframes tooltipFade {
-            from { opacity: 0; transform: translate(-50%, -40%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
+            from {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
         }
 
 
-         /* Блок Инструкции  */
-         .title-container {
+        /* Блок Инструкции  */
+        .title-container {
             position: relative;
             display: flex;
             justify-content: space-between;
@@ -581,12 +611,12 @@
             border: 2px solid #ab0630;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             position: relative;
             line-height: 30px;
         }
 
-        .instruction-btn:hover + .instruction-overlay,
+        .instruction-btn:hover+.instruction-overlay,
         .instruction-overlay:hover {
             display: block;
         }
@@ -605,9 +635,289 @@
             margin-top: 20px;
         }
 
+        /* Добавляем стили для управления формами */
+        .form-tab {
+            display: none;
+        }
 
+        .form-tab.active {
+            display: block;
+        }
+
+        .file-upload.small {
+            padding: 15px;
+            min-height: 80px;
+        }
+
+        .file-upload.small .file-upload-title {
+            font-size: 1.1em;
+        }
+
+        .file-upload.small label.small {
+            padding: 8px 15px;
+            font-size: 0.9em;
+        }
+
+        .file-name.small {
+            font-size: 0.8em;
+        }
+
+        /* Стили для синхронизации валюты */
+        #goods-currency {
+            background-color: #f0f0f0;
+            cursor: not-allowed;
+        }
+
+        .add-section {
+            position: relative;
+            width: 200px;
+        }
+
+        .add-type-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4b0082;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .type-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            margin-top: 5px;
+        }
+
+        .type-dropdown.show {
+            display: block;
+        }
+
+        .type-option {
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .type-option:hover {
+            background-color: #f5f5f5;
+        }
+
+        .lot-form.hidden {
+            display: none;
+        }
+
+        /* Стили для файлового инпута */
+        .file-upload.small label.small {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 5px 0;
+        }
+
+        /* Добавляем новые стили для товаров и услуг */
+        .simple-file-upload {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #4b0082;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.9em;
+        }
+
+        .add-section {
+            position: relative;
+            width: 200px;
+        }
+
+        .type-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            margin-top: 5px;
+        }
+
+        .type-dropdown.show {
+            display: block;
+        }
+
+        .type-option {
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .lot-form {
+            display: none;
+        }
+
+        .lot-form.visible {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .file-upload.small {
+            display: none;
+        }
+
+        .adding-label {
+            background-color: #4b0082;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            display: none;
+        }
+
+        .adding-label.visible {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lot-actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .adding-label {
+            background-color: #4b0082;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            display: none;
+            margin-bottom: 15px;
+        }
+
+        .lot-actions {
+            margin-top: 20px;
+            display: none;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .lot-actions.visible {
+            display: flex;
+        }
+
+        .adding-label.visible {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .adding-title {
+            background-color: #4b0082;
+            color: white !important;
+            padding: 12px 232%;
+            /* Вертикальные отступы */
+            width: 100%;
+            /* Занимает всю ширину */
+            text-align: center;
+            /* Центрирование текста */
+            border-radius: 4px;
+            font-size: 1.1em;
+            margin: 0 0 15px 0;
+            /* Отступ снизу */
+            display: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            /* Учитываем padding в ширине */
+        }
+
+        /* Для иконки внутри заголовка */
+        .adding-title i {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .add-type-btn.hidden {
+            display: none;
+        }
+
+        .type-dropdown {
+            display: none;
+            position: absolute;
+            /* остальные стили... */
+        }
+
+        .type-dropdown.show {
+            display: block;
+        }
+
+        .participant-block {
+            border: 2px solid #e0d0f0;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #f9f5ff;
+        }
+
+        .participant-block h4 {
+            color: #4b0082;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .add-participant-btn {
+            margin-top: 10px;
+            width: 100%;
+        }
+        
     </style>
 </head>
+
 <body>
     <header>
         <h1>Система автоматизации тендеров</h1>
@@ -660,7 +970,7 @@
                 <label for="file-input"><i class="fas fa-upload"></i> Выберите файл</label>
                 <div id="file-name" class="file-name">Или перетащите файл сюда</div>
             </div>
-            
+
             <div class="analysis-success" id="analysis-success">
                 <i class="fas fa-check-circle"></i>
                 <h3>Анализ завершен успешно!</h3>
@@ -669,21 +979,32 @@
             </div>
 
             <div class="analyze-btn-container">
-                <button id="analyze-btn" class="analyze-btn large hidden"><i class="fas fa-search"></i> Анализировать</button>
+                <button id="analyze-btn" class="analyze-btn large hidden"><i class="fas fa-search"></i>
+                    Анализировать</button>
             </div>
 
             <!-- Меню навигации -->
             <div class="nav-menu-container">
                 <ul class="nav-menu">
-                    <li class="active"><a href="#"><i class="fas fa-info-circle"></i> Общие сведения</a></li>
-                    <li><a href="#"><i class="fas fa-calendar-alt"></i> Сроки тендера</a></li>
-                    <li><a href="#"><i class="fas fa-boxes"></i> Товары и услуги</a></li>
-                    <li><a href="#"><i class="fas fa-users"></i> Участники</a></li>
-                    <li><a href="#"><i class="fas fa-star"></i> Оценка предложений</a></li>
+                    <li class="active" data-tab="general">
+                        <a href="#"><i class="fas fa-info-circle"></i> Общие сведения</a>
+                    </li>
+                    <li data-tab="timeline">
+                        <a href="#"><i class="fas fa-calendar-alt"></i> Сроки тендера</a>
+                    </li>
+                    <li data-tab="goods">
+                        <a href="#"><i class="fas fa-boxes"></i> Товары и услуги</a>
+                    </li>
+                    <li data-tab="participants">
+                        <a href="#"><i class="fas fa-users"></i> Участники</a>
+                    </li>
+                    <li data-tab="evaluation">
+                        <a href="#"><i class="fas fa-star"></i> Оценка предложений</a>
+                    </li>
                 </ul>
             </div>
 
-            <form id="event-form">
+            <form id="general-form" class="form-tab active">
                 <div class="form-section">
                     <h3>Общие сведения</h3>
                     <div class="form-row">
@@ -697,11 +1018,15 @@
                                 <i class="fas fa-upload"></i> Загрузить файл
                             </label>
                             <input type="file" id="participation-condition" name="participation-condition">
-                            <button type="button" class="add-text-btn" id="add-text-btn"><i class="fas fa-plus"></i> Добавить текст</button>
-                            <textarea id="participation-text" name="participation-text" class="hidden" style="margin-top: 10px;"></textarea>
+                            <button type="button" class="add-text-btn" id="add-text-btn"><i class="fas fa-plus"></i>
+                                Добавить текст</button>
+                            <textarea id="participation-text" name="participation-text" class="hidden"
+                                style="margin-top: 10px;"></textarea>
                             <div class="text-actions" id="text-actions">
-                                <button type="button" class="small secondary" id="clear-text-btn"><i class="fas fa-trash"></i> Удалить текст</button>
-                                <button type="button" class="small secondary" id="cancel-text-btn"><i class="fas fa-times"></i> Отменить</button>
+                                <button type="button" class="small secondary" id="clear-text-btn"><i
+                                        class="fas fa-trash"></i> Удалить текст</button>
+                                <button type="button" class="small secondary" id="cancel-text-btn"><i
+                                        class="fas fa-times"></i> Отменить</button>
                             </div>
                         </div>
                     </div>
@@ -763,21 +1088,23 @@
                                         <option value="owner">Владелец</option>
                                         <option value="watcher">Наблюдатель</option>
                                     </select>
-                                    <button type="button" class="member-action-btn add-member-btn"><i class="fas fa-plus"></i></button>
+                                    <button type="button" class="member-action-btn add-member-btn"><i
+                                            class="fas fa-plus"></i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            
+
                 <div class="form-section">
-                    <h3 data-tooltip="RFP: Подробные предложения, сложные проекты&#10;RFI: Сбор информации, разведка рынка&#10;RFQ: Запрос цен, простые закупки&#10;Аукцион: Соревнование предложений, публичная продажа/закупка" 
+                    <h3 data-tooltip="RFP: Подробные предложения, сложные проекты&#10;RFI: Сбор информации, разведка рынка&#10;RFQ: Запрос цен, простые закупки&#10;Аукцион: Соревнование предложений, публичная продажа/закупка"
                         class="required-field">Параметры тендера
                         <i class="fas fa-question-circle tooltip-icon"></i>
                     </h3>
-                    
+
                     <div class="event-type-container">
-                        <div class="event-type-column"><h4>Тип события</h4>
+                        <div class="event-type-column">
+                            <h4>Тип события</h4>
                             <div class="radio-group-vertical">
                                 <div class="radio-option">
                                     <input type="radio" id="type-rfp" name="event-type" value="rfp" required>
@@ -803,7 +1130,8 @@
                                 <label>Интервал изменения предложения: </label>
                                 <div class="radio-group-horizontal">
                                     <div class="radio-option-horizontal">
-                                        <input type="radio" id="param-option1-1" name="condition1" value="option1" required>
+                                        <input type="radio" id="param-option1-1" name="condition1" value="option1"
+                                            required>
                                         <label class="label-two" for="param-option1-1">1 мин</label>
                                     </div>
                                     <div class="radio-option-horizontal">
@@ -820,7 +1148,8 @@
                                 <label>Шаг корректировки предложения, %: </label>
                                 <div class="radio-group-horizontal">
                                     <div class="radio-option-horizontal">
-                                        <input type="radio" id="param-option2-1" name="condition2" value="option1" required>
+                                        <input type="radio" id="param-option2-1" name="condition2" value="option1"
+                                            required>
                                         <label class="label-two" for="param-option2-1">1%</label>
                                     </div>
                                     <div class="radio-option-horizontal">
@@ -847,195 +1176,398 @@
                     <button type="button" class="secondary">Отмена</button>
                 </div>
             </form>
+            <!-- Сроки тендера -->
+            <form id="timeline-form" class="form-tab">
+                <div class="form-section">
+                    <h3>Сроки тендера</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="start-date">Дата начала</label>
+                            <input type="date" id="start-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="end-date">Дата окончания</label>
+                            <input type="date" id="end-date" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Общие элементы формы -->
+                <div class="comment-sec">
+                    <h3>Комментарии</h3>
+                    <textarea id="comments-timeline" name="comments"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="save-timeline">Сохранить</button>
+                    <button type="button" class="secondary">Отмена</button>
+                </div>
+            </form>
+            <form id="goods-form" class="form-tab">
+                <div class="form-section">
+                    <h3>Товары и услуги</h3>
+
+                    <!-- Документация к закупке -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Документация к закупке</label>
+                            <div class="simple-file-upload">
+                                <input type="file" id="goods-file" class="hidden">
+                                <label for="goods-file" class="upload-btn">
+                                    <i class="fas fa-upload"></i> Выбрать файл
+                                </label>
+                                <span id="goods-file-name" class="file-name"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Блок добавления -->
+                    <div class="form-row">
+
+                        <div class="add-section">
+                            <button type="button" class="add-type-btn" id="add-lot-btn">
+                                <i class="fas fa-plus"></i> Добавить тип
+                            </button>
+                            <div class="adding-title">
+                                <i class="fas fa-box-open"></i>Добавление лота
+                            </div>
+                            <div class="type-dropdown">
+                                <div class="type-option" data-type="lot">Лот</div>
+                                <div class="type-option" data-type="service">Услуга</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Форма для лота -->
+                    <div class="lot-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="type-lot" class="required-field">Тип лота закупки</label>
+                                <input type="text" id="type-lot" name="type-lot" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="lot-name" class="required-field">Название лота</label>
+                                <input type="text" id="lot-name" name="lot-name" required readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="quantity" class="required-field">Количество товара</label>
+                                <input type="number" id="quantity" name="quantity" step="0.01" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity-type" class="required-field">Тип количества</label>
+                                <input type="text" id="quantity-type" name="quantity-type" required readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="base-price">Базовая цена</label>
+                                <input type="number" id="base-price" name="base-price" step="0.01">
+                            </div>
+                            <div class="form-group">
+                                <label for="goods-currency" class="required-field">Валюта</label>
+                                <select id="goods-currency" name="goods-currency" required>
+                                    <option value="">Выберите валюту</option>
+                                    <option value="RUB">RUB - Российский рубль</option>
+                                    <option value="USD">USD - Доллар США</option>
+                                    <option value="EUR">EUR - Евро</option>
+                                    <option value="CNY">CNY - Китайский юань</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="manufacturer-name">Имя производителя</label>
+                                <input type="text" id="manufacturer-name" name="manufacturer-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="manufacturer-code">Код производителя</label>
+                                <input type="text" id="manufacturer-code" name="manufacturer-code">
+                            </div>
+                        </div>
+                        <div class="lot-actions">
+                            <button type="button" class="save-lot">Сохранить</button>
+                            <button type="button" class="cancel-lot secondary">Отмена</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="save-goods">Сохранить</button>
+                    <button type="button" class="secondary">Отмена</button>
+                </div>
+            </form>
+            <form id="participants-form" class="form-tab">
+                <div class="form-section">
+                    <h3>Участники тендера</h3>
+                    <div id="participants-container">
+                        <!-- Блоки участников будут добавляться сюда -->
+                    </div>
+
+                    <button type="button" class="add-participant-btn secondary">
+                        <i class="fas fa-plus-circle"></i> Добавить участника
+                    </button>
+                </div>
+
+                <!-- Шаблон блока участника -->
+                <template id="participant-template">
+                    <div class="participant-block">
+                        <h4>Участник #<span class="participant-number"></span></h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required-field">Название компании</label>
+                                <input type="text" class="company-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="required-field">Имя контакта</label>
+                                <input type="text" class="contact-name" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required-field">Адрес электронной почты</label>
+                                <input type="email" class="contact-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Язык поставщика</label>
+                                <select class="supplier-language">
+                                    <option value="">Не указано</option>
+                                    <option value="ru">Русский</option>
+                                    <option value="en">Английский</option>
+                                    <option value="zh">Китайский</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Регион</label>
+                                <select class="supplier-region">
+                                    <option value="">Не указано</option>
+                                    <option value="europe">Европа</option>
+                                    <option value="asia">Азия</option>
+                                    <option value="america">Америка</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" class="remove-participant-btn secondary small">
+                            <i class="fas fa-trash"></i> Удалить
+                        </button>
+                    </div>
+                </template>
+            </form>
         </section>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Обработка загрузки файла
+        document.addEventListener('DOMContentLoaded', function () {
+            // ================= ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ =================
+            let mockParticipants = []; // Данные участников из файла
+            let isFirstAnalysis = true; // Флаг первого анализа
+
+            // ================= ОБЩИЕ ЭЛЕМЕНТЫ =================
             const fileUpload = document.getElementById('file-upload-container');
             const fileInput = document.getElementById('file-input');
             const fileName = document.getElementById('file-name');
             const analyzeBtn = document.getElementById('analyze-btn');
             const analysisSuccess = document.getElementById('analysis-success');
-            
-            // Drag and drop обработчики
-            fileUpload.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                fileUpload.classList.add('dragover');
-            });
-            
-            fileUpload.addEventListener('dragleave', () => {
-                fileUpload.classList.remove('dragover');
-            });
-            
-            fileUpload.addEventListener('drop', (e) => {
-                e.preventDefault();
-                fileUpload.classList.remove('dragover');
-                
-                if (e.dataTransfer.files.length) {
-                    fileInput.files = e.dataTransfer.files;
-                    updateFileName();
-                }
-            });
-            
-            fileInput.addEventListener('change', updateFileName);
-            
-            function updateFileName() {
-                if (fileInput.files.length > 0) {
-                    fileName.textContent = fileInput.files[0].name;
-                    analyzeBtn.classList.remove('hidden');
-                } else {
-                    fileName.textContent = 'Или перетащите файл сюда';
+            const participantsContainer = document.getElementById('participants-container');
+            const participantTemplate = document.getElementById('participant-template');
+
+            // ================= ОБРАБОТКА ФАЙЛОВ =================
+            // Drag and Drop
+            const handleFileEvents = () => {
+                ['dragover', 'dragleave', 'drop'].forEach(event => {
+                    fileUpload.addEventListener(event, e => {
+                        e.preventDefault();
+                        fileUpload.classList.toggle('dragover', event === 'dragover');
+                    });
+                });
+
+                fileInput.addEventListener('change', () => {
+                    fileName.textContent = fileInput.files[0]?.name || 'Или перетащите файл сюда';
+                    analyzeBtn.classList.toggle('hidden', !fileInput.files.length);
+                });
+            };
+
+            // Анализ файла
+            const setupFileAnalysis = () => {
+                analyzeBtn.addEventListener('click', async () => {
+                    analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Анализируется...';
+                    analyzeBtn.disabled = true;
+
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+
+                    // Скрываем поле загрузки файла
+                    fileUpload.classList.add('hidden');
+
+                    document.getElementById('event-name').value = 'Закупка оборудования для офиса';
+                    document.getElementById('currency').value = 'RUB';
+                    document.getElementById('purchase-category').value = 'office';
+
+                    mockParticipants = getMockParticipants();
+                    processParticipants();
+
+                    analysisSuccess.style.display = 'block';
                     analyzeBtn.classList.add('hidden');
-                }
-            }
-            
-            // Кнопка "Анализировать"
-        analyzeBtn.addEventListener('click', function() {
-            analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Анализируется...';
-            analyzeBtn.disabled = true;
+                    document.getElementById('submit-btn').classList.remove('hidden');
+                    analyzeBtn.innerHTML = '<i class="fas fa-search"></i> Анализировать';
+                    analyzeBtn.disabled = false;
+                });
+            };
 
-            // Имитация API-запроса
-            setTimeout(function() {
-                // Заполнение полей данными
-                document.getElementById('event-name').value = 'Закупка оборудования для офиса';
-                document.getElementById('currency').value = 'RUB';
-                document.getElementById('purchase-category').value = 'office';
-                document.getElementById('planned-savings').value = '15000.00';
-                document.getElementById('purchase-budget').value = '85000.00';
-                document.getElementById('business-partner').value = 'ООО "ТехноПартнер"';
-                document.querySelector('input[name="event-type"][value="rfp"]').checked = true;
+            // ================= УЧАСТНИКИ =================
+            const processParticipants = () => {
+                // Удаляем только участников из файла
+                const fileParticipants = Array.from(participantsContainer.querySelectorAll('[data-from-file]'));
+                fileParticipants.forEach(block => block.remove());
 
-                // Обновление статуса
-                document.querySelector('.status-bar').setAttribute('data-step', '2');
-                document.querySelectorAll('.status-step')[0].classList.remove('active');
-                document.querySelectorAll('.status-step')[1].classList.add('active');
-                document.getElementById('status-text').textContent = 'В процессе';
+                // Добавляем новых участников из файла
+                mockParticipants.forEach((p, i) => {
+                    participantsContainer.appendChild(createParticipant(p, i, true));
+                });
 
-                // Показываем сообщение об успехе (добавлена эта строка)
-                analysisSuccess.style.display = 'block';
-                
-                // Скрываем ненужные элементы
-                fileUpload.classList.add('hidden');
-                analyzeBtn.classList.add('hidden');
-                document.getElementById('submit-btn').classList.remove('hidden');
+                updateParticipantNumbers();
+            };
 
-                // Восстанавливаем кнопку
-                analyzeBtn.innerHTML = '<i class="fas fa-search"></i> Анализировать';
-                analyzeBtn.disabled = false;
-            }, 2000);
-        });
-            // Управление текстовым полем условий участия
-            const addTextBtn = document.getElementById('add-text-btn');
-            const textArea = document.getElementById('participation-text');
-            const textActions = document.getElementById('text-actions');
-            const clearTextBtn = document.getElementById('clear-text-btn');
-            const cancelTextBtn = document.getElementById('cancel-text-btn');
-            
-            // Изначально скрываем кнопки действий
-            textActions.style.display = 'none';
-            textArea.classList.add('hidden');
-            
-            addTextBtn.addEventListener('click', function() {
-                textArea.classList.remove('hidden');
-                textActions.style.display = 'flex';
-                this.style.display = 'none';
-            });
-            
-            clearTextBtn.addEventListener('click', function() {
-                textArea.value = '';
-            });
-            
-            cancelTextBtn.addEventListener('click', function() {
-                textArea.classList.add('hidden');
-                textActions.style.display = 'none';
-                addTextBtn.style.display = 'inline-block';
-                textArea.value = '';
-            });
-            
-            // Управление участниками команды
-            const teamContainer = document.getElementById('team-members-container');
-            
-            teamContainer.addEventListener('click', function(e) {
-                if (e.target.classList.contains('add-member-btn')) {
-                    const memberInput = e.target.closest('.team-member-input');
-                    const newInput = createMemberInput();
-                    teamContainer.appendChild(newInput);
-                    e.target.innerHTML = '<i class="fas fa-minus"></i>';
-                    e.target.classList.remove('add-member-btn');
-                    e.target.classList.add('remove-member-btn');
-                } else if (e.target.classList.contains('remove-member-btn')) {
-                    const memberInput = e.target.closest('.team-member-input');
-                    memberInput.remove();
-                }
-            });
-            
-            // Обновленная функция создания полей участника
-            function createMemberInput() {
-            const div = document.createElement('div');
-            div.className = 'team-member-input';
-            div.innerHTML = `
-                <input type="email" placeholder="Email участника">
-                <select>
-                    <option value="">Выберите роль</option>
-                    <option value="owner">Владелец</option>
-                    <option value="watcher">Наблюдатель</option>
-                </select>
-                <button type="button" class="member-action-btn add-member-btn"><i class="fas fa-plus"></i></button>
-            `;
-            return div;
-        }
-        
-        
-            
-            // Кнопка подтверждения
-            document.getElementById('submit-btn').addEventListener('click', function() {
-                if (confirm('Вы уверены, что хотите подтвердить событие? После подтверждения редактирование будет ограничено.')) {
-                    // Обновляем статус
-                    document.querySelector('.status-bar').setAttribute('data-step', '3');
-                    document.querySelectorAll('.status-step')[1].classList.remove('active');
-                    document.querySelectorAll('.status-step')[2].classList.add('active');
-                    document.getElementById('status-text').textContent = 'Ожидает оценки';
-                    
-                    // Блокируем редактирование
-                    const inputs = document.querySelectorAll('input:not([type="radio"]), select, textarea');
-                    inputs.forEach(input => {
-                        input.readOnly = true;
+            const createParticipant = (data = {}, index, fromFile = false) => {
+                const clone = participantTemplate.content.cloneNode(true);
+                const block = clone.querySelector('.participant-block');
+
+                // Заполнение данных
+                block.querySelector('.company-name').value = data.company || '';
+                block.querySelector('.contact-name').value = data.contact || '';
+                block.querySelector('.contact-email').value = data.email || '';
+                block.querySelector('.supplier-language').value = data.language || '';
+                block.querySelector('.supplier-region').value = data.region || '';
+                block.querySelector('.participant-number').textContent = index + 1;
+
+                // Метка источника данных
+                if (fromFile) block.dataset.fromFile = true;
+
+                // Обработчики
+                block.querySelector('.remove-participant-btn').addEventListener('click', () => {
+                    block.remove();
+                    updateParticipantNumbers();
+                });
+
+                return clone;
+            };
+
+            const updateParticipantNumbers = () => {
+                document.querySelectorAll('.participant-block').forEach((block, index) => {
+                    block.querySelector('.participant-number').textContent = index + 1;
+                });
+            };
+
+            // Инициализация участников
+            const setupParticipants = () => {
+                document.querySelector('.add-participant-btn').addEventListener('click', () => {
+                    participantsContainer.appendChild(createParticipant({}, participantsContainer.children.length));
+                    updateParticipantNumbers();
+                });
+            };
+
+            // ================= ТОВАРЫ И УСЛУГИ =================
+            const setupGoodsSection = () => {
+                const addLotBtn = document.getElementById('add-lot-btn');
+                const typeDropdown = document.querySelector('.type-dropdown');
+                const lotForm = document.querySelector('.lot-form');
+                const addingTitle = document.querySelector('.adding-title');
+                const lotActions = document.querySelector('.lot-actions');
+
+                addLotBtn.addEventListener('click', e => {
+                    e.stopPropagation();
+                    typeDropdown.classList.toggle('show');
+                });
+
+                document.querySelectorAll('.type-option').forEach(option => {
+                    option.addEventListener('click', e => {
+                        e.stopPropagation();
+                        typeDropdown.classList.remove('show');
+                        if (option.dataset.type === 'lot') {
+                            addLotBtn.classList.add('hidden');
+                            addingTitle.style.display = 'block';
+                            lotForm.classList.add('visible');
+                            lotActions.classList.add('visible');
+                        }
                     });
-                    
-                    document.getElementById('edit-btn').textContent = 'Просмотр события';
-                    document.getElementById('submit-btn').classList.add('hidden');
-                }
-            });
-            
-            // Кнопка редактирования
-            document.getElementById('edit-btn').addEventListener('click', function() {
-                const inputs = document.querySelectorAll('input:not([type="radio"]), select, textarea');
-                const isReadOnly = inputs[0].readOnly;
-                
-                if (isReadOnly) {
-                    // Включаем редактирование
-                    inputs.forEach(input => {
-                        input.readOnly = false;
+                });
+
+                document.addEventListener('click', e => {
+                    if (!addLotBtn.contains(e.target)) typeDropdown.classList.remove('show');
+                });
+
+                document.querySelector('.cancel-lot').addEventListener('click', () => {
+                    addLotBtn.classList.remove('hidden');
+                    addingTitle.style.display = 'none';
+                    lotForm.classList.remove('visible');
+                    lotActions.classList.remove('visible');
+                    lotForm.querySelectorAll('input').forEach(input => input.value = '');
+                });
+            };
+
+            // ================= ОБЩИЕ ОБРАБОТЧИКИ =================
+            const setupGeneralHandlers = () => {
+                // Переключение вкладок
+                document.querySelectorAll('.nav-menu li').forEach(item => {
+                    item.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        document.querySelectorAll('.nav-menu li, .form-tab').forEach(el => el.classList.remove('active'));
+                        this.classList.add('active');
+                        document.getElementById(`${this.dataset.tab}-form`).classList.add('active');
                     });
-                    this.textContent = 'Редактировать событие';
-                } else {
-                    // Блокируем редактирование
-                    inputs.forEach(input => {
-                        input.readOnly = true;
-                    });
-                    this.textContent = 'Просмотр события';
+                });
+
+                // Подтверждение формы
+                document.getElementById('submit-btn').addEventListener('click', () => {
+                    if (confirm('Подтвердить событие? Редактирование будет ограничено.')) {
+                        document.querySelectorAll('.status-step').forEach(el => el.classList.remove('active'));
+                        document.querySelector('.status-bar').setAttribute('data-step', '3');
+                        document.querySelectorAll('.status-step')[2].classList.add('active');
+                        document.getElementById('status-text').textContent = 'Ожидает оценки';
+                        document.querySelectorAll('input, select, textarea').forEach(el => el.readOnly = true);
+                    }
+                });
+
+                // Режим редактирования
+                document.getElementById('edit-btn').addEventListener('click', function () {
+                    const isReadOnly = document.getElementById('event-name').readOnly;
+                    document.querySelectorAll('input, select, textarea').forEach(el => el.readOnly = !isReadOnly);
+                    this.textContent = isReadOnly ? 'Редактировать событие' : 'Просмотр события';
+                });
+            };
+
+            // ================= ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =================
+            const getMockParticipants = () => [
+                {
+                    company: "ООО 'ТехноПартнер'",
+                    contact: "Иван Петров",
+                    email: "ivan.p@techpartner.ru",
+                    language: "ru",
+                    region: "europe"
+                },
+                {
+                    company: "Global Suppliers Inc.",
+                    contact: "John Smith",
+                    email: "john@globalsuppliers.com"
                 }
-            });
+            ];
 
+            // ================= ИНИЦИАЛИЗАЦИЯ =================
+            const init = () => {
+                handleFileEvents();
+                setupFileAnalysis();
+                setupParticipants();
+                setupGoodsSection();
+                setupGeneralHandlers();
+            };
 
-
-
-
-            
-        
+            init();
         });
     </script>
 </body>
+
 </html>
