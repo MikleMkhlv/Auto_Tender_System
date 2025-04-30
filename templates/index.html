@@ -774,7 +774,16 @@
         }
 
         .lot-form {
-            display: none;
+            margin: 15px 0;
+            padding: 15px;
+            border: 2px solid #e0d0f0;
+            border-radius: 8px;
+            background: #f9f5ff;
+        }
+
+        .error {
+            border-color: #ff0000 !important;
+            box-shadow: 0 0 3px #ff0000;
         }
 
         .lot-form.visible {
@@ -914,104 +923,105 @@
             margin-top: 10px;
             width: 100%;
         }
+
         select {
-    appearance: none;
-    -webkit-appearance: none;
-    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234b0082'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") 
-        no-repeat right 0.75rem center/12px 12px;
-    padding-right: 2rem;
-}
+            appearance: none;
+            -webkit-appearance: none;
+            background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234b0082'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/12px 12px;
+            padding-right: 2rem;
+        }
 
-select:invalid {
-    color: #6c757d;
-}
-    /* Стили для таблицы участников */
-    .participants-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        background: white;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
+        select:invalid {
+            color: #6c757d;
+        }
 
-    .participants-table th,
-    .participants-table td {
-        padding: 12px 15px;
-        text-align: left;
-        border-bottom: 1px solid #e0d0f0;
-    }
+        /* Стили для таблицы участников */
+        .participants-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
 
-    .participants-table th {
-        background-color: #4b0082;
-        color: white;
-        font-weight: bold;
-    }
+        .participants-table th,
+        .participants-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0d0f0;
+        }
 
-    .participants-table tr:hover {
-        background-color: #f9f5ff;
-    }
+        .participants-table th {
+            background-color: #4b0082;
+            color: white;
+            font-weight: bold;
+        }
 
-    .action-buttons {
-        display: flex;
-        gap: 8px;
-    }
+        .participants-table tr:hover {
+            background-color: #f9f5ff;
+        }
 
-    /* Стили для модального окна */
-    .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0,0,0,0.5);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-    }
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
 
-    .modal-content {
-        background: white;
-        padding: 30px;
-        border-radius: 8px;
-        width: 500px;
-        position: relative;
-    }
+        /* Стили для модального окна */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
 
-    .modal-close {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        cursor: pointer;
-        font-size: 1.5em;
-        color: #4b0082;
-    }
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 500px;
+            position: relative;
+        }
 
-    .modal-form-group {
-        margin-bottom: 15px;
-    }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #4b0082;
+        }
 
-    .modal-form-group label {
-        display: block;
-        margin-bottom: 5px;
-        color: #4b0082;
-        font-weight: bold;
-    }
+        .modal-form-group {
+            margin-bottom: 15px;
+        }
 
-    .modal-form-group input,
-    .modal-form-group select {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
+        .modal-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4b0082;
+            font-weight: bold;
+        }
 
-    .required-star {
-        color: red;
-        margin-left: 3px;
-    }
+        .modal-form-group input,
+        .modal-form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .required-star {
+            color: red;
+            margin-left: 3px;
+        }
     </style>
 </head>
 
@@ -1317,168 +1327,136 @@ select:invalid {
                         </div>
                     </div>
                 </div>
+
                 <div class="form-section">
                     <h3>Товары и услуги</h3>
-                    <!-- Блок добавления -->
-                    <div class="form-row">
-
-                        <div class="add-section">
-                            <button type="button" class="add-type-btn" id="add-lot-btn">
-                                <i class="fas fa-plus"></i> Добавить тип
-                            </button>
-                            <div class="adding-title">
-                                <i class="fas fa-box-open"></i>Добавление лота
-                            </div>
-                            <div class="type-dropdown">
-                                <div class="type-option" data-type="lot">Лот</div>
-                                <div class="type-option" data-type="service">Услуга</div>
-                            </div>
-                        </div>
-
+                    <div class="lots-container" id="lots-container">
+                        <!-- Лоты будут добавляться сюда -->
                     </div>
-                
-                    <!-- Форма для лота -->
-                    <div class="lot-form">
-                        <div class="form-row">
-                            <div class="form-group" style="display: flex; gap: 20px; width: 100%;">
-                                <div style="flex: 1;">
-                                    <label for="type-lot" class="required-field">Название лота</label>
-                                    <input type="text" id="type-lot" name="type-lot" required>
-                                </div>
-                                <div style="flex: 1;">
-                                    <label for="lot-name">Описание лота</label>
-                                    <input type="text" id="lot-name" name="lot-name" readonly>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="form-row">
-                            <div class="form-group" style="display: flex; gap: 20px; width: 100%;">
-                                <div style="flex: 1;">
-                                    <label for="quantity" class="required-field">Количество товара</label>
-                                    <input type="number" id="quantity" name="quantity" step="0.01" required >
-                                </div>
-                                <div style="flex: 1;">
-                                    <label for="quantity-type" class="required-field">Тип количества</label>
-                                    <input type="text" id="quantity-type" name="quantity-type" required >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group" style="display: flex; gap: 20px; width: 100%;">
-                                <div style="flex: 1;">
-                                    <label for="base-price">Базовая цена</label>
-                                    <input type="number" id="base-price" name="base-price" step="0.01">
-                                </div>
-                                <div style="flex: 1;">
-                                    <label for="goods-currency" class="required-field">Валюта</label>
-                                    <select id="goods-currency" name="goods-currency" required>
-                                        <option value="">Выберите валюту</option>
-                                        <option value="RUB">RUB - Российский рубль</option>
-                                        <option value="USD">USD - Доллар США</option>
-                                        <option value="EUR">EUR - Евро</option>
-                                        <option value="CNY">CNY - Китайский юань</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group" style="display: flex; gap: 20px; width: 100%;">
-                                <div style="flex: 1;">
-                                    <label for="manufacturer-name">Имя производителя</label>
-                                    <input type="text" id="manufacturer-name" name="manufacturer-name">
-                                </div>
-                                <div style="flex: 1;">
-                                    <label for="manufacturer-code">Код производителя</label>
-                                    <input type="text" id="manufacturer-code" name="manufacturer-code">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lot-actions">
-                            <button type="button" class="save-lot">Сохранить</button>
-                            <button type="button" class="cancel-lot secondary">Отмена</button>
+                    <div class="add-section">
+                        <button type="button" class="add-type-btn" id="add-type-btn">
+                            <i class="fas fa-plus"></i> Добавить
+                        </button>
+                        <div class="type-dropdown">
+                            <div class="type-option" data-type="lot">Лот</div>
+                            <div class="type-option" data-type="service">Услуга</div>
                         </div>
                     </div>
-                </div>
-
-                <div class="form-actions">
-                    <button type="button" id="save-goods">Сохранить</button>
-                    <button type="button" class="secondary">Отмена</button>
                 </div>
             </form>
+            <!-- Шаблон для услуги -->
+            <template id="service-template">
+                <div class="service-form">
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 1;">
+                            <label class="required-field">Название услуги</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>Описание услуги</label>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="service-actions">
+                        <button type="button" class="save-service">Сохранить</button>
+                        <button type="button" class="cancel-service secondary">Отмена</button>
+                    </div>
+                </div>
+            </template>
+            <!-- Шаблон лота -->
+            <template id="lot-template">
+                <div class="lot-form">
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 1;">
+                            <label class="required-field">Название лота</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>Описание лота</label>
+                            <input type="text">
+                        </div>
+                    </div>
+
+                    <!-- Добавьте остальные поля по аналогии -->
+
+                    <div class="service-actions">
+                        <button type="button" class="save-lot">Сохранить</button>
+                        <button type="button" class="cancel-lot secondary">Отмена</button>
+                    </div>
+                </div>
+            </template>
             <!-- Обновленный раздел Participants -->
-<form id="participants-form" class="form-tab">
-    <div class="form-section">
-        <h3>Участники тендера</h3>
-        
-        <table class="participants-table">
-            <thead>
-                <tr>
-                    <th>Дата добавления</th>
-                    <th>Название</th>
-                    <th>Контакт</th>
-                    <th>Email</th>
-                    <th>Участие</th>
-                    <th>Условия</th>
-                    <th>Последняя активность</th>
-                    <th>Действия</th>
-                </tr>
-            </thead>
-            <tbody id="participants-table-body">
-                <!-- Строки будут добавляться здесь -->
-            </tbody>
-        </table>
+            <form id="participants-form" class="form-tab">
+                <div class="form-section">
+                    <h3>Участники тендера</h3>
 
-        <button type="button" class="add-participant-btn secondary" id="open-modal-btn">
-            <i class="fas fa-plus-circle"></i> Добавить участника
-        </button>
-    </div>
-</form>
+                    <table class="participants-table">
+                        <thead>
+                            <tr>
+                                <th>Дата добавления</th>
+                                <th>Название</th>
+                                <th>Контакт</th>
+                                <th>Email</th>
+                                <th>Участие</th>
+                                <th>Условия</th>
+                                <th>Последняя активность</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="participants-table-body">
+                            <!-- Строки будут добавляться здесь -->
+                        </tbody>
+                    </table>
 
-<!-- Модальное окно -->
-<div class="modal-overlay" id="modal-overlay">
-    <div class="modal-content">
-        <span class="modal-close" id="modal-close">&times;</span>
-        <h3 style="color: #4b0082; margin-top: 0;">Добавить участника</h3>
-        
-        <form id="participant-form">
-            <div class="modal-form-group">
-                <label>Название компании <span class="required-star">*</span></label>
-                <input type="text" id="modal-company" required>
+                    <button type="button" class="add-participant-btn secondary" id="open-modal-btn">
+                        <i class="fas fa-plus-circle"></i> Добавить участника
+                    </button>
+                </div>
+            </form>
+
+            <!-- Модальное окно -->
+            <div class="modal-overlay" id="modal-overlay">
+                <div class="modal-content">
+                    <span class="modal-close" id="modal-close">&times;</span>
+                    <h3 style="color: #4b0082; margin-top: 0;">Добавить участника</h3>
+
+                    <form id="participant-form">
+                        <div class="modal-form-group">
+                            <label>Название компании <span class="required-star">*</span></label>
+                            <input type="text" id="modal-company" required>
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label>Контактное лицо <span class="required-star">*</span></label>
+                            <input type="text" id="modal-contact" required>
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label>Email <span class="required-star">*</span></label>
+                            <input type="email" id="modal-email" required>
+                        </div>
+
+                        <div class="modal-form-group">
+                            <label>Условия участия</label>
+                            <select id="modal-terms">
+                                <option value="accepted">Принято</option>
+                                <option value="pending">В ожидании</option>
+                                <option value="rejected">Отклонено</option>
+                            </select>
+                        </div>
+
+                        <div style="text-align: right; margin-top: 20px;">
+                            <button type="button" class="secondary" id="modal-cancel">Отмена</button>
+                            <button type="submit" class="tndr-sbmt">Добавить</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="modal-form-group">
-                <label>Контактное лицо <span class="required-star">*</span></label>
-                <input type="text" id="modal-contact" required>
-            </div>
-
-            <div class="modal-form-group">
-                <label>Email <span class="required-star">*</span></label>
-                <input type="email" id="modal-email" required>
-            </div>
-
-            <div class="modal-form-group">
-                <label>Условия участия</label>
-                <select id="modal-terms">
-                    <option value="accepted">Принято</option>
-                    <option value="pending">В ожидании</option>
-                    <option value="rejected">Отклонено</option>
-                </select>
-            </div>
-
-            <div style="text-align: right; margin-top: 20px;">
-                <button type="button" class="secondary" id="modal-cancel">Отмена</button>
-                <button type="submit" class="tndr-sbmt">Добавить</button>
-            </div>
-        </form>
-    </div>
-</div>
             <form id="evaluation-form" class="form-tab">
                 <div class="form-section">
                     <h3>Способ оценки предложений</h3>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="min-score" class="required-field">Минимальная оценка</label>
@@ -1488,7 +1466,7 @@ select:invalid {
                                 <option value="1">1</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="max-score" class="required-field">Максимальная оценка</label>
                             <select id="max-score" name="max-score" required>
@@ -1502,12 +1480,12 @@ select:invalid {
                         </div>
                     </div>
                 </div>
-            
+
                 <div class="comment-sec">
                     <h3>Комментарии</h3>
                     <textarea id="comments-evaluation" name="comments"></textarea>
                 </div>
-            
+
                 <div class="form-actions">
                     <button type="button" id="save-evaluation">Сохранить</button>
                     <button type="button" class="secondary">Отмена</button>
@@ -1517,143 +1495,127 @@ select:invalid {
     </div>
 
     <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // ================= ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ =================
-    let mockParticipants = [];
-    let isFirstAnalysis = true;
+        document.addEventListener('DOMContentLoaded', function () {
+            // ================= ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ =================
+            let mockParticipants = [];
+            let isFirstAnalysis = true;
 
-    // Элементы для анализа файла
-    const fileUpload = document.getElementById('file-upload-container');
-    const fileInput = document.getElementById('file-input');
-    const fileName = document.getElementById('file-name');
-    const analyzeBtn = document.getElementById('analyze-btn');
-    const analysisSuccess = document.getElementById('analysis-success');
-    const submitBtn = document.getElementById('submit-btn');
+            // Элементы для анализа файла
+            const fileUpload = document.getElementById('file-upload-container');
+            const fileInput = document.getElementById('file-input');
+            const fileName = document.getElementById('file-name');
+            const analyzeBtn = document.getElementById('analyze-btn');
+            const analysisSuccess = document.getElementById('analysis-success');
+            const submitBtn = document.getElementById('submit-btn');
 
-    // Элементы для участников
-    const participantsTableBody = document.getElementById('participants-table-body');
-    const modalOverlay = document.getElementById('modal-overlay');
-    const modalClose = document.getElementById('modal-close');
-    const modalCancel = document.getElementById('modal-cancel');
-    const participantForm = document.getElementById('participant-form');
+            // Элементы для участников
+            const participantsTableBody = document.getElementById('participants-table-body');
+            const modalOverlay = document.getElementById('modal-overlay');
+            const modalClose = document.getElementById('modal-close');
+            const modalCancel = document.getElementById('modal-cancel');
+            const participantForm = document.getElementById('participant-form');
 
-    // ================= ОБРАБОТКА ФАЙЛОВ =================
-    const handleFileEvents = () => {
-        // Drag and drop обработчики
-        ['dragover', 'dragleave', 'drop'].forEach(event => {
-            fileUpload.addEventListener(event, e => {
-                e.preventDefault();
-                fileUpload.classList.toggle('dragover', event === 'dragover');
-            });
-        });
-
-        // Изменение файла
-        fileInput.addEventListener('change', () => {
-            fileName.textContent = fileInput.files[0]?.name || 'Или перетащите файл сюда';
-            analyzeBtn.classList.toggle('hidden', !fileInput.files.length);
-        });
-    };
-
-    // ================= АНАЛИЗ ФАЙЛА =================
-    const setupFileAnalysis = () => {
-        analyzeBtn.addEventListener('click', async () => {
-            analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Анализируется...';
-            analyzeBtn.disabled = true;
-
-            // Имитация анализа
-            await new Promise(resolve => setTimeout(resolve, 2000));
-
-            // Обновление статус-бара
-            updateStatus(2);
-
-            // Заполнение полей
-            document.getElementById('event-name').value = 'Закупка оборудования для офиса';
-            document.getElementById('currency').value = 'RUB';
-            document.getElementById('purchase-category').value = 'office';
-
-            // Управление видимостью элементов
-            fileUpload.classList.add('hidden');
-            analysisSuccess.style.display = 'block';
-            analyzeBtn.classList.add('hidden');
-            submitBtn.classList.remove('hidden');
-
-            // Восстановление кнопки
-            analyzeBtn.innerHTML = '<i class="fas fa-search"></i> Анализировать';
-            analyzeBtn.disabled = false;
-        });
-    };
-
-    // ================= УПРАВЛЕНИЕ СТАТУСОМ =================
-    const updateStatus = (step) => {
-        const statusBar = document.querySelector('.status-bar');
-        const statusSteps = document.querySelectorAll('.status-step');
-        
-        statusBar.setAttribute('data-step', step);
-        statusSteps.forEach(el => el.classList.remove('active'));
-        statusSteps[step - 1].classList.add('active');
-        
-        const statusTexts = ['Черновик', 'В процессе', 'Ожидает оценки', 'Закрыто'];
-        document.getElementById('status-text').textContent = statusTexts[step - 1];
-    };
-
-    // ================= УПРАВЛЕНИЕ ВКЛАДКАМИ =================
-    const setupTabHandlers = () => {
-        document.querySelectorAll('.nav-menu li').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const tabId = this.dataset.tab;
-                
-                document.querySelectorAll('.nav-menu li, .form-tab').forEach(el => {
-                    el.classList.remove('active');
+            // ================= ОБРАБОТКА ФАЙЛОВ =================
+            const handleFileEvents = () => {
+                ['dragover', 'dragleave', 'drop'].forEach(event => {
+                    fileUpload.addEventListener(event, e => {
+                        e.preventDefault();
+                        fileUpload.classList.toggle('dragover', event === 'dragover');
+                    });
                 });
-                
-                this.classList.add('active');
-                document.getElementById(`${tabId}-form`).classList.add('active');
+
+                fileInput.addEventListener('change', () => {
+                    fileName.textContent = fileInput.files[0]?.name || 'Или перетащите файл сюда';
+                    analyzeBtn.classList.toggle('hidden', !fileInput.files.length);
+                });
+            };
+
+            // ================= АНАЛИЗ ФАЙЛА =================
+            const setupFileAnalysis = () => {
+                analyzeBtn.addEventListener('click', async () => {
+                    analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Анализируется...';
+                    analyzeBtn.disabled = true;
+
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+
+                    updateStatus(2);
+                    document.getElementById('event-name').value = 'Закупка оборудования для офиса';
+                    document.getElementById('currency').value = 'RUB';
+                    document.getElementById('purchase-category').value = 'office';
+
+                    fileUpload.classList.add('hidden');
+                    analysisSuccess.style.display = 'block';
+                    analyzeBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+
+                    analyzeBtn.innerHTML = '<i class="fas fa-search"></i> Анализировать';
+                    analyzeBtn.disabled = false;
+                });
+            };
+
+            // ================= УПРАВЛЕНИЕ СТАТУСОМ =================
+            const updateStatus = (step) => {
+                const statusBar = document.querySelector('.status-bar');
+                const statusSteps = document.querySelectorAll('.status-step');
+
+                statusBar.setAttribute('data-step', step);
+                statusSteps.forEach(el => el.classList.remove('active'));
+                statusSteps[step - 1].classList.add('active');
+
+                const statusTexts = ['Черновик', 'В процессе', 'Ожидает оценки', 'Закрыто'];
+                document.getElementById('status-text').textContent = statusTexts[step - 1];
+            };
+
+            // ================= УПРАВЛЕНИЕ ВКЛАДКАМИ =================
+            const setupTabHandlers = () => {
+                document.querySelectorAll('.nav-menu li').forEach(item => {
+                    item.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const tabId = this.dataset.tab;
+
+                        document.querySelectorAll('.nav-menu li, .form-tab').forEach(el => {
+                            el.classList.remove('active');
+                        });
+
+                        this.classList.add('active');
+                        document.getElementById(`${tabId}-form`).classList.add('active');
+                    });
+                });
+            };
+
+            // ================= УЧАСТНИКИ =================
+            const setupParticipants = () => {
+                document.getElementById('open-modal-btn').addEventListener('click', () => {
+                    modalOverlay.style.display = 'flex';
+                });
+
+                modalClose.addEventListener('click', () => modalOverlay.style.display = 'none');
+                modalCancel.addEventListener('click', () => modalOverlay.style.display = 'none');
+                modalOverlay.addEventListener('click', (e) => {
+                    if (e.target === modalOverlay) modalOverlay.style.display = 'none';
+                });
+
+                participantForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const participant = getFormData();
+                    addParticipantToTable(participant);
+                    modalOverlay.style.display = 'none';
+                    this.reset();
+                });
+            };
+
+            const getFormData = () => ({
+                date: new Date().toLocaleDateString(),
+                company: document.getElementById('modal-company').value,
+                contact: document.getElementById('modal-contact').value,
+                email: document.getElementById('modal-email').value,
+                terms: document.getElementById('modal-terms').value,
+                lastSeen: 'Только что'
             });
-        });
-    };
 
-    // ================= УЧАСТНИКИ =================
-    const setupParticipants = () => {
-        // Обработчики модального окна
-        document.getElementById('open-modal-btn').addEventListener('click', () => {
-            modalOverlay.style.display = 'flex';
-        });
-
-        modalClose.addEventListener('click', () => {
-            modalOverlay.style.display = 'none';
-        });
-
-        modalCancel.addEventListener('click', () => {
-            modalOverlay.style.display = 'none';
-        });
-
-        modalOverlay.addEventListener('click', (e) => {
-            if(e.target === modalOverlay) modalOverlay.style.display = 'none';
-        });
-
-        // Обработчик формы
-        participantForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const participant = getFormData();
-            addParticipantToTable(participant);
-            modalOverlay.style.display = 'none';
-            this.reset();
-        });
-    };
-
-    const getFormData = () => ({
-        date: new Date().toLocaleDateString(),
-        company: document.getElementById('modal-company').value,
-        contact: document.getElementById('modal-contact').value,
-        email: document.getElementById('modal-email').value,
-        terms: document.getElementById('modal-terms').value,
-        lastSeen: 'Только что'
-    });
-
-    const addParticipantToTable = (data) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
+            const addParticipantToTable = (data) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
             <td>${data.date}</td>
             <td>${data.company}</td>
             <td>${data.contact}</td>
@@ -1666,144 +1628,208 @@ document.addEventListener('DOMContentLoaded', function () {
                 <button class="small secondary" onclick="deleteParticipant(this)"><i class="fas fa-trash"></i></button>
             </td>
         `;
-        participantsTableBody.appendChild(row);
-    };
+                participantsTableBody.appendChild(row);
+            };
 
-    const getStatusBadge = (status) => {
-        const badges = {
-            accepted: '<span style="color: green;"><i class="fas fa-check-circle"></i> Активно</span>',
-            pending: '<span style="color: orange;"><i class="fas fa-clock"></i> Ожидание</span>',
-            rejected: '<span style="color: red;"><i class="fas fa-times-circle"></i> Отклонено</span>'
-        };
-        return badges[status] || '';
-    };
+            const getStatusBadge = (status) => {
+                const badges = {
+                    accepted: '<span style="color: green;"><i class="fas fa-check-circle"></i> Активно</span>',
+                    pending: '<span style="color: orange;"><i class="fas fa-clock"></i> Ожидание</span>',
+                    rejected: '<span style="color: red;"><i class="fas fa-times-circle"></i> Отклонено</span>'
+                };
+                return badges[status] || '';
+            };
 
-    // Глобальные функции для действий с участниками
-    window.deleteParticipant = function(btn) {
-        const row = btn.closest('tr');
-        row.parentNode.removeChild(row);
-    };
+            window.deleteParticipant = function (btn) {
+                const row = btn.closest('tr');
+                row.parentNode.removeChild(row);
+            };
 
-    window.editParticipant = function(btn) {
-        const row = btn.closest('tr');
-        const cells = row.querySelectorAll('td');
-        
-        document.getElementById('modal-company').value = cells[1].textContent;
-        document.getElementById('modal-contact').value = cells[2].textContent;
-        document.getElementById('modal-email').value = cells[3].textContent;
-        document.getElementById('modal-terms').value = 
-            cells[4].querySelector('span').textContent.includes('Активно') ? 'accepted' :
-            cells[4].querySelector('span').textContent.includes('Ожидание') ? 'pending' : 'rejected';
-        
-        modalOverlay.style.display = 'flex';
-        
-        participantForm.onsubmit = function(e) {
-            e.preventDefault();
-            row.parentNode.removeChild(row);
-            addParticipantToTable(getFormData());
-            modalOverlay.style.display = 'none';
-        };
-    };
+            window.editParticipant = function (btn) {
+                const row = btn.closest('tr');
+                const cells = row.querySelectorAll('td');
 
-    // ================= ТОВАРЫ И УСЛУГИ =================
-    const setupGoodsSection = () => {
-        const addLotBtn = document.getElementById('add-lot-btn');
-        const typeDropdown = document.querySelector('.type-dropdown');
-        const lotForm = document.querySelector('.lot-form');
-        const addingTitle = document.querySelector('.adding-title');
-        const lotActions = document.querySelector('.lot-actions');
+                document.getElementById('modal-company').value = cells[1].textContent;
+                document.getElementById('modal-contact').value = cells[2].textContent;
+                document.getElementById('modal-email').value = cells[3].textContent;
+                document.getElementById('modal-terms').value =
+                    cells[4].querySelector('span').textContent.includes('Активно') ? 'accepted' :
+                        cells[4].querySelector('span').textContent.includes('Ожидание') ? 'pending' : 'rejected';
 
-        addLotBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            typeDropdown.classList.toggle('show');
-        });
+                modalOverlay.style.display = 'flex';
 
-        document.querySelectorAll('.type-option').forEach(option => {
-            option.addEventListener('click', function(e) {
-                e.stopPropagation();
-                typeDropdown.classList.remove('show');
-                
-                if (this.dataset.type === 'lot') {
-                    addLotBtn.classList.add('hidden');
-                    addingTitle.style.display = 'block';
-                    lotForm.classList.add('visible');
-                    lotActions.classList.add('visible');
+                participantForm.onsubmit = function (e) {
+                    e.preventDefault();
+                    row.parentNode.removeChild(row);
+                    addParticipantToTable(getFormData());
+                    modalOverlay.style.display = 'none';
+                };
+            };
+
+            // ================= ТОВАРЫ И УСЛУГИ =================
+            const setupGoodsSection = () => {
+                const addTypeBtn = document.getElementById('add-type-btn');
+                const typeDropdown = document.querySelector('.type-dropdown');
+                const lotsContainer = document.getElementById('lots-container');
+                const lotTemplate = document.getElementById('lot-template');
+                const serviceTemplate = document.getElementById('service-template');
+
+                // Показать/скрыть выпадающий список
+                addTypeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    typeDropdown.classList.toggle('show');
+                });
+
+                // Обработчик выбора типа
+                document.querySelectorAll('.type-option').forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        const type = e.target.dataset.type;
+                        typeDropdown.classList.remove('show');
+
+                        if (type === 'lot') {
+                            addLotForm();
+                        } else if (type === 'service') {
+                            addServiceForm();
+                        }
+                    });
+                });
+
+                // Закрытие dropdown при клике вне его
+                document.addEventListener('click', (e) => {
+                    if (!addTypeBtn.contains(e.target)) {
+                        typeDropdown.classList.remove('show');
+                    }
+                });
+
+                const addLotForm = () => {
+                    const lotClone = lotTemplate.content.cloneNode(true);
+                    const newLot = lotClone.querySelector('.lot-form');
+
+                    // Обработчик отмены
+                    newLot.querySelector('.cancel-lot').addEventListener('click', () => {
+                        newLot.remove();
+                    });
+
+                    // Обработчик сохранения
+                    newLot.querySelector('.save-lot').addEventListener('click', function () {
+                        const inputs = newLot.querySelectorAll('input, select');
+                        let isValid = true;
+
+                        inputs.forEach(input => {
+                            if (input.hasAttribute('required') && !input.value.trim()) {
+                                isValid = false;
+                                input.classList.add('error');
+                            } else {
+                                input.classList.remove('error');
+                            }
+                        });
+
+                        if (isValid) {
+                            this.disabled = true;
+                            this.textContent = 'Сохранено ✓';
+                            setTimeout(() => {
+                                this.disabled = false;
+                                this.textContent = 'Сохранить';
+                            }, 2000);
+                        }
+                    });
+
+                    lotsContainer.appendChild(newLot);
+                };
+
+                const addServiceForm = () => {
+                    const serviceClone = serviceTemplate.content.cloneNode(true);
+                    const newService = serviceClone.querySelector('.service-form');
+
+                    // Обработчик отмены
+                    newService.querySelector('.cancel-service').addEventListener('click', () => {
+                        newService.remove();
+                    });
+
+                    // Обработчик сохранения
+                    newService.querySelector('.save-service').addEventListener('click', function () {
+                        const inputs = newService.querySelectorAll('input, select');
+                        let isValid = true;
+
+                        inputs.forEach(input => {
+                            if (input.hasAttribute('required') && !input.value.trim()) {
+                                isValid = false;
+                                input.classList.add('error');
+                            } else {
+                                input.classList.remove('error');
+                            }
+                        });
+
+                        if (isValid) {
+                            this.disabled = true;
+                            this.textContent = 'Сохранено ✓';
+                            setTimeout(() => {
+                                this.disabled = false;
+                                this.textContent = 'Сохранить';
+                            }, 2000);
+                        }
+                    });
+
+                    lotsContainer.appendChild(newService);
+                };
+            };
+
+            // ================= ОБРАБОТЧИКИ СОХРАНЕНИЯ =================
+            const setupSaveHandlers = () => {
+                document.getElementById('save-btn').addEventListener('click', function () {
+                    updateStatus(3);
+                    alert('Данные успешно сохранены!');
+                });
+
+                document.getElementById('submit-btn').addEventListener('click', () => {
+                    if (confirm('Подтвердить событие? Редактирование будет ограничено.')) {
+                        updateStatus(3);
+                        document.querySelectorAll('input, select, textarea').forEach(el => el.readOnly = true);
+                    }
+                });
+
+                document.getElementById('save-evaluation').addEventListener('click', function () {
+                    const minScore = document.getElementById('min-score').value;
+                    const maxScore = document.getElementById('max-score').value;
+
+                    if (parseInt(minScore) >= parseInt(maxScore)) {
+                        alert('Минимальная оценка должна быть меньше максимальной!');
+                        return;
+                    }
+                    alert('Настройки оценки сохранены');
+                });
+            };
+
+            // ================= ИНИЦИАЛИЗАЦИЯ =================
+            const init = () => {
+                handleFileEvents();
+                setupFileAnalysis();
+                setupTabHandlers();
+                setupParticipants();
+                setupGoodsSection();
+                setupSaveHandlers();
+                updateStatus(1);
+            };
+
+            const getMockParticipants = () => [
+                {
+                    company: "ООО 'ТехноПартнер'",
+                    contact: "Иван Петров",
+                    email: "ivan.p@techpartner.ru",
+                    terms: "accepted",
+                    lastSeen: "2 дня назад"
+                },
+                {
+                    company: "Global Suppliers Inc.",
+                    contact: "John Smith",
+                    email: "john@globalsuppliers.com",
+                    terms: "pending",
+                    lastSeen: "1 час назад"
                 }
-            });
+            ];
+
+            init();
         });
-
-        document.addEventListener('click', function(e) {
-            if (!addLotBtn.contains(e.target)) {
-                typeDropdown.classList.remove('show');
-            }
-        });
-
-        document.querySelector('.cancel-lot').addEventListener('click', function() {
-            addLotBtn.classList.remove('hidden');
-            addingTitle.style.display = 'none';
-            lotForm.classList.remove('visible');
-            lotActions.classList.remove('visible');
-            lotForm.querySelectorAll('input').forEach(input => input.value = '');
-        });
-    };
-
-    // ================= ИНИЦИАЛИЗАЦИЯ =================
-    const init = () => {
-        handleFileEvents();
-        setupFileAnalysis();
-        setupTabHandlers();
-        setupParticipants();
-        setupGoodsSection();
-        setupSaveHandlers();
-        updateStatus(1);
-    };
-
-    // ================= ОБРАБОТЧИКИ СОХРАНЕНИЯ =================
-    const setupSaveHandlers = () => {
-        document.getElementById('save-btn').addEventListener('click', function() {
-            updateStatus(3);
-            alert('Данные успешно сохранены!');
-        });
-
-        document.getElementById('submit-btn').addEventListener('click', () => {
-            if (confirm('Подтвердить событие? Редактирование будет ограничено.')) {
-                updateStatus(3);
-                document.querySelectorAll('input, select, textarea').forEach(el => el.readOnly = true);
-            }
-        });
-
-        document.getElementById('save-evaluation').addEventListener('click', function() {
-            const minScore = document.getElementById('min-score').value;
-            const maxScore = document.getElementById('max-score').value;
-            
-            if (parseInt(minScore) >= parseInt(maxScore)) {
-                alert('Минимальная оценка должна быть меньше максимальной!');
-                return;
-            }
-            alert('Настройки оценки сохранены');
-        });
-    };
-
-    // Заглушка для участников из файла
-    const getMockParticipants = () => [
-        {
-            company: "ООО 'ТехноПартнер'",
-            contact: "Иван Петров",
-            email: "ivan.p@techpartner.ru",
-            terms: "accepted",
-            lastSeen: "2 дня назад"
-        },
-        {
-            company: "Global Suppliers Inc.",
-            contact: "John Smith",
-            email: "john@globalsuppliers.com",
-            terms: "pending",
-            lastSeen: "1 час назад"
-        }
-    ];
-
-    init();
-});
     </script>
 </body>
 
