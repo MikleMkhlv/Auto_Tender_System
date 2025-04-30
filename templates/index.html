@@ -1363,210 +1363,225 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // ================= ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ =================
-            let mockParticipants = []; // Данные участников из файла
-            let isFirstAnalysis = true; // Флаг первого анализа
+    // ================= ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ =================
+    let mockParticipants = [];
+    let isFirstAnalysis = true;
 
-            // ================= ОБЩИЕ ЭЛЕМЕНТЫ =================
-            const fileUpload = document.getElementById('file-upload-container');
-            const fileInput = document.getElementById('file-input');
-            const fileName = document.getElementById('file-name');
-            const analyzeBtn = document.getElementById('analyze-btn');
-            const analysisSuccess = document.getElementById('analysis-success');
-            const participantsContainer = document.getElementById('participants-container');
-            const participantTemplate = document.getElementById('participant-template');
+    // ================= ОБЩИЕ ЭЛЕМЕНТЫ =================
+    const fileUpload = document.getElementById('file-upload-container');
+    const fileInput = document.getElementById('file-input');
+    const fileName = document.getElementById('file-name');
+    const analyzeBtn = document.getElementById('analyze-btn');
+    const analysisSuccess = document.getElementById('analysis-success');
+    const participantsContainer = document.getElementById('participants-container');
+    const participantTemplate = document.getElementById('participant-template');
 
-            // ================= ОБРАБОТКА ФАЙЛОВ =================
-            // Drag and Drop
-            const handleFileEvents = () => {
-                ['dragover', 'dragleave', 'drop'].forEach(event => {
-                    fileUpload.addEventListener(event, e => {
-                        e.preventDefault();
-                        fileUpload.classList.toggle('dragover', event === 'dragover');
-                    });
-                });
-
-                fileInput.addEventListener('change', () => {
-                    fileName.textContent = fileInput.files[0]?.name || 'Или перетащите файл сюда';
-                    analyzeBtn.classList.toggle('hidden', !fileInput.files.length);
-                });
-            };
-
-            // Анализ файла
-            const setupFileAnalysis = () => {
-                analyzeBtn.addEventListener('click', async () => {
-                    analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Анализируется...';
-                    analyzeBtn.disabled = true;
-
-                    await new Promise(resolve => setTimeout(resolve, 2000));
-
-                    // Скрываем поле загрузки файла
-                    fileUpload.classList.add('hidden');
-
-                    document.getElementById('event-name').value = 'Закупка оборудования для офиса';
-                    document.getElementById('currency').value = 'RUB';
-                    document.getElementById('purchase-category').value = 'office';
-
-                    mockParticipants = getMockParticipants();
-                    processParticipants();
-
-                    analysisSuccess.style.display = 'block';
-                    analyzeBtn.classList.add('hidden');
-                    document.getElementById('submit-btn').classList.remove('hidden');
-                    analyzeBtn.innerHTML = '<i class="fas fa-search"></i> Анализировать';
-                    analyzeBtn.disabled = false;
-                });
-            };
-
-            // ================= УЧАСТНИКИ =================
-            const processParticipants = () => {
-                // Удаляем только участников из файла
-                const fileParticipants = Array.from(participantsContainer.querySelectorAll('[data-from-file]'));
-                fileParticipants.forEach(block => block.remove());
-
-                // Добавляем новых участников из файла
-                mockParticipants.forEach((p, i) => {
-                    participantsContainer.appendChild(createParticipant(p, i, true));
-                });
-
-                updateParticipantNumbers();
-            };
-
-            const createParticipant = (data = {}, index, fromFile = false) => {
-                const clone = participantTemplate.content.cloneNode(true);
-                const block = clone.querySelector('.participant-block');
-
-                // Заполнение данных
-                block.querySelector('.company-name').value = data.company || '';
-                block.querySelector('.contact-name').value = data.contact || '';
-                block.querySelector('.contact-email').value = data.email || '';
-                block.querySelector('.supplier-language').value = data.language || '';
-                block.querySelector('.supplier-region').value = data.region || '';
-                block.querySelector('.participant-number').textContent = index + 1;
-
-                // Метка источника данных
-                if (fromFile) block.dataset.fromFile = true;
-
-                // Обработчики
-                block.querySelector('.remove-participant-btn').addEventListener('click', () => {
-                    block.remove();
-                    updateParticipantNumbers();
-                });
-
-                return clone;
-            };
-
-            const updateParticipantNumbers = () => {
-                document.querySelectorAll('.participant-block').forEach((block, index) => {
-                    block.querySelector('.participant-number').textContent = index + 1;
-                });
-            };
-
-            // Инициализация участников
-            const setupParticipants = () => {
-                document.querySelector('.add-participant-btn').addEventListener('click', () => {
-                    participantsContainer.appendChild(createParticipant({}, participantsContainer.children.length));
-                    updateParticipantNumbers();
-                });
-            };
-
-            // ================= ТОВАРЫ И УСЛУГИ =================
-            const setupGoodsSection = () => {
-                const addLotBtn = document.getElementById('add-lot-btn');
-                const typeDropdown = document.querySelector('.type-dropdown');
-                const lotForm = document.querySelector('.lot-form');
-                const addingTitle = document.querySelector('.adding-title');
-                const lotActions = document.querySelector('.lot-actions');
-
-                addLotBtn.addEventListener('click', e => {
-                    e.stopPropagation();
-                    typeDropdown.classList.toggle('show');
-                });
-
-                document.querySelectorAll('.type-option').forEach(option => {
-                    option.addEventListener('click', e => {
-                        e.stopPropagation();
-                        typeDropdown.classList.remove('show');
-                        if (option.dataset.type === 'lot') {
-                            addLotBtn.classList.add('hidden');
-                            addingTitle.style.display = 'block';
-                            lotForm.classList.add('visible');
-                            lotActions.classList.add('visible');
-                        }
-                    });
-                });
-
-                document.addEventListener('click', e => {
-                    if (!addLotBtn.contains(e.target)) typeDropdown.classList.remove('show');
-                });
-
-                document.querySelector('.cancel-lot').addEventListener('click', () => {
-                    addLotBtn.classList.remove('hidden');
-                    addingTitle.style.display = 'none';
-                    lotForm.classList.remove('visible');
-                    lotActions.classList.remove('visible');
-                    lotForm.querySelectorAll('input').forEach(input => input.value = '');
-                });
-            };
-
-            // ================= ОБЩИЕ ОБРАБОТЧИКИ =================
-            const setupGeneralHandlers = () => {
-                // Переключение вкладок
-                document.querySelectorAll('.nav-menu li').forEach(item => {
-                    item.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        document.querySelectorAll('.nav-menu li, .form-tab').forEach(el => el.classList.remove('active'));
-                        this.classList.add('active');
-                        document.getElementById(`${this.dataset.tab}-form`).classList.add('active');
-                    });
-                });
-
-                // Подтверждение формы
-                document.getElementById('submit-btn').addEventListener('click', () => {
-                    if (confirm('Подтвердить событие? Редактирование будет ограничено.')) {
-                        document.querySelectorAll('.status-step').forEach(el => el.classList.remove('active'));
-                        document.querySelector('.status-bar').setAttribute('data-step', '3');
-                        document.querySelectorAll('.status-step')[2].classList.add('active');
-                        document.getElementById('status-text').textContent = 'Ожидает оценки';
-                        document.querySelectorAll('input, select, textarea').forEach(el => el.readOnly = true);
-                    }
-                });
-
-                // Режим редактирования
-                document.getElementById('edit-btn').addEventListener('click', function () {
-                    const isReadOnly = document.getElementById('event-name').readOnly;
-                    document.querySelectorAll('input, select, textarea').forEach(el => el.readOnly = !isReadOnly);
-                    this.textContent = isReadOnly ? 'Редактировать событие' : 'Просмотр события';
-                });
-            };
-
-            // ================= ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =================
-            const getMockParticipants = () => [
-                {
-                    company: "ООО 'ТехноПартнер'",
-                    contact: "Иван Петров",
-                    email: "ivan.p@techpartner.ru",
-                    language: "ru",
-                    region: "europe"
-                },
-                {
-                    company: "Global Suppliers Inc.",
-                    contact: "John Smith",
-                    email: "john@globalsuppliers.com"
-                }
-            ];
-
-            // ================= ИНИЦИАЛИЗАЦИЯ =================
-            const init = () => {
-                handleFileEvents();
-                setupFileAnalysis();
-                setupParticipants();
-                setupGoodsSection();
-                setupGeneralHandlers();
-            };
-
-            init();
+    // ================= ОБРАБОТКА ФАЙЛОВ =================
+    const handleFileEvents = () => {
+        ['dragover', 'dragleave', 'drop'].forEach(event => {
+            fileUpload.addEventListener(event, e => {
+                e.preventDefault();
+                fileUpload.classList.toggle('dragover', event === 'dragover');
+            });
         });
+
+        fileInput.addEventListener('change', () => {
+            fileName.textContent = fileInput.files[0]?.name || 'Или перетащите файл сюда';
+            analyzeBtn.classList.toggle('hidden', !fileInput.files.length);
+        });
+    };
+
+    // ================= АНАЛИЗ ФАЙЛА =================
+    const setupFileAnalysis = () => {
+        analyzeBtn.addEventListener('click', async () => {
+            analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Анализируется...';
+            analyzeBtn.disabled = true;
+
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Обновление статус-бара
+            updateStatus(2);
+
+            // Заполнение полей
+            document.getElementById('event-name').value = 'Закупка оборудования для офиса';
+            document.getElementById('currency').value = 'RUB';
+            document.getElementById('purchase-category').value = 'office';
+
+            // Добавление участников
+            mockParticipants = getMockParticipants();
+            processParticipants();
+
+            // Показ результатов анализа
+            fileUpload.classList.add('hidden');
+            analysisSuccess.style.display = 'block';
+            analyzeBtn.classList.add('hidden');
+            document.getElementById('submit-btn').classList.remove('hidden');
+            analyzeBtn.innerHTML = '<i class="fas fa-search"></i> Анализировать';
+            analyzeBtn.disabled = false;
+        });
+    };
+
+    // ================= УПРАВЛЕНИЕ СТАТУСОМ =================
+    const updateStatus = (step) => {
+        const statusBar = document.querySelector('.status-bar');
+        const statusSteps = document.querySelectorAll('.status-step');
+        
+        statusBar.setAttribute('data-step', step);
+        statusSteps.forEach(el => el.classList.remove('active'));
+        statusSteps[step - 1].classList.add('active');
+        
+        const statusTexts = ['Черновик', 'В процессе', 'Ожидает оценки', 'Закрыто'];
+        document.getElementById('status-text').textContent = statusTexts[step - 1];
+    };
+
+    // ================= УПРАВЛЕНИЕ ВКЛАДКАМИ =================
+    const setupTabHandlers = () => {
+        document.querySelectorAll('.nav-menu li').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const tabId = this.dataset.tab;
+                
+                document.querySelectorAll('.nav-menu li, .form-tab').forEach(el => {
+                    el.classList.remove('active');
+                });
+                
+                this.classList.add('active');
+                document.getElementById(`${tabId}-form`).classList.add('active');
+            });
+        });
+    };
+
+    // ================= УЧАСТНИКИ =================
+    const processParticipants = () => {
+        const fileParticipants = Array.from(participantsContainer.querySelectorAll('[data-from-file]'));
+        fileParticipants.forEach(block => block.remove());
+
+        mockParticipants.forEach((p, i) => {
+            participantsContainer.appendChild(createParticipant(p, i, true));
+        });
+
+        updateParticipantNumbers();
+    };
+
+    const createParticipant = (data = {}, index, fromFile = false) => {
+        const clone = participantTemplate.content.cloneNode(true);
+        const block = clone.querySelector('.participant-block');
+
+        block.querySelector('.company-name').value = data.company || '';
+        block.querySelector('.contact-name').value = data.contact || '';
+        block.querySelector('.contact-email').value = data.email || '';
+        block.querySelector('.supplier-language').value = data.language || '';
+        block.querySelector('.supplier-region').value = data.region || '';
+        block.querySelector('.participant-number').textContent = index + 1;
+
+        if (fromFile) block.dataset.fromFile = true;
+
+        block.querySelector('.remove-participant-btn').addEventListener('click', () => {
+            block.remove();
+            updateParticipantNumbers();
+        });
+
+        return clone;
+    };
+
+    const updateParticipantNumbers = () => {
+        document.querySelectorAll('.participant-block').forEach((block, index) => {
+            block.querySelector('.participant-number').textContent = index + 1;
+        });
+    };
+
+    // ================= ОБРАБОТЧИКИ СОХРАНЕНИЯ =================
+    const setupSaveHandlers = () => {
+        document.getElementById('save-btn').addEventListener('click', function() {
+            updateStatus(3);
+            alert('Данные успешно сохранены!');
+        });
+
+        document.getElementById('submit-btn').addEventListener('click', () => {
+            if (confirm('Подтвердить событие? Редактирование будет ограничено.')) {
+                updateStatus(3);
+                document.querySelectorAll('input, select, textarea').forEach(el => el.readOnly = true);
+            }
+        });
+    };
+     // ================= ТОВАРЫ И УСЛУГИ =================
+     const setupGoodsSection = () => {
+        const addLotBtn = document.getElementById('add-lot-btn');
+        const typeDropdown = document.querySelector('.type-dropdown');
+        const lotForm = document.querySelector('.lot-form');
+        const addingTitle = document.querySelector('.adding-title');
+        const lotActions = document.querySelector('.lot-actions');
+
+        // Обработчик кнопки "Добавить тип"
+        addLotBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            typeDropdown.classList.toggle('show');
+        });
+
+        // Обработчики выбора типа
+        document.querySelectorAll('.type-option').forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.stopPropagation();
+                typeDropdown.classList.remove('show');
+                
+                if (this.dataset.type === 'lot') {
+                    addLotBtn.classList.add('hidden');
+                    addingTitle.style.display = 'block';
+                    lotForm.classList.add('visible');
+                    lotActions.classList.add('visible');
+                }
+            });
+        });
+
+        // Закрытие dropdown при клике вне его
+        document.addEventListener('click', function(e) {
+            if (!addLotBtn.contains(e.target)) {
+                typeDropdown.classList.remove('show');
+            }
+        });
+
+        // Обработчик отмены
+        document.querySelector('.cancel-lot').addEventListener('click', function() {
+            addLotBtn.classList.remove('hidden');
+            addingTitle.style.display = 'none';
+            lotForm.classList.remove('visible');
+            lotActions.classList.remove('visible');
+            lotForm.querySelectorAll('input').forEach(input => input.value = '');
+        });
+    };
+    // ================= ИНИЦИАЛИЗАЦИЯ =================
+    const init = () => {
+        handleFileEvents();
+        setupFileAnalysis();
+        setupTabHandlers(); // Важная добавка
+        setupSaveHandlers();
+        setupGoodsSection(); 
+        
+        document.querySelector('.add-participant-btn').addEventListener('click', () => {
+            participantsContainer.appendChild(createParticipant({}, participantsContainer.children.length));
+            updateParticipantNumbers();
+        });
+
+        updateStatus(1);
+    };
+
+    const getMockParticipants = () => [
+        {
+            company: "ООО 'ТехноПартнер'",
+            contact: "Иван Петров",
+            email: "ivan.p@techpartner.ru",
+            language: "ru",
+            region: "europe"
+        },
+        {
+            company: "Global Suppliers Inc.",
+            contact: "John Smith",
+            email: "john@globalsuppliers.com"
+        }
+    ];
+
+    init();
+});
     </script>
 </body>
 
