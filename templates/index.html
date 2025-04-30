@@ -914,7 +914,17 @@
             margin-top: 10px;
             width: 100%;
         }
-        
+        select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234b0082'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") 
+        no-repeat right 0.75rem center/12px 12px;
+    padding-right: 2rem;
+}
+
+select:invalid {
+    color: #6c757d;
+}
     </style>
 </head>
 
@@ -1358,6 +1368,44 @@
                     </div>
                 </template>
             </form>
+            <form id="evaluation-form" class="form-tab">
+                <div class="form-section">
+                    <h3>Способ оценки предложений</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="min-score" class="required-field">Минимальная оценка</label>
+                            <select id="min-score" name="min-score" required>
+                                <option value="">Выберите</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="max-score" class="required-field">Максимальная оценка</label>
+                            <select id="max-score" name="max-score" required>
+                                <option value="">Выберите</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="comment-sec">
+                    <h3>Комментарии</h3>
+                    <textarea id="comments-evaluation" name="comments"></textarea>
+                </div>
+            
+                <div class="form-actions">
+                    <button type="button" id="save-evaluation">Сохранить</button>
+                    <button type="button" class="secondary">Отмена</button>
+                </div>
+            </form>
         </section>
     </div>
 
@@ -1503,6 +1551,19 @@
                 document.querySelectorAll('input, select, textarea').forEach(el => el.readOnly = true);
             }
         });
+        // Сохранение оценки предложений
+    document.getElementById('save-evaluation').addEventListener('click', function() {
+        const minScore = document.getElementById('min-score').value;
+        const maxScore = document.getElementById('max-score').value;
+        
+        if (parseInt(minScore) >= parseInt(maxScore)) {
+            alert('Минимальная оценка должна быть меньше максимальной!');
+            return;
+        }
+        
+        alert('Настройки оценки сохранены');
+        // Здесь можно добавить логику сохранения в хранилище
+    });
     };
      // ================= ТОВАРЫ И УСЛУГИ =================
      const setupGoodsSection = () => {
