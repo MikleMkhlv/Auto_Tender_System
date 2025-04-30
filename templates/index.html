@@ -877,9 +877,21 @@
         }
 
         /* Для иконки внутри заголовка */
-        .adding-title i {
-            margin-right: 10px;
-            font-size: 1.2em;
+        .adding-title {
+            
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 20px;
+            padding-top: 10px;
+            width: 460%;
+            height: 100%;
+            margin: 0 0 15px 0;
+            background-color: #4b0082;
+            color: white;
+            border-radius: 4px;
+            font-size: 1.1em;
+            box-sizing: border-box;
         }
 
         .add-type-btn.hidden {
@@ -1215,12 +1227,11 @@ select:invalid {
             </form>
             <form id="goods-form" class="form-tab">
                 <div class="form-section">
-                    <h3>Товары и услуги</h3>
-
+                    <h3>Документация к тендеру</h3>
                     <!-- Документация к закупке -->
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Документация к закупке</label>
+                            <label padding-bottom="5px">Вложения</label>
                             <div class="simple-file-upload">
                                 <input type="file" id="goods-file" class="hidden">
                                 <label for="goods-file" class="upload-btn">
@@ -1230,7 +1241,9 @@ select:invalid {
                             </div>
                         </div>
                     </div>
-
+                </div>
+                <div class="form-section">
+                    <h3>Товары и услуги</h3>
                     <!-- Блок добавления -->
                     <div class="form-row">
 
@@ -1239,7 +1252,7 @@ select:invalid {
                                 <i class="fas fa-plus"></i> Добавить тип
                             </button>
                             <div class="adding-title">
-                                <i class="fas fa-box-open"></i>Добавление лота
+                                <i class="fas fa-box-open"></i> Добавление лота
                             </div>
                             <div class="type-dropdown">
                                 <div class="type-option" data-type="lot">Лот</div>
@@ -1248,56 +1261,64 @@ select:invalid {
                         </div>
 
                     </div>
-
+                
                     <!-- Форма для лота -->
                     <div class="lot-form">
                         <div class="form-row">
-                            <div class="form-group">
-                                <label for="type-lot" class="required-field">Тип лота закупки</label>
-                                <input type="text" id="type-lot" name="type-lot" required readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="lot-name" class="required-field">Название лота</label>
-                                <input type="text" id="lot-name" name="lot-name" required readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="quantity" class="required-field">Количество товара</label>
-                                <input type="number" id="quantity" name="quantity" step="0.01" required readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="quantity-type" class="required-field">Тип количества</label>
-                                <input type="text" id="quantity-type" name="quantity-type" required readonly>
+                            <div class="form-group" style="display: flex; gap: 20px; width: 100%;">
+                                <div style="flex: 1;">
+                                    <label for="type-lot" class="required-field">Название лота</label>
+                                    <input type="text" id="type-lot" name="type-lot" required>
+                                </div>
+                                <div style="flex: 1;">
+                                    <label for="lot-name">Описание лота</label>
+                                    <input type="text" id="lot-name" name="lot-name" readonly>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group">
-                                <label for="base-price">Базовая цена</label>
-                                <input type="number" id="base-price" name="base-price" step="0.01">
-                            </div>
-                            <div class="form-group">
-                                <label for="goods-currency" class="required-field">Валюта</label>
-                                <select id="goods-currency" name="goods-currency" required>
-                                    <option value="">Выберите валюту</option>
-                                    <option value="RUB">RUB - Российский рубль</option>
-                                    <option value="USD">USD - Доллар США</option>
-                                    <option value="EUR">EUR - Евро</option>
-                                    <option value="CNY">CNY - Китайский юань</option>
-                                </select>
+                            <div class="form-group" style="display: flex; gap: 20px; width: 100%;">
+                                <div style="flex: 1;">
+                                    <label for="quantity" class="required-field">Количество товара</label>
+                                    <input type="number" id="quantity" name="quantity" step="0.01" required >
+                                </div>
+                                <div style="flex: 1;">
+                                    <label for="quantity-type" class="required-field">Тип количества</label>
+                                    <input type="text" id="quantity-type" name="quantity-type" required >
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group">
-                                <label for="manufacturer-name">Имя производителя</label>
-                                <input type="text" id="manufacturer-name" name="manufacturer-name">
+                            <div class="form-group" style="display: flex; gap: 20px; width: 100%;">
+                                <div style="flex: 1;">
+                                    <label for="base-price">Базовая цена</label>
+                                    <input type="number" id="base-price" name="base-price" step="0.01">
+                                </div>
+                                <div style="flex: 1;">
+                                    <label for="goods-currency" class="required-field">Валюта</label>
+                                    <select id="goods-currency" name="goods-currency" required>
+                                        <option value="">Выберите валюту</option>
+                                        <option value="RUB">RUB - Российский рубль</option>
+                                        <option value="USD">USD - Доллар США</option>
+                                        <option value="EUR">EUR - Евро</option>
+                                        <option value="CNY">CNY - Китайский юань</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="manufacturer-code">Код производителя</label>
-                                <input type="text" id="manufacturer-code" name="manufacturer-code">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group" style="display: flex; gap: 20px; width: 100%;">
+                                <div style="flex: 1;">
+                                    <label for="manufacturer-name">Имя производителя</label>
+                                    <input type="text" id="manufacturer-name" name="manufacturer-name">
+                                </div>
+                                <div style="flex: 1;">
+                                    <label for="manufacturer-code">Код производителя</label>
+                                    <input type="text" id="manufacturer-code" name="manufacturer-code">
+                                </div>
                             </div>
                         </div>
                         <div class="lot-actions">
