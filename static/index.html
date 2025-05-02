@@ -1383,13 +1383,19 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="purchase-category" class="required-field">Категория закупки</label>
-                            <select id="purchase-category" name="purchase-category" required>
-                                <option value="">Выберите категорию</option>
-                                <option value="office">Офисное оборудование</option>
-                                <option value="it">IT оборудование</option>
-                                <option value="furniture">Мебель</option>
-                                <option value="services">Услуги</option>
-                                <option value="consumables">Расходные материалы</option>
+                            <select id="mainCategory" onchange="updateSubCategories()">
+                                <option value="">Выберите основную категорию</option>
+                                <option value="CS">CS - PROFESSIONAL SERVICES</option>
+                                <option value="MK">MK - MARKETING & SALES</option>
+                                <option value="CD">CD - COGS & DISTRIBUTION</option>
+                                <option value="MC">MC - CAPEX & MAINTENANCE</option>
+                                <option value="DG">DG - DIGITAL</option>
+                                <option value="RD">RD - MEDICAL & SCIENTIFIC</option>
+                            </select>
+                        
+                            <!-- Подкатегории -->
+                            <select style= "margin-top: 15px;" id="subCategory" disabled>
+                                <option value="">Сначала выберите основную категорию</option>
                             </select>
                         </div>
                     </div>
@@ -1894,6 +1900,312 @@
     </div>
 
     <script>
+
+
+
+const categoriesData = {
+    "CS": [
+        "CS2001 - Car fleet",
+        "CS5004 - Office Products",
+        "CS5005 - FM Occupant Services",
+        "CS5006 - FM Building Services",
+        "CS5008 - Security Services and Products",
+        "CS5025 - FM Building Services",
+        "CS5026 - FM Occupant Services",
+        "CS5027 - Garments and Safety Products",
+        "CS5028 - Security Services and Products",
+        "CS5029 - FM Building Services",
+        "CS5030 - Integrated Facility Management",
+        "CS5032 - Real Estate and Workplace",
+        "CS5033 - Subscription and Translation",
+        "CS5034 - Subscription and Translation",
+        "CS5035 - FM Occupant Services",
+        "CS5036 - Subscription and Translation",
+        "CS5037 - FM Occupant Services",
+        "CS5038 - FM Building Services",
+        "CS5039 - FM Occupant Services",
+        "CS5040 - Security Services and Products",
+        "CS5041 - Garments and Safety Products",
+        "CS5042 - Garments and Safety Products",
+        "CS6001 - Consulting",
+        "CS6002 - Consulting",
+        "CS6003 - Consulting",
+        "CS6004 - Consulting",
+        "CS2004 - Travel",
+        "CS2006 - Travel",
+        "CS2008 - Travel",
+        "CS2009 - Travel",
+        "CS2012 - CONTINGENCY WORKFORCE",
+        "CS2022 - CONTINGENCY WORKFORCE",
+        "CS2013 - HR Project",
+        "CS2014 - Learning and Development",
+        "CS2015 - Recruitment and Outplacement",
+        "CS2016 - Recruitment and Outplacement",
+        "CS2017 - Compensation and Benefits",
+        "CS2018 - Compensation and Benefits",
+        "CS2019 - Car fleet",
+        "CS2020 - Car fleet",
+        "CS2021 - Car fleet",
+        "CS5023 - Real Estate and Workplace",
+        "CS5024 - Real Estate and Workplace",
+        "CS5031 - Real Estate and Workplace",
+        "CS6005 - Consulting",
+        "CS6006 - Outsourcing & Shared Services",
+        "CS6007 - Insurances",
+        "CS6008 - Insurances",
+        "CS6009 - Insurances",
+        "CS6010 - Insurances",
+        "CS6011 - Financial Services"
+    ],
+    "MK": [
+        "MK1018 - Media Buy",
+        "MK3001 - Market Data & Insights",
+        "MK4001 - Promotional Items, Displays",
+        "MK4002 - Promotional Items, Displays",
+        "MK1004 - Communication Agencies",
+        "MK1005 - Media Buy",
+        "MK1006 - Media Buy",
+        "MK1007 - Communication Agencies",
+        "MK1012 - Communication Agencies",
+        "MK1013 - Communication Agencies",
+        "MK1014 - Communication Agencies",
+        "MK1015 - Communication Agencies",
+        "MK1017 - Media Buy",
+        "MK1019 - Media Buy",
+        "MK1020 - Communication Agencies",
+        "MK1021 - Communication Agencies",
+        "MK2001 - Meetings, Events",
+        "MK2003 - Meetings, Events",
+        "MK2006 - Meetings, Events",
+        "MK2007 - Meetings, Events",
+        "MK2008 - Meetings, Events",
+        "MK2009 - Meetings, Events",
+        "MK2010 - Meetings, Events",
+        "MK2011 - Meetings, Events",
+        "MK2012 - Meetings, Events",
+        "MK2013 - Meetings, Events",
+        "MK2014 - Meetings, Events",
+        "MK3002 - Market Data & Insights",
+        "MK3004 - Call centers & Patient Support Program (PSP)",
+        "MK3009 - Call centers & Patient Support Program (PSP)",
+        "MK3010 - Market Data & Insights",
+        "MK3011 - Patients, Physicians & Payers Data",
+        "MK4003 - Prints",
+        "MK4004 - Prints",
+        "MK5003 - Medical Operations",
+        "MK5004 - Medical Operations",
+        "MK5005 - Medical Operations",
+        "MK6001 - Sales services",
+        "MK6002 - External Sales Force",
+        "MK6003 - Market access"
+    ],
+    "CD": [
+        "CD1001 - Raw Materials (all Businesses)",
+        "CD1002 - Raw Materials (all Businesses)",
+        "CD1003 - Raw Materials (all Businesses)",
+        "CD1004 - Raw Materials (all Businesses)",
+        "CD1005 - Raw Materials (all Businesses)",
+        "CD1006 - Raw Materials (all Businesses)",
+        "CD1007 - Raw Materials (all Businesses)",
+        "CD1008 - Raw Materials (all Businesses)",
+        "CD1009 - Raw Materials (all Businesses)",
+        "CD1010 - Raw Materials (all Businesses)",
+        "CD1011 - Raw Materials (all Businesses)",
+        "CD1012 - Eggs",
+        "CD2002 - API + Excipients (Pharma)",
+        "CD2003 - API + Excipients (Pharma)",
+        "CD2004 - API + Excipients (Pharma)",
+        "CD2005 - API + Excipients (Pharma)",
+        "CD3001 - Carboard/paper",
+        "CD3002 - Carboard/paper",
+        "CD3003 - Carboard/paper",
+        "CD3004 - Carboard/paper",
+        "CD3005 - Carboard/paper",
+        "CD3006 - Devices",
+        "CD3007 - Devices",
+        "CD3008 - Devices",
+        "CD3009 - Devices",
+        "CD3010 - Devices",
+        "CD3011 - Glass",
+        "CD3012 - Devices",
+        "CD3013 - Devices",
+        "CD3014 - Glass",
+        "CD3015 - Devices",
+        "CD3016 - Devices",
+        "CD3017 - Metal",
+        "CD3018 - Metal",
+        "CD3019 - Metal",
+        "CD3020 - Plastics",
+        "CD3021 - Plastics",
+        "CD3022 - Plastics",
+        "CD3023 - Plastics",
+        "CD3024 - Plastics",
+        "CD3025 - Plastics",
+        "CD3026 - Plastics",
+        "CD3027 - Plastics",
+        "CD3028 - Devices",
+        "CD3029 - Other Packaging",
+        "CD3030 - Devices",
+        "CD6001 - Production Consumables",
+        "CD6002 - Production Consumables",
+        "CD4001 - Subcontracting full services",
+        "CD4002 - Subcontracting toll",
+        "CD4003 - Subcontracting toll",
+        "CD4004 - Subcontracting toll",
+        "CD4005 - Subcontracting toll",
+        "CD4006 - Subcontracting toll",
+        "CD4007 - Subcontracting toll",
+        "CD4008 - Subcontracting toll",
+        "CD4009 - Subcontracting under license",
+        "CD4010 - Subcontracting under license",
+        "CD4011 - Subcontracting under license",
+        "CD5002 - Distribution Subcontracting",
+        "CD5003 - COGS Freight & Duties",
+        "CD5004 - Packaging & Consumables for Distribution",
+        "CD5006 - COGS Freight & Duties",
+        "CD5007 - COGS Freight & Duties",
+        "CD5008 - COGS Freight & Duties",
+        "CD5009 - COGS Freight & Duties",
+        "CD5010 - Distribution Subcontracting",
+        "CD5011 - COGS Freight & Duties",
+        "CD5012 - COGS Freight & Duties"
+    ],
+    "MC": [
+        "MC1001 - Major Bio & Chemistry Equipment",
+        "MC1002 - Major Bio & Chemistry Equipment",
+        "MC1003 - Building and infrastructure",
+        "MC1004 - Building and infrastructure",
+        "MC1005 - Building and infrastructure",
+        "MC1006 - Building and infrastructure",
+        "MC1009 - Capex Project Engineering",
+        "MC1010 - Water, Waste & Energy Production Assets",
+        "MC1012 - Manufacturing process equipment",
+        "MC1013 - Process control systems",
+        "MC1014 - Process control systems",
+        "MC1015 - Process piping",
+        "MC1017 - Secondary works",
+        "MC1018 - Secondary works",
+        "MC1019 - Secondary works",
+        "MC1020 - Secondary works",
+        "MC1021 - Storage and handling equipment",
+        "MC1022 - Major Bio & Chemistry Equipment",
+        "MC1023 - Manufacturing process equipment",
+        "MC1024 - Manufacturing process equipment",
+        "MC1025 - Process control systems",
+        "MC1026 - Capex Project Engineering",
+        "MC1027 - Capex Project Engineering",
+        "MC1028 - Manufacturing process equipment",
+        "MC1029 - Manufacturing process equipment",
+        "MC1030 - Storage and handling equipment",
+        "MC1031 - Laboratory Secondary Works and Furniture",
+        "MC1032 - Capex Project Engineering",
+        "MC1033 - Water, Waste & Energy Production Assets",
+        "MC1034 - Water, Waste & Energy Production Assets",
+        "MC2001 - Industrial maintenance, services",
+        "MC2002 - Industrial maintenance, services",
+        "MC2003 - Industrial maintenance, services",
+        "MC2004 - Tools and spares",
+        "MC2005 - Tools and spares",
+        "MC2006 - Tools and spares",
+        "MC2007 - Tools and spares",
+        "MC2008 - Tools and spares",
+        "MC2009 - Tools and spares",
+        "MC2010 - Tools and spares",
+        "MC2014 - Industrial maintenance, services",
+        "MC3001 - Energy Consumption",
+        "MC3002 - Fluids Consumption",
+        "MC3003 - Energy Consumption",
+        "MC3004 - Energy Consumption",
+        "MC3005 - Energy Consumption",
+        "MC3007 - Fluids Consumption",
+        "MC3009 - Waste Recycling and Remediation",
+        "MC3010 - Waste Recycling and Remediation",
+        "MC3011 - Waste Recycling and Remediation",
+        "MC2011 - Tools and spares",
+        "MC2012 - Tools and spares",
+        "MC2013 - Tools and spares"
+    ],
+    "DG": [
+        "CS4002 - Software",
+        "CS4003 - Hardware",
+        "CS4004 - IT services",
+        "CS4005 - IT services",
+        "CS4006 - Software",
+        "CS4010 - IT services",
+        "CS4011 - IT services",
+        "CS4012 - Hardware",
+        "CS4013 - Hardware",
+        "CS4015 - Software",
+        "CS4016 - Telecom",
+        "CS4017 - Telecom"
+    ],
+    "RD": [
+        "RD1001 - Clinical & Medical Central Services",
+        "RD1004 - Clinical & Medical Central Services",
+        "RD1024 - Clinical & Medical Central Services",
+        "RD1027 - Clinical & Medical Central Services",
+        "RD1029 - Clinical Laboratories",
+        "RD1030 - Clinical Laboratories",
+        "RD1031 - Clinical Functional Service Provision",
+        "RD1032 - Clinical Supply chain",
+        "RD1033 - Clinical Supply chain",
+        "RD1034 - Regulatory",
+        "RD1035 - Regulatory",
+        "RD1036 - Regulatory",
+        "RD1037 - Regulatory",
+        "RD1038 - Pharmacovigilance",
+        "RD1039 - Pharmacovigilance",
+        "RD1040 - Pharmacovigilance",
+        "RD1041 - Clinical Laboratories",
+        "RD1042 - Clinical Functional Service Provision",
+        "RD1043 - Clinical Functional Service Provision",
+        "RD1044 - Clinical Functional Service Provision",
+        "RD1045 - Clinical Supply chain",
+        "RD1046 - Clinical Studies",
+        "RD1047 - Clinical Studies",
+        "RD1048 - Clinical Studies",
+        "RD1049 - Clinical Supply chain",
+        "RD1050 - Clinical Supply chain",
+        "RD1051 - RWE Studies",
+        "RD2002 - Laboratory Supplies",
+        "RD2003 - Laboratory Supplies",
+        "RD2004 - Laboratory Supplies",
+        "RD2005 - Laboratory Supplies",
+        "RD2007 - Lab Equipment Repair & Maintenance",
+        "RD2008 - Laboratory Equipment",
+        "RD2009 - Laboratory Equipment",
+        "RD2014 - Pharmaceuticals CMC",
+        "RD2015 - Pharmaceuticals CMC",
+        "RD2016 - Pre Clinical & Laboratory Studies",
+        "RD2017 - Pre Clinical & Laboratory Studies",
+        "RD2019 - Biopharmaceuticals CMC",
+        "RD2020 - Biopharmaceuticals CMC",
+        "RD2021 - Laboratory Supplies",
+        "RD2022 - Laboratory Supplies"
+    ]
+};
+
+window.updateSubCategories = function() {
+    const mainSelect = document.getElementById("mainCategory");
+    const subSelect = document.getElementById("subCategory");
+    const selectedCategory = mainSelect.value;
+
+    subSelect.innerHTML = '<option value="">Выберите подкатегорию</option>';
+    subSelect.disabled = true;
+
+    if (selectedCategory && categoriesData[selectedCategory]) {
+        subSelect.disabled = false;
+        categoriesData[selectedCategory].forEach(item => {
+            const option = document.createElement("option");
+            const [value, text] = item.split(' - ');
+            option.value = value.trim();
+            option.textContent = item;
+            subSelect.appendChild(option);
+        });
+    }
+};
+
+
 document.addEventListener('DOMContentLoaded', function() {
     // ================= ГЛОБАЛЬНЫЕ НАСТРОЙКИ =================
     let lotCounter = 0;
@@ -1917,6 +2229,29 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     };
+
+    
+
+function updateSubCategories() {
+    const mainSelect = document.getElementById("mainCategory");
+    const subSelect = document.getElementById("subCategory");
+    const selectedCategory = mainSelect.value;
+
+    // Сброс подкатегорий
+    subSelect.innerHTML = '<option value="">Выберите подкатегорию</option>';
+    subSelect.disabled = true;
+
+    if (selectedCategory) {
+        subSelect.disabled = false;
+        categoriesData[selectedCategory].forEach(item => {
+            const option = document.createElement("option");
+            const [value, text] = item.split(' - ');
+            option.value = value.trim();
+            option.textContent = item;
+            subSelect.appendChild(option);
+        });
+    }
+};
 
     // 2. Работа с текстовым полем условий
     const setupParticipationText = () => {

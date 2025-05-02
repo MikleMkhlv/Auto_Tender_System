@@ -3,8 +3,8 @@ import tempfile
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
-from extraction import extraction 
-from comparation import TenderMatcher
+from services.extraction import extraction 
+from services.comparation import TenderMatcher
 
 app = FastAPI()
 
@@ -38,7 +38,7 @@ async def match_tender(file: UploadFile = File(...)):
         procurement_codes = matcher.find_procurement_code(processed_user_data, procurement_df)
         similar_tenders = matcher.find_similar_tenders(processed_user_data, tenders_df, procurement_codes)
 
-        return similar_tenders
+        return user_data, similar_tenders 
     finally:
         # Удаляем временный файл после обработки
         if os.path.exists(temp_file_path):
