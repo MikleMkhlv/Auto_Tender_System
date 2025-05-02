@@ -1,26 +1,33 @@
 import os
 import tempfile
-from flask import Flask, request, jsonify, render_template
+from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from extraction import extraction 
-from comparation import TenderMatcher 
+from comparation import TenderMatcher
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route('/')
-def index():
-    return render_template('index.html')  # Убедитесь, что файл index.html находится в папке templates
+# Подключаем статические файлы для HTML-шаблонов
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.route('/api/match-tender', methods=['POST'])
-def match_tender():
-    if 'file' not in request.files:
-        return jsonify({'error': 'Нет файла'}), 400
+@app.get("/", response_class=HTMLResponse)
+async def index():
+    with open("C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\static\\index.html", 'r', encoding='utf-8', errors='ignore') as f:
+        return f.read()  # Убедитесь, что файл index.html находится в папке static
 
-    file = request.files['file']
+@app.post("/api/analyze-file")
+async def match_tender(file: UploadFile = File(...)):
+    if not file:
+        raise HTTPException(status_code=400, detail="Нет файла")
 
-    # Создаем временный файл
-    with tempfile.NamedTemporaryFile(delete=False) as temp_file:
-        file.save(temp_file.name)  # Сохраняем загруженный файл
-        temp_file_path = temp_file.name  # Получаем путь к временно сохраненному файлу
+    # Создаем временный файл с расширением .msg
+    temp_file_path = tempfile.mktemp(suffix=".msg")  # Указываем суффикс .msg
+    contents = await file.read()
+    
+    # Сохраняем загруженный файл в формате .msg
+    with open(temp_file_path, 'wb') as temp_file:
+        temp_file.write(contents)
 
     try:
         user_data = extraction(temp_file_path)  # Передаем путь к временно сохраненному файлу
@@ -31,11 +38,12 @@ def match_tender():
         procurement_codes = matcher.find_procurement_code(processed_user_data, procurement_df)
         similar_tenders = matcher.find_similar_tenders(processed_user_data, tenders_df, procurement_codes)
 
-        return jsonify(similar_tenders)
+        return similar_tenders
     finally:
         # Удаляем временный файл после обработки
         if os.path.exists(temp_file_path):
             os.remove(temp_file_path)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    import uvicorn
+    uvicorn.run(app, host="127.0.0.1", port=8000)

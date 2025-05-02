@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sourcing - Event</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -1304,7 +1305,7 @@
             <div class="file-upload" id="file-upload-container">
                 <div class="file-upload-title">Загрузите файл</div>
                 <div class="file-upload-subtitle">Бриф, задание, форма предложения</div>
-                <input type="file" id="file-input" accept=".pdf,.doc,.docx,.xls,.xlsx" style="display: none;">
+                <input type="file" id="file-input" accept=".pdf,.doc,.docx,.xls,.xlsx,.msg" style="display: none;">
                 <label for="file-input"><i class="fas fa-upload"></i> Выберите файл</label>
                 <div id="file-name" class="file-name">Или перетащите файл сюда</div>
             </div>
@@ -2046,27 +2047,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 5. Анализ основного файла
     // 5. Анализ основного файла (ЗАМЕНИТЬ ЭТУ ФУНКЦИЮ)
-const setupFileAnalysis = () => {
+    const setupFileAnalysis = () => {
     const fileInput = document.getElementById('file-input');
     const analyzeBtn = document.getElementById('analyze-btn');
     const fileUploadContainer = document.getElementById('file-upload-container');
     const analysisSuccess = document.getElementById('analysis-success');
-    
-    // ▼▼▼ НАЧАЛО ВСТАВКИ ▼▼▼
+
     // Функция обновления статуса
     const updateStatus = (step) => {
         const statusBar = document.querySelector('.status-bar');
         const statusSteps = document.querySelectorAll('.status-step');
-        
+
         statusBar.setAttribute('data-step', step);
         statusSteps.forEach((el, index) => {
             index < step ? el.classList.add('active') : el.classList.remove('active');
         });
-        
+
         const statusTexts = ['Черновик', 'В процессе', 'Ожидает оценки', 'Закрыто'];
         document.getElementById('status-text').textContent = statusTexts[step - 1];
     };
-    // ▲▲▲ КОНЕЦ ВСТАВКИ ▲▲▲
 
     fileInput.addEventListener('change', () => {
         analyzeBtn.classList.remove('hidden');
@@ -2076,22 +2075,40 @@ const setupFileAnalysis = () => {
         analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Анализируется...';
         analyzeBtn.disabled = true;
 
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        // Создаем объект FormData и добавляем файл
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]); // Добавляем файл из input
 
-        // ▼▼▼ ДОБАВИТЬ ЭТУ СТРОКУ ▼▼▼
-        updateStatus(2); // Обновляем статус после анализа
-        
-        fileUploadContainer.classList.add('hidden');
-        analysisSuccess.style.display = 'block';
-        analyzeBtn.classList.add('hidden');
-        document.getElementById('submit-btn').classList.remove('hidden');
+        try {
+            // Имитация обращения к API
+            const response = await fetch('/api/analyze-file', {
+                method: 'POST',
+                body: formData,
+            });
+            if (!response.ok) throw new Error('Ошибка при обращении к API');
 
-        document.getElementById('event-name').value = 'Закупка оборудования для офиса';
-        document.getElementById('currency').value = 'RUB';
-        document.getElementById('purchase-category').value = 'office';
+            const data = await response.json();
 
-        analyzeBtn.innerHTML = '<i class="fas fa-search"></i> Анализировать';
-        analyzeBtn.disabled = false;
+            // Предзаполнение полей на основе данных из API
+            document.getElementById('event-name').value = data.eventName || 'Закупка оборудования для офиса';
+            document.getElementById('currency').value = data.currency || 'RUB';
+            document.getElementById('purchase-category').value = data.category || 'office';
+
+            // Обновляем статус после анализа
+            updateStatus(2);
+
+            fileUploadContainer.classList.add('hidden');
+            analysisSuccess.style.display = 'block';
+            analyzeBtn.classList.add('hidden');
+            document.getElementById('submit-btn').classList.remove('hidden');
+
+        } catch (error) {
+            console.error(error);
+            alert("Произошла ошибка при анализе файла. Пожалуйста, попробуйте еще раз.");
+        } finally {
+            analyzeBtn.innerHTML = '<i class="fas fa-search"></i> Анализировать';
+            analyzeBtn.disabled = false;
+        }
     });
 };
 
