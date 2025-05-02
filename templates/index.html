@@ -1224,6 +1224,35 @@
         .hidden {
             display: none !important;
         }
+
+
+        /* Стили для модального окна подтверждения */
+        .invitation-textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0d0f0;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            margin: 10px 0;
+            min-height: 200px;
+            resize: vertical;
+            background: #fff;
+        }
+
+        .invitation-textarea:focus {
+            outline: none;
+            border-color: #4b0082;
+            box-shadow: 0 0 5px rgba(75, 0, 130, 0.3);
+        }
+
+        .modal-content h3 {
+            border-bottom: 2px solid #4b0082;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+
     </style>
 </head>
 
@@ -1802,6 +1831,7 @@
                     </form>
                 </div>
             </div>
+
             <form id="evaluation-form" class="form-tab">
                 <div class="form-section">
                     <h3>Способ оценки предложений</h3>
@@ -1841,6 +1871,25 @@
                 </div>
             </form>
         </section>
+
+        <!-- Модальное окно подтверждения -->
+        <div class="modal-overlay" id="confirm-modal">
+            <div class="modal-content" style="width: 600px;">
+                <span class="modal-close" onclick="closeConfirmModal()">&times;</span>
+                <h3 style="color: #4b0082; margin-top: 0;">Подтвердите запуск тендера</h3>
+                
+                <div class="modal-form-group">
+                    <label>Приглашение для участия</label>
+                    <textarea id="invitation-text" class="invitation-textarea"></textarea>
+                </div>
+
+                <div style="text-align: right; margin-top: 20px;">
+                    <button type="button" class="secondary" onclick="closeConfirmModal()">Отмена</button>
+                    <button type="button" class="tndr-sbmt" onclick="submitTender()">Отправить</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -2113,7 +2162,7 @@ const setupFileAnalysis = () => {
 
         participantForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
+           
             const participantData = {
                 company: document.getElementById('modal-company').value,
                 contact: document.getElementById('modal-contact').value,
@@ -2124,6 +2173,12 @@ const setupFileAnalysis = () => {
             addParticipantToTable(participantData);
             modalOverlay.style.display = 'none';
             this.reset();
+
+            const emailInput = document.getElementById('modal-email');
+            if (!validateEmail(emailInput.value)) {
+                alert('Введите корректный email адрес');
+                return;
+            }
         });
     };
 
@@ -2161,6 +2216,63 @@ window.editParticipant = function(btn) {
 
     document.getElementById('modal-overlay').style.display = 'flex';
 };
+
+
+// Функции для модального окна подтверждения
+function showConfirmModal() {
+    const tenderName = document.getElementById('event-name').value;
+    if (!tenderName) {
+        alert('Пожалуйста, заполните название события в форме!');
+        return;
+    }
+
+    document.getElementById('confirm-modal').style.display = 'flex';
+    document.getElementById('invitation-text').value = 
+        `Уважаемый поставщик!\n\nКомпания N приглашает Вас для участия в тендере "${tenderName}". Со сроками и описанием закупки Вы сможете ознакомиться в системе проведения онлайн-тендеров. Будем рады видеть Вас в качестве активного участника закупки!`;
+}
+
+function closeConfirmModal() {
+    document.getElementById('confirm-modal').style.display = 'none';
+}
+
+
+function submitTender() {
+    // Закрываем модальное окно
+    closeConfirmModal();
+    
+    // Показываем уведомление
+    alert('Тендер успешно запущен!');
+    
+    // Переадресация на home.html через 1 секунду
+    setTimeout(() => {
+        window.location.href = 'home.html';
+    }, 1000);
+
+}
+
+
+// Обновляем обработчик кнопки подтверждения
+document.getElementById('submit-btn').addEventListener('click', function() {
+    updateStatus(3); // Устанавливаем статус "Ожидает оценки"
+    showConfirmModal();
+});
+
+// Функция обновления статуса
+function updateStatus(step) {
+    const statusBar = document.querySelector('.status-bar');
+    const statusSteps = document.querySelectorAll('.status-step');
+    
+    statusBar.setAttribute('data-step', step);
+    statusSteps.forEach((el, index) => {
+        index < step ? el.classList.add('active') : el.classList.remove('active');
+    });
+    
+    const statusTexts = ['Черновик', 'В процессе', 'Ожидает оценки', 'Закрыто'];
+    document.getElementById('status-text').textContent = statusTexts[step - 1];
+}
+
+
+
     </script>
 </body>
 
