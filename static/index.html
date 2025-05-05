@@ -802,6 +802,7 @@
         }
 
         .lot-form {
+            
             margin: 15px 0;
             padding: 15px;
             border: 2px solid #e0d0f0;
@@ -1252,8 +1253,6 @@
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
-
-
     </style>
 </head>
 
@@ -1392,9 +1391,9 @@
                                 <option value="DG">DG - DIGITAL</option>
                                 <option value="RD">RD - MEDICAL & SCIENTIFIC</option>
                             </select>
-                        
+
                             <!-- Подкатегории -->
-                            <select style= "margin-top: 15px;" id="subCategory" disabled>
+                            <select style="margin-top: 15px;" id="subCategory" disabled>
                                 <option value="">Сначала выберите основную категорию</option>
                             </select>
                         </div>
@@ -1884,7 +1883,7 @@
             <div class="modal-content" style="width: 600px;">
                 <span class="modal-close" onclick="closeConfirmModal()">&times;</span>
                 <h3 style="color: #4b0082; margin-top: 0;">Подтвердите запуск тендера</h3>
-                
+
                 <div class="modal-form-group">
                     <label>Приглашение для участия</label>
                     <textarea id="invitation-text" class="invitation-textarea"></textarea>
@@ -1903,588 +1902,634 @@
 
 
 
-const categoriesData = {
-    "CS": [
-        "CS2001 - Car fleet",
-        "CS5004 - Office Products",
-        "CS5005 - FM Occupant Services",
-        "CS5006 - FM Building Services",
-        "CS5008 - Security Services and Products",
-        "CS5025 - FM Building Services",
-        "CS5026 - FM Occupant Services",
-        "CS5027 - Garments and Safety Products",
-        "CS5028 - Security Services and Products",
-        "CS5029 - FM Building Services",
-        "CS5030 - Integrated Facility Management",
-        "CS5032 - Real Estate and Workplace",
-        "CS5033 - Subscription and Translation",
-        "CS5034 - Subscription and Translation",
-        "CS5035 - FM Occupant Services",
-        "CS5036 - Subscription and Translation",
-        "CS5037 - FM Occupant Services",
-        "CS5038 - FM Building Services",
-        "CS5039 - FM Occupant Services",
-        "CS5040 - Security Services and Products",
-        "CS5041 - Garments and Safety Products",
-        "CS5042 - Garments and Safety Products",
-        "CS6001 - Consulting",
-        "CS6002 - Consulting",
-        "CS6003 - Consulting",
-        "CS6004 - Consulting",
-        "CS2004 - Travel",
-        "CS2006 - Travel",
-        "CS2008 - Travel",
-        "CS2009 - Travel",
-        "CS2012 - CONTINGENCY WORKFORCE",
-        "CS2022 - CONTINGENCY WORKFORCE",
-        "CS2013 - HR Project",
-        "CS2014 - Learning and Development",
-        "CS2015 - Recruitment and Outplacement",
-        "CS2016 - Recruitment and Outplacement",
-        "CS2017 - Compensation and Benefits",
-        "CS2018 - Compensation and Benefits",
-        "CS2019 - Car fleet",
-        "CS2020 - Car fleet",
-        "CS2021 - Car fleet",
-        "CS5023 - Real Estate and Workplace",
-        "CS5024 - Real Estate and Workplace",
-        "CS5031 - Real Estate and Workplace",
-        "CS6005 - Consulting",
-        "CS6006 - Outsourcing & Shared Services",
-        "CS6007 - Insurances",
-        "CS6008 - Insurances",
-        "CS6009 - Insurances",
-        "CS6010 - Insurances",
-        "CS6011 - Financial Services"
-    ],
-    "MK": [
-        "MK1018 - Media Buy",
-        "MK3001 - Market Data & Insights",
-        "MK4001 - Promotional Items, Displays",
-        "MK4002 - Promotional Items, Displays",
-        "MK1004 - Communication Agencies",
-        "MK1005 - Media Buy",
-        "MK1006 - Media Buy",
-        "MK1007 - Communication Agencies",
-        "MK1012 - Communication Agencies",
-        "MK1013 - Communication Agencies",
-        "MK1014 - Communication Agencies",
-        "MK1015 - Communication Agencies",
-        "MK1017 - Media Buy",
-        "MK1019 - Media Buy",
-        "MK1020 - Communication Agencies",
-        "MK1021 - Communication Agencies",
-        "MK2001 - Meetings, Events",
-        "MK2003 - Meetings, Events",
-        "MK2006 - Meetings, Events",
-        "MK2007 - Meetings, Events",
-        "MK2008 - Meetings, Events",
-        "MK2009 - Meetings, Events",
-        "MK2010 - Meetings, Events",
-        "MK2011 - Meetings, Events",
-        "MK2012 - Meetings, Events",
-        "MK2013 - Meetings, Events",
-        "MK2014 - Meetings, Events",
-        "MK3002 - Market Data & Insights",
-        "MK3004 - Call centers & Patient Support Program (PSP)",
-        "MK3009 - Call centers & Patient Support Program (PSP)",
-        "MK3010 - Market Data & Insights",
-        "MK3011 - Patients, Physicians & Payers Data",
-        "MK4003 - Prints",
-        "MK4004 - Prints",
-        "MK5003 - Medical Operations",
-        "MK5004 - Medical Operations",
-        "MK5005 - Medical Operations",
-        "MK6001 - Sales services",
-        "MK6002 - External Sales Force",
-        "MK6003 - Market access"
-    ],
-    "CD": [
-        "CD1001 - Raw Materials (all Businesses)",
-        "CD1002 - Raw Materials (all Businesses)",
-        "CD1003 - Raw Materials (all Businesses)",
-        "CD1004 - Raw Materials (all Businesses)",
-        "CD1005 - Raw Materials (all Businesses)",
-        "CD1006 - Raw Materials (all Businesses)",
-        "CD1007 - Raw Materials (all Businesses)",
-        "CD1008 - Raw Materials (all Businesses)",
-        "CD1009 - Raw Materials (all Businesses)",
-        "CD1010 - Raw Materials (all Businesses)",
-        "CD1011 - Raw Materials (all Businesses)",
-        "CD1012 - Eggs",
-        "CD2002 - API + Excipients (Pharma)",
-        "CD2003 - API + Excipients (Pharma)",
-        "CD2004 - API + Excipients (Pharma)",
-        "CD2005 - API + Excipients (Pharma)",
-        "CD3001 - Carboard/paper",
-        "CD3002 - Carboard/paper",
-        "CD3003 - Carboard/paper",
-        "CD3004 - Carboard/paper",
-        "CD3005 - Carboard/paper",
-        "CD3006 - Devices",
-        "CD3007 - Devices",
-        "CD3008 - Devices",
-        "CD3009 - Devices",
-        "CD3010 - Devices",
-        "CD3011 - Glass",
-        "CD3012 - Devices",
-        "CD3013 - Devices",
-        "CD3014 - Glass",
-        "CD3015 - Devices",
-        "CD3016 - Devices",
-        "CD3017 - Metal",
-        "CD3018 - Metal",
-        "CD3019 - Metal",
-        "CD3020 - Plastics",
-        "CD3021 - Plastics",
-        "CD3022 - Plastics",
-        "CD3023 - Plastics",
-        "CD3024 - Plastics",
-        "CD3025 - Plastics",
-        "CD3026 - Plastics",
-        "CD3027 - Plastics",
-        "CD3028 - Devices",
-        "CD3029 - Other Packaging",
-        "CD3030 - Devices",
-        "CD6001 - Production Consumables",
-        "CD6002 - Production Consumables",
-        "CD4001 - Subcontracting full services",
-        "CD4002 - Subcontracting toll",
-        "CD4003 - Subcontracting toll",
-        "CD4004 - Subcontracting toll",
-        "CD4005 - Subcontracting toll",
-        "CD4006 - Subcontracting toll",
-        "CD4007 - Subcontracting toll",
-        "CD4008 - Subcontracting toll",
-        "CD4009 - Subcontracting under license",
-        "CD4010 - Subcontracting under license",
-        "CD4011 - Subcontracting under license",
-        "CD5002 - Distribution Subcontracting",
-        "CD5003 - COGS Freight & Duties",
-        "CD5004 - Packaging & Consumables for Distribution",
-        "CD5006 - COGS Freight & Duties",
-        "CD5007 - COGS Freight & Duties",
-        "CD5008 - COGS Freight & Duties",
-        "CD5009 - COGS Freight & Duties",
-        "CD5010 - Distribution Subcontracting",
-        "CD5011 - COGS Freight & Duties",
-        "CD5012 - COGS Freight & Duties"
-    ],
-    "MC": [
-        "MC1001 - Major Bio & Chemistry Equipment",
-        "MC1002 - Major Bio & Chemistry Equipment",
-        "MC1003 - Building and infrastructure",
-        "MC1004 - Building and infrastructure",
-        "MC1005 - Building and infrastructure",
-        "MC1006 - Building and infrastructure",
-        "MC1009 - Capex Project Engineering",
-        "MC1010 - Water, Waste & Energy Production Assets",
-        "MC1012 - Manufacturing process equipment",
-        "MC1013 - Process control systems",
-        "MC1014 - Process control systems",
-        "MC1015 - Process piping",
-        "MC1017 - Secondary works",
-        "MC1018 - Secondary works",
-        "MC1019 - Secondary works",
-        "MC1020 - Secondary works",
-        "MC1021 - Storage and handling equipment",
-        "MC1022 - Major Bio & Chemistry Equipment",
-        "MC1023 - Manufacturing process equipment",
-        "MC1024 - Manufacturing process equipment",
-        "MC1025 - Process control systems",
-        "MC1026 - Capex Project Engineering",
-        "MC1027 - Capex Project Engineering",
-        "MC1028 - Manufacturing process equipment",
-        "MC1029 - Manufacturing process equipment",
-        "MC1030 - Storage and handling equipment",
-        "MC1031 - Laboratory Secondary Works and Furniture",
-        "MC1032 - Capex Project Engineering",
-        "MC1033 - Water, Waste & Energy Production Assets",
-        "MC1034 - Water, Waste & Energy Production Assets",
-        "MC2001 - Industrial maintenance, services",
-        "MC2002 - Industrial maintenance, services",
-        "MC2003 - Industrial maintenance, services",
-        "MC2004 - Tools and spares",
-        "MC2005 - Tools and spares",
-        "MC2006 - Tools and spares",
-        "MC2007 - Tools and spares",
-        "MC2008 - Tools and spares",
-        "MC2009 - Tools and spares",
-        "MC2010 - Tools and spares",
-        "MC2014 - Industrial maintenance, services",
-        "MC3001 - Energy Consumption",
-        "MC3002 - Fluids Consumption",
-        "MC3003 - Energy Consumption",
-        "MC3004 - Energy Consumption",
-        "MC3005 - Energy Consumption",
-        "MC3007 - Fluids Consumption",
-        "MC3009 - Waste Recycling and Remediation",
-        "MC3010 - Waste Recycling and Remediation",
-        "MC3011 - Waste Recycling and Remediation",
-        "MC2011 - Tools and spares",
-        "MC2012 - Tools and spares",
-        "MC2013 - Tools and spares"
-    ],
-    "DG": [
-        "CS4002 - Software",
-        "CS4003 - Hardware",
-        "CS4004 - IT services",
-        "CS4005 - IT services",
-        "CS4006 - Software",
-        "CS4010 - IT services",
-        "CS4011 - IT services",
-        "CS4012 - Hardware",
-        "CS4013 - Hardware",
-        "CS4015 - Software",
-        "CS4016 - Telecom",
-        "CS4017 - Telecom"
-    ],
-    "RD": [
-        "RD1001 - Clinical & Medical Central Services",
-        "RD1004 - Clinical & Medical Central Services",
-        "RD1024 - Clinical & Medical Central Services",
-        "RD1027 - Clinical & Medical Central Services",
-        "RD1029 - Clinical Laboratories",
-        "RD1030 - Clinical Laboratories",
-        "RD1031 - Clinical Functional Service Provision",
-        "RD1032 - Clinical Supply chain",
-        "RD1033 - Clinical Supply chain",
-        "RD1034 - Regulatory",
-        "RD1035 - Regulatory",
-        "RD1036 - Regulatory",
-        "RD1037 - Regulatory",
-        "RD1038 - Pharmacovigilance",
-        "RD1039 - Pharmacovigilance",
-        "RD1040 - Pharmacovigilance",
-        "RD1041 - Clinical Laboratories",
-        "RD1042 - Clinical Functional Service Provision",
-        "RD1043 - Clinical Functional Service Provision",
-        "RD1044 - Clinical Functional Service Provision",
-        "RD1045 - Clinical Supply chain",
-        "RD1046 - Clinical Studies",
-        "RD1047 - Clinical Studies",
-        "RD1048 - Clinical Studies",
-        "RD1049 - Clinical Supply chain",
-        "RD1050 - Clinical Supply chain",
-        "RD1051 - RWE Studies",
-        "RD2002 - Laboratory Supplies",
-        "RD2003 - Laboratory Supplies",
-        "RD2004 - Laboratory Supplies",
-        "RD2005 - Laboratory Supplies",
-        "RD2007 - Lab Equipment Repair & Maintenance",
-        "RD2008 - Laboratory Equipment",
-        "RD2009 - Laboratory Equipment",
-        "RD2014 - Pharmaceuticals CMC",
-        "RD2015 - Pharmaceuticals CMC",
-        "RD2016 - Pre Clinical & Laboratory Studies",
-        "RD2017 - Pre Clinical & Laboratory Studies",
-        "RD2019 - Biopharmaceuticals CMC",
-        "RD2020 - Biopharmaceuticals CMC",
-        "RD2021 - Laboratory Supplies",
-        "RD2022 - Laboratory Supplies"
-    ]
-};
+        const categoriesData = {
+            "CS": [
+                "CS2001 - Car fleet",
+                "CS5004 - Office Products",
+                "CS5005 - FM Occupant Services",
+                "CS5006 - FM Building Services",
+                "CS5008 - Security Services and Products",
+                "CS5025 - FM Building Services",
+                "CS5026 - FM Occupant Services",
+                "CS5027 - Garments and Safety Products",
+                "CS5028 - Security Services and Products",
+                "CS5029 - FM Building Services",
+                "CS5030 - Integrated Facility Management",
+                "CS5032 - Real Estate and Workplace",
+                "CS5033 - Subscription and Translation",
+                "CS5034 - Subscription and Translation",
+                "CS5035 - FM Occupant Services",
+                "CS5036 - Subscription and Translation",
+                "CS5037 - FM Occupant Services",
+                "CS5038 - FM Building Services",
+                "CS5039 - FM Occupant Services",
+                "CS5040 - Security Services and Products",
+                "CS5041 - Garments and Safety Products",
+                "CS5042 - Garments and Safety Products",
+                "CS6001 - Consulting",
+                "CS6002 - Consulting",
+                "CS6003 - Consulting",
+                "CS6004 - Consulting",
+                "CS2004 - Travel",
+                "CS2006 - Travel",
+                "CS2008 - Travel",
+                "CS2009 - Travel",
+                "CS2012 - CONTINGENCY WORKFORCE",
+                "CS2022 - CONTINGENCY WORKFORCE",
+                "CS2013 - HR Project",
+                "CS2014 - Learning and Development",
+                "CS2015 - Recruitment and Outplacement",
+                "CS2016 - Recruitment and Outplacement",
+                "CS2017 - Compensation and Benefits",
+                "CS2018 - Compensation and Benefits",
+                "CS2019 - Car fleet",
+                "CS2020 - Car fleet",
+                "CS2021 - Car fleet",
+                "CS5023 - Real Estate and Workplace",
+                "CS5024 - Real Estate and Workplace",
+                "CS5031 - Real Estate and Workplace",
+                "CS6005 - Consulting",
+                "CS6006 - Outsourcing & Shared Services",
+                "CS6007 - Insurances",
+                "CS6008 - Insurances",
+                "CS6009 - Insurances",
+                "CS6010 - Insurances",
+                "CS6011 - Financial Services"
+            ],
+            "MK": [
+                "MK1018 - Media Buy",
+                "MK3001 - Market Data & Insights",
+                "MK4001 - Promotional Items, Displays",
+                "MK4002 - Promotional Items, Displays",
+                "MK1004 - Communication Agencies",
+                "MK1005 - Media Buy",
+                "MK1006 - Media Buy",
+                "MK1007 - Communication Agencies",
+                "MK1012 - Communication Agencies",
+                "MK1013 - Communication Agencies",
+                "MK1014 - Communication Agencies",
+                "MK1015 - Communication Agencies",
+                "MK1017 - Media Buy",
+                "MK1019 - Media Buy",
+                "MK1020 - Communication Agencies",
+                "MK1021 - Communication Agencies",
+                "MK2001 - Meetings, Events",
+                "MK2003 - Meetings, Events",
+                "MK2006 - Meetings, Events",
+                "MK2007 - Meetings, Events",
+                "MK2008 - Meetings, Events",
+                "MK2009 - Meetings, Events",
+                "MK2010 - Meetings, Events",
+                "MK2011 - Meetings, Events",
+                "MK2012 - Meetings, Events",
+                "MK2013 - Meetings, Events",
+                "MK2014 - Meetings, Events",
+                "MK3002 - Market Data & Insights",
+                "MK3004 - Call centers & Patient Support Program (PSP)",
+                "MK3009 - Call centers & Patient Support Program (PSP)",
+                "MK3010 - Market Data & Insights",
+                "MK3011 - Patients, Physicians & Payers Data",
+                "MK4003 - Prints",
+                "MK4004 - Prints",
+                "MK5003 - Medical Operations",
+                "MK5004 - Medical Operations",
+                "MK5005 - Medical Operations",
+                "MK6001 - Sales services",
+                "MK6002 - External Sales Force",
+                "MK6003 - Market access"
+            ],
+            "CD": [
+                "CD1001 - Raw Materials (all Businesses)",
+                "CD1002 - Raw Materials (all Businesses)",
+                "CD1003 - Raw Materials (all Businesses)",
+                "CD1004 - Raw Materials (all Businesses)",
+                "CD1005 - Raw Materials (all Businesses)",
+                "CD1006 - Raw Materials (all Businesses)",
+                "CD1007 - Raw Materials (all Businesses)",
+                "CD1008 - Raw Materials (all Businesses)",
+                "CD1009 - Raw Materials (all Businesses)",
+                "CD1010 - Raw Materials (all Businesses)",
+                "CD1011 - Raw Materials (all Businesses)",
+                "CD1012 - Eggs",
+                "CD2002 - API + Excipients (Pharma)",
+                "CD2003 - API + Excipients (Pharma)",
+                "CD2004 - API + Excipients (Pharma)",
+                "CD2005 - API + Excipients (Pharma)",
+                "CD3001 - Carboard/paper",
+                "CD3002 - Carboard/paper",
+                "CD3003 - Carboard/paper",
+                "CD3004 - Carboard/paper",
+                "CD3005 - Carboard/paper",
+                "CD3006 - Devices",
+                "CD3007 - Devices",
+                "CD3008 - Devices",
+                "CD3009 - Devices",
+                "CD3010 - Devices",
+                "CD3011 - Glass",
+                "CD3012 - Devices",
+                "CD3013 - Devices",
+                "CD3014 - Glass",
+                "CD3015 - Devices",
+                "CD3016 - Devices",
+                "CD3017 - Metal",
+                "CD3018 - Metal",
+                "CD3019 - Metal",
+                "CD3020 - Plastics",
+                "CD3021 - Plastics",
+                "CD3022 - Plastics",
+                "CD3023 - Plastics",
+                "CD3024 - Plastics",
+                "CD3025 - Plastics",
+                "CD3026 - Plastics",
+                "CD3027 - Plastics",
+                "CD3028 - Devices",
+                "CD3029 - Other Packaging",
+                "CD3030 - Devices",
+                "CD6001 - Production Consumables",
+                "CD6002 - Production Consumables",
+                "CD4001 - Subcontracting full services",
+                "CD4002 - Subcontracting toll",
+                "CD4003 - Subcontracting toll",
+                "CD4004 - Subcontracting toll",
+                "CD4005 - Subcontracting toll",
+                "CD4006 - Subcontracting toll",
+                "CD4007 - Subcontracting toll",
+                "CD4008 - Subcontracting toll",
+                "CD4009 - Subcontracting under license",
+                "CD4010 - Subcontracting under license",
+                "CD4011 - Subcontracting under license",
+                "CD5002 - Distribution Subcontracting",
+                "CD5003 - COGS Freight & Duties",
+                "CD5004 - Packaging & Consumables for Distribution",
+                "CD5006 - COGS Freight & Duties",
+                "CD5007 - COGS Freight & Duties",
+                "CD5008 - COGS Freight & Duties",
+                "CD5009 - COGS Freight & Duties",
+                "CD5010 - Distribution Subcontracting",
+                "CD5011 - COGS Freight & Duties",
+                "CD5012 - COGS Freight & Duties"
+            ],
+            "MC": [
+                "MC1001 - Major Bio & Chemistry Equipment",
+                "MC1002 - Major Bio & Chemistry Equipment",
+                "MC1003 - Building and infrastructure",
+                "MC1004 - Building and infrastructure",
+                "MC1005 - Building and infrastructure",
+                "MC1006 - Building and infrastructure",
+                "MC1009 - Capex Project Engineering",
+                "MC1010 - Water, Waste & Energy Production Assets",
+                "MC1012 - Manufacturing process equipment",
+                "MC1013 - Process control systems",
+                "MC1014 - Process control systems",
+                "MC1015 - Process piping",
+                "MC1017 - Secondary works",
+                "MC1018 - Secondary works",
+                "MC1019 - Secondary works",
+                "MC1020 - Secondary works",
+                "MC1021 - Storage and handling equipment",
+                "MC1022 - Major Bio & Chemistry Equipment",
+                "MC1023 - Manufacturing process equipment",
+                "MC1024 - Manufacturing process equipment",
+                "MC1025 - Process control systems",
+                "MC1026 - Capex Project Engineering",
+                "MC1027 - Capex Project Engineering",
+                "MC1028 - Manufacturing process equipment",
+                "MC1029 - Manufacturing process equipment",
+                "MC1030 - Storage and handling equipment",
+                "MC1031 - Laboratory Secondary Works and Furniture",
+                "MC1032 - Capex Project Engineering",
+                "MC1033 - Water, Waste & Energy Production Assets",
+                "MC1034 - Water, Waste & Energy Production Assets",
+                "MC2001 - Industrial maintenance, services",
+                "MC2002 - Industrial maintenance, services",
+                "MC2003 - Industrial maintenance, services",
+                "MC2004 - Tools and spares",
+                "MC2005 - Tools and spares",
+                "MC2006 - Tools and spares",
+                "MC2007 - Tools and spares",
+                "MC2008 - Tools and spares",
+                "MC2009 - Tools and spares",
+                "MC2010 - Tools and spares",
+                "MC2014 - Industrial maintenance, services",
+                "MC3001 - Energy Consumption",
+                "MC3002 - Fluids Consumption",
+                "MC3003 - Energy Consumption",
+                "MC3004 - Energy Consumption",
+                "MC3005 - Energy Consumption",
+                "MC3007 - Fluids Consumption",
+                "MC3009 - Waste Recycling and Remediation",
+                "MC3010 - Waste Recycling and Remediation",
+                "MC3011 - Waste Recycling and Remediation",
+                "MC2011 - Tools and spares",
+                "MC2012 - Tools and spares",
+                "MC2013 - Tools and spares"
+            ],
+            "DG": [
+                "CS4002 - Software",
+                "CS4003 - Hardware",
+                "CS4004 - IT services",
+                "CS4005 - IT services",
+                "CS4006 - Software",
+                "CS4010 - IT services",
+                "CS4011 - IT services",
+                "CS4012 - Hardware",
+                "CS4013 - Hardware",
+                "CS4015 - Software",
+                "CS4016 - Telecom",
+                "CS4017 - Telecom"
+            ],
+            "RD": [
+                "RD1001 - Clinical & Medical Central Services",
+                "RD1004 - Clinical & Medical Central Services",
+                "RD1024 - Clinical & Medical Central Services",
+                "RD1027 - Clinical & Medical Central Services",
+                "RD1029 - Clinical Laboratories",
+                "RD1030 - Clinical Laboratories",
+                "RD1031 - Clinical Functional Service Provision",
+                "RD1032 - Clinical Supply chain",
+                "RD1033 - Clinical Supply chain",
+                "RD1034 - Regulatory",
+                "RD1035 - Regulatory",
+                "RD1036 - Regulatory",
+                "RD1037 - Regulatory",
+                "RD1038 - Pharmacovigilance",
+                "RD1039 - Pharmacovigilance",
+                "RD1040 - Pharmacovigilance",
+                "RD1041 - Clinical Laboratories",
+                "RD1042 - Clinical Functional Service Provision",
+                "RD1043 - Clinical Functional Service Provision",
+                "RD1044 - Clinical Functional Service Provision",
+                "RD1045 - Clinical Supply chain",
+                "RD1046 - Clinical Studies",
+                "RD1047 - Clinical Studies",
+                "RD1048 - Clinical Studies",
+                "RD1049 - Clinical Supply chain",
+                "RD1050 - Clinical Supply chain",
+                "RD1051 - RWE Studies",
+                "RD2002 - Laboratory Supplies",
+                "RD2003 - Laboratory Supplies",
+                "RD2004 - Laboratory Supplies",
+                "RD2005 - Laboratory Supplies",
+                "RD2007 - Lab Equipment Repair & Maintenance",
+                "RD2008 - Laboratory Equipment",
+                "RD2009 - Laboratory Equipment",
+                "RD2014 - Pharmaceuticals CMC",
+                "RD2015 - Pharmaceuticals CMC",
+                "RD2016 - Pre Clinical & Laboratory Studies",
+                "RD2017 - Pre Clinical & Laboratory Studies",
+                "RD2019 - Biopharmaceuticals CMC",
+                "RD2020 - Biopharmaceuticals CMC",
+                "RD2021 - Laboratory Supplies",
+                "RD2022 - Laboratory Supplies"
+            ]
+        };
 
-window.updateSubCategories = function() {
-    const mainSelect = document.getElementById("mainCategory");
-    const subSelect = document.getElementById("subCategory");
-    const selectedCategory = mainSelect.value;
+        window.updateSubCategories = function () {
+            const mainSelect = document.getElementById("mainCategory");
+            const subSelect = document.getElementById("subCategory");
+            const selectedCategory = mainSelect.value;
 
-    subSelect.innerHTML = '<option value="">Выберите подкатегорию</option>';
-    subSelect.disabled = true;
+            subSelect.innerHTML = '<option value="">Выберите подкатегорию</option>';
+            subSelect.disabled = true;
 
-    if (selectedCategory && categoriesData[selectedCategory]) {
-        subSelect.disabled = false;
-        categoriesData[selectedCategory].forEach(item => {
-            const option = document.createElement("option");
-            const [value, text] = item.split(' - ');
-            option.value = value.trim();
-            option.textContent = item;
-            subSelect.appendChild(option);
-        });
-    }
-};
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    // ================= ГЛОБАЛЬНЫЕ НАСТРОЙКИ =================
-    let lotCounter = 0;
-    let mockParticipants = [];
-
-    // ================= ОСНОВНЫЕ ФУНКЦИИ =================
-
-    // 1. Управление вкладками
-    const setupTabHandlers = () => {
-        document.querySelectorAll('.nav-menu li').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const tabId = this.dataset.tab;
-
-                document.querySelectorAll('.nav-menu li, .form-tab').forEach(el => {
-                    el.classList.remove('active');
+            if (selectedCategory && categoriesData[selectedCategory]) {
+                subSelect.disabled = false;
+                categoriesData[selectedCategory].forEach(item => {
+                    const option = document.createElement("option");
+                    const [value, text] = item.split(' - ');
+                    option.value = value.trim();
+                    option.textContent = item;
+                    subSelect.appendChild(option);
                 });
-
-                this.classList.add('active');
-                document.getElementById(`${tabId}-form`).classList.add('active');
-            });
-        });
-    };
-
-    
-
-function updateSubCategories() {
-    const mainSelect = document.getElementById("mainCategory");
-    const subSelect = document.getElementById("subCategory");
-    const selectedCategory = mainSelect.value;
-
-    // Сброс подкатегорий
-    subSelect.innerHTML = '<option value="">Выберите подкатегорию</option>';
-    subSelect.disabled = true;
-
-    if (selectedCategory) {
-        subSelect.disabled = false;
-        categoriesData[selectedCategory].forEach(item => {
-            const option = document.createElement("option");
-            const [value, text] = item.split(' - ');
-            option.value = value.trim();
-            option.textContent = item;
-            subSelect.appendChild(option);
-        });
-    }
-};
-
-    // 2. Работа с текстовым полем условий
-    const setupParticipationText = () => {
-        const addTextBtn = document.getElementById('add-text-btn');
-        const textArea = document.getElementById('participation-text');
-        const textActions = document.getElementById('text-actions');
-        const clearBtn = document.getElementById('clear-text-btn');
-        const cancelBtn = document.getElementById('cancel-text-btn');
-
-        textArea.classList.add('hidden');
-        textActions.classList.add('hidden');
-
-        addTextBtn.addEventListener('click', () => {
-            textArea.classList.remove('hidden');
-            textActions.classList.remove('hidden');
-            addTextBtn.classList.add('hidden');
-        });
-
-        clearBtn.addEventListener('click', () => {
-            textArea.value = '';
-        });
-
-        cancelBtn.addEventListener('click', () => {
-            textArea.classList.add('hidden');
-            textActions.classList.add('hidden');
-            addTextBtn.classList.remove('hidden');
-        });
-    };
-
-    // 3. Сроки тендера
-    const setupTimelineSection = () => {
-        const startTypeSelect = document.getElementById('start-type');
-        const customDateFields = document.getElementById('custom-date-fields');
-        const startDateInput = document.getElementById('start-date');
-        const startTimeInput = document.getElementById('start-time');
-        const endDateInput = document.getElementById('end-date');
-        const endTimeInput = document.getElementById('end-time');
-        const startDateLabel = document.getElementById('start-date-label');
-        const endDateLabel = document.getElementById('end-date-label');
-
-        const updateTimeline = () => {
-            if (startTypeSelect.value === 'custom' && startDateInput.value) {
-                const startDate = new Date(startDateInput.value);
-                let timeString = startTimeInput.value ? `, ${startTimeInput.value}` : '';
-                startDateLabel.textContent = startDate.toLocaleDateString('ru-RU') + timeString;
-            } else {
-                startDateLabel.textContent = 'Сразу после подтверждения';
-            }
-
-            if (endDateInput.value) {
-                const endDate = new Date(endDateInput.value);
-                let timeString = endTimeInput.value ? `, ${endTimeInput.value}` : '';
-                endDateLabel.textContent = endDate.toLocaleDateString('ru-RU') + timeString;
-            } else {
-                endDateLabel.textContent = '—';
             }
         };
 
-        startTypeSelect.addEventListener('change', function() {
-            customDateFields.style.display = this.value === 'custom' ? 'block' : 'none';
-            updateTimeline();
-        });
 
-        [startTypeSelect, startDateInput, startTimeInput, endDateInput, endTimeInput].forEach(
-            element => element.addEventListener('change', updateTimeline)
-        );
+        document.addEventListener('DOMContentLoaded', function () {
+            // ================= ГЛОБАЛЬНЫЕ НАСТРОЙКИ =================
+            let lotCounter = 0;
+            let mockParticipants = [];
 
-        updateTimeline();
-    };
+            // ================= ОСНОВНЫЕ ФУНКЦИИ =================
 
-    // 4. Товары и услуги
-    const setupGoodsSection = () => {
-        const addTypeBtn = document.getElementById('add-type-btn');
-        const typeDropdown = document.querySelector('.type-dropdown');
-        const lotsContainer = document.getElementById('lots-container');
-        const lotTemplate = document.getElementById('lot-template');
-        const serviceTemplate = document.getElementById('service-template');
+            // 1. Управление вкладками
+            const setupTabHandlers = () => {
+                document.querySelectorAll('.nav-menu li').forEach(item => {
+                    item.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const tabId = this.dataset.tab;
 
-        addTypeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            typeDropdown.classList.toggle('show');
-        });
+                        document.querySelectorAll('.nav-menu li, .form-tab').forEach(el => {
+                            el.classList.remove('active');
+                        });
 
-        document.querySelectorAll('.type-option').forEach(option => {
-            option.addEventListener('click', (e) => {
-                const type = e.target.dataset.type;
-                typeDropdown.classList.remove('show');
-
-                if (type === 'lot') addLotForm();
-                if (type === 'service') addServiceForm();
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!addTypeBtn.contains(e.target)) {
-                typeDropdown.classList.remove('show');
-            }
-        });
-
-        const addLotForm = () => {
-            const lotClone = lotTemplate.content.cloneNode(true);
-            const newLot = lotClone.querySelector('.lot-form');
-            lotCounter++;
-            newLot.querySelector('.lot-number').textContent = `Лот ${lotCounter}`;
-
-            newLot.querySelector('.delete-lot-btn').addEventListener('click', (e) => {
-                newLot.remove();
-                lotCounter--;
-                document.querySelectorAll('.lot-form').forEach((lot, index) => {
-                    lot.querySelector('.lot-number').textContent = `Лот ${index + 1}`;
+                        this.classList.add('active');
+                        document.getElementById(`${tabId}-form`).classList.add('active');
+                    });
                 });
-            });
-
-            lotsContainer.appendChild(newLot);
-        };
-
-        const addServiceForm = () => {
-            const serviceClone = serviceTemplate.content.cloneNode(true);
-            const newService = serviceClone.querySelector('.service-form');
-            
-            newService.querySelector('.cancel-service').addEventListener('click', () => {
-                newService.remove();
-            });
-
-            lotsContainer.appendChild(newService);
-        };
-    };
-
-    // 5. Анализ основного файла
-    // 5. Анализ основного файла (ЗАМЕНИТЬ ЭТУ ФУНКЦИЮ)
-    const setupFileAnalysis = () => {
-    const fileInput = document.getElementById('file-input');
-    const analyzeBtn = document.getElementById('analyze-btn');
-    const fileUploadContainer = document.getElementById('file-upload-container');
-    const analysisSuccess = document.getElementById('analysis-success');
-
-    // Функция обновления статуса
-    const updateStatus = (step) => {
-        const statusBar = document.querySelector('.status-bar');
-        const statusSteps = document.querySelectorAll('.status-step');
-
-        statusBar.setAttribute('data-step', step);
-        statusSteps.forEach((el, index) => {
-            index < step ? el.classList.add('active') : el.classList.remove('active');
-        });
-
-        const statusTexts = ['Черновик', 'В процессе', 'Ожидает оценки', 'Закрыто'];
-        document.getElementById('status-text').textContent = statusTexts[step - 1];
-    };
-
-    fileInput.addEventListener('change', () => {
-        analyzeBtn.classList.remove('hidden');
-    });
-
-    analyzeBtn.addEventListener('click', async () => {
-        analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Анализируется...';
-        analyzeBtn.disabled = true;
-
-        // Создаем объект FormData и добавляем файл
-        const formData = new FormData();
-        formData.append('file', fileInput.files[0]); // Добавляем файл из input
-
-        try {
-            // Имитация обращения к API
-            const response = await fetch('/api/analyze-file', {
-                method: 'POST',
-                body: formData,
-            });
-            if (!response.ok) throw new Error('Ошибка при обращении к API');
-
-            const data = await response.json();
-
-            // Предзаполнение полей на основе данных из API
-            document.getElementById('event-name').value = data.eventName || 'Закупка оборудования для офиса';
-            document.getElementById('currency').value = data.currency || 'RUB';
-            document.getElementById('purchase-category').value = data.category || 'office';
-
-            // Обновляем статус после анализа
-            updateStatus(2);
-
-            fileUploadContainer.classList.add('hidden');
-            analysisSuccess.style.display = 'block';
-            analyzeBtn.classList.add('hidden');
-            document.getElementById('submit-btn').classList.remove('hidden');
-
-        } catch (error) {
-            console.error(error);
-            alert("Произошла ошибка при анализе файла. Пожалуйста, попробуйте еще раз.");
-        } finally {
-            analyzeBtn.innerHTML = '<i class="fas fa-search"></i> Анализировать';
-            analyzeBtn.disabled = false;
-        }
-    });
-};
-
-    // 6. Управление файлами
-    const setupFileHandlers = () => {
-        const handleFileUpload = (inputId, successId, fileNameId) => {
-            document.getElementById(inputId).addEventListener('change', function(e) {
-                const successMessage = document.getElementById(successId);
-                const fileNameSpan = document.getElementById(fileNameId);
-                
-                if (this.files.length > 0) {
-                    fileNameSpan.textContent = this.files[0].name;
-                    successMessage.classList.remove('hidden');
-                } else {
-                    successMessage.classList.add('hidden');
-                }
-            });
-        };
-
-        handleFileUpload('goods-file', 'goods-upload-success', 'goods-file-name');
-        handleFileUpload('participation-condition', 'condition-upload-success', 'condition-file-name');
-    };
-
-    // 7. Управление участниками
-    const setupParticipants = () => {
-        const modalOverlay = document.getElementById('modal-overlay');
-        const participantForm = document.getElementById('participant-form');
-        const participantsTableBody = document.getElementById('participants-table-body');
-
-        const getStatusBadge = (status) => {
-            const badges = {
-                accepted: '<span style="color: green;"><i class="fas fa-check-circle"></i> Активно</span>',
-                pending: '<span style="color: orange;"><i class="fas fa-clock"></i> Ожидание</span>',
-                rejected: '<span style="color: red;"><i class="fas fa-times-circle"></i> Отклонено</span>'
             };
-            return badges[status] || '';
-        };
 
-        const addParticipantToTable = (data) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
+
+
+            function updateSubCategories() {
+                const mainSelect = document.getElementById("mainCategory");
+                const subSelect = document.getElementById("subCategory");
+                const selectedCategory = mainSelect.value;
+
+                // Сброс подкатегорий
+                subSelect.innerHTML = '<option value="">Выберите подкатегорию</option>';
+                subSelect.disabled = true;
+
+                if (selectedCategory) {
+                    subSelect.disabled = false;
+                    categoriesData[selectedCategory].forEach(item => {
+                        const option = document.createElement("option");
+                        const [value, text] = item.split(' - ');
+                        option.value = value.trim();
+                        option.textContent = item;
+                        subSelect.appendChild(option);
+                    });
+                }
+            };
+
+            // 2. Работа с текстовым полем условий
+            const setupParticipationText = () => {
+                const addTextBtn = document.getElementById('add-text-btn');
+                const textArea = document.getElementById('participation-text');
+                const textActions = document.getElementById('text-actions');
+                const clearBtn = document.getElementById('clear-text-btn');
+                const cancelBtn = document.getElementById('cancel-text-btn');
+
+                textArea.classList.add('hidden');
+                textActions.classList.add('hidden');
+
+                addTextBtn.addEventListener('click', () => {
+                    textArea.classList.remove('hidden');
+                    textActions.classList.remove('hidden');
+                    addTextBtn.classList.add('hidden');
+                });
+
+                clearBtn.addEventListener('click', () => {
+                    textArea.value = '';
+                });
+
+                cancelBtn.addEventListener('click', () => {
+                    textArea.classList.add('hidden');
+                    textActions.classList.add('hidden');
+                    addTextBtn.classList.remove('hidden');
+                });
+            };
+
+            // 3. Сроки тендера
+            const setupTimelineSection = () => {
+                const startTypeSelect = document.getElementById('start-type');
+                const customDateFields = document.getElementById('custom-date-fields');
+                const startDateInput = document.getElementById('start-date');
+                const startTimeInput = document.getElementById('start-time');
+                const endDateInput = document.getElementById('end-date');
+                const endTimeInput = document.getElementById('end-time');
+                const startDateLabel = document.getElementById('start-date-label');
+                const endDateLabel = document.getElementById('end-date-label');
+
+                const updateTimeline = () => {
+                    if (startTypeSelect.value === 'custom' && startDateInput.value) {
+                        const startDate = new Date(startDateInput.value);
+                        let timeString = startTimeInput.value ? `, ${startTimeInput.value}` : '';
+                        startDateLabel.textContent = startDate.toLocaleDateString('ru-RU') + timeString;
+                    } else {
+                        startDateLabel.textContent = 'Сразу после подтверждения';
+                    }
+
+                    if (endDateInput.value) {
+                        const endDate = new Date(endDateInput.value);
+                        let timeString = endTimeInput.value ? `, ${endTimeInput.value}` : '';
+                        endDateLabel.textContent = endDate.toLocaleDateString('ru-RU') + timeString;
+                    } else {
+                        endDateLabel.textContent = '—';
+                    }
+                };
+
+                startTypeSelect.addEventListener('change', function () {
+                    customDateFields.style.display = this.value === 'custom' ? 'block' : 'none';
+                    updateTimeline();
+                });
+
+                [startTypeSelect, startDateInput, startTimeInput, endDateInput, endTimeInput].forEach(
+                    element => element.addEventListener('change', updateTimeline)
+                );
+
+                updateTimeline();
+            };
+
+            // 4. Товары и услуги
+            const setupGoodsSection = () => {
+                const addTypeBtn = document.getElementById('add-type-btn');
+                const typeDropdown = document.querySelector('.type-dropdown');
+                const lotsContainer = document.getElementById('lots-container');
+                const lotTemplate = document.getElementById('lot-template');
+                const serviceTemplate = document.getElementById('service-template');
+
+                addTypeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    typeDropdown.classList.toggle('show');
+                });
+
+                document.querySelectorAll('.type-option').forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        const type = e.target.dataset.type;
+                        typeDropdown.classList.remove('show');
+
+                        if (type === 'lot') addLotForm();
+                        if (type === 'service') addServiceForm();
+                    });
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!addTypeBtn.contains(e.target)) {
+                        typeDropdown.classList.remove('show');
+                    }
+                });
+
+                const addLotForm = () => {
+                    const lotClone = lotTemplate.content.cloneNode(true);
+                    const newLot = lotClone.querySelector('.lot-form');
+                    lotCounter++;
+                    newLot.querySelector('.lot-number').textContent = `Лот ${lotCounter}`;
+
+                    newLot.querySelector('.delete-lot-btn').addEventListener('click', (e) => {
+                        newLot.remove();
+                        lotCounter--;
+                        document.querySelectorAll('.lot-form').forEach((lot, index) => {
+                            lot.querySelector('.lot-number').textContent = `Лот ${index + 1}`;
+                        });
+                    });
+
+                    lotsContainer.appendChild(newLot);
+                };
+
+                const addServiceForm = () => {
+                    const serviceClone = serviceTemplate.content.cloneNode(true);
+                    const newService = serviceClone.querySelector('.service-form');
+
+                    newService.querySelector('.cancel-service').addEventListener('click', () => {
+                        newService.remove();
+                    });
+
+                    lotsContainer.appendChild(newService);
+                };
+            };
+
+            // 5. Анализ основного файла
+            // 5. Анализ основного файла (ЗАМЕНИТЬ ЭТУ ФУНКЦИЮ)
+            const setupFileAnalysis = () => {
+                const fileInput = document.getElementById('file-input');
+                const analyzeBtn = document.getElementById('analyze-btn');
+                const fileUploadContainer = document.getElementById('file-upload-container');
+                const analysisSuccess = document.getElementById('analysis-success');
+
+                // Функция обновления статуса
+                const updateStatus = (step) => {
+                    const statusBar = document.querySelector('.status-bar');
+                    const statusSteps = document.querySelectorAll('.status-step');
+
+                    statusBar.setAttribute('data-step', step);
+                    statusSteps.forEach((el, index) => {
+                        index < step ? el.classList.add('active') : el.classList.remove('active');
+                    });
+
+                    const statusTexts = ['Черновик', 'В процессе', 'Ожидает оценки', 'Закрыто'];
+                    document.getElementById('status-text').textContent = statusTexts[step - 1];
+                };
+
+                fileInput.addEventListener('change', () => {
+                    analyzeBtn.classList.remove('hidden');
+                });
+
+                analyzeBtn.addEventListener('click', async () => {
+                    analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Анализируется...';
+                    analyzeBtn.disabled = true;
+
+                    // Создаем объект FormData и добавляем файл
+                    const formData = new FormData();
+                    formData.append('file', fileInput.files[0]); // Добавляем файл из input
+
+                    try {
+                        //обращение к API
+                        const response = await fetch('/api/analyze-file', {
+                            method: 'POST',
+                            body: formData,
+                        });
+                        if (!response.ok) throw new Error('Ошибка при обращении к API');
+
+                        const data = await response.json();
+                        console.log(data); // Логируем данные для отладки
+
+                        // Предзаполнение полей на основе данных из API 
+                        // documentx[0].getElementById('event-name').value = data.eventName || 'Закупка оборудования для офиса';
+                        document.getElementById('purchase-budget').value = data[0].Тендер.Бюджет || 'RUB';
+                        document.getElementById('business-partner').value = data[0].Тендер.Бизнес-партнер
+                        // В секции анализа файла (после document.getElementById('business-partner').value = ...)
+                        // 1. Заполнение команды тендера
+                        if (data[0].Тендер["Бизнес-партнер"]) {
+                            const emails = data[0].Тендер["Бизнес-партнер"].split(', ');
+                            const container = document.getElementById('team-members-container');
+                            const initialInput = container.querySelector('.team-member-input');
+
+                            // Заполняем первое поле
+                            if (emails.length > 0) {
+                                initialInput.querySelector('input').value = emails[0];
+                                initialInput.querySelector('select').value = 'owner';
+                            }
+
+                            // Добавляем остальные поля
+                            for (let i = 1; i < emails.length; i++) {
+                                const newMember = initialInput.cloneNode(true);
+                                newMember.querySelector('input').value = emails[i];
+                                newMember.querySelector('select').value = 'watcher';
+                                container.appendChild(newMember);
+                            }
+                        }
+
+                        // 2. Добавление лотов
+                        if (data[0].Тендер["Товары/услуги"]) {
+                            const goods = data[0].Тендер["Товары/услуги"];
+                            const addButton = document.getElementById('add-type-btn');
+
+                            goods.forEach(item => {
+                                // Имитируем клик для добавления лота
+                                addButton.click();
+                                const typeOption = document.querySelector('.type-option[data-type="lot"]');
+                                typeOption.click();
+
+                                // Получаем последний добавленный лот
+                                const lastLot = document.querySelector('.lot-form:last-child');
+                                lastLot.querySelector('.lot-form input[type="text"]').value = item;
+
+                                // Если есть дополнительные данные, можно заполнить другие поля:
+                                // lastLot.querySelector('input[type="number"]').value = ...;
+                                // lastLot.querySelector('select').value = ...;
+                            });
+                        }
+
+
+                        // document.getElementById('purchase-category').value = data[0].getElementById("") || 'office';
+
+                        // Обновляем статус после анализа
+                        updateStatus(2);
+
+                        fileUploadContainer.classList.add('hidden');
+                        analysisSuccess.style.display = 'block';
+                        analyzeBtn.classList.add('hidden');
+                        document.getElementById('submit-btn').classList.remove('hidden');
+
+                    } catch (error) {
+                        console.error(error);
+                        alert("Произошла ошибка при анализе файла. Пожалуйста, попробуйте еще раз.");
+                    } finally {
+                        analyzeBtn.innerHTML = '<i class="fas fa-search"></i> Анализировать';
+                        analyzeBtn.disabled = false;
+                    }
+                });
+            };
+
+            // 6. Управление файлами
+            const setupFileHandlers = () => {
+                const handleFileUpload = (inputId, successId, fileNameId) => {
+                    document.getElementById(inputId).addEventListener('change', function (e) {
+                        const successMessage = document.getElementById(successId);
+                        const fileNameSpan = document.getElementById(fileNameId);
+
+                        if (this.files.length > 0) {
+                            fileNameSpan.textContent = this.files[0].name;
+                            successMessage.classList.remove('hidden');
+                        } else {
+                            successMessage.classList.add('hidden');
+                        }
+                    });
+                };
+
+                handleFileUpload('goods-file', 'goods-upload-success', 'goods-file-name');
+                handleFileUpload('participation-condition', 'condition-upload-success', 'condition-file-name');
+            };
+
+            // 7. Управление участниками
+            const setupParticipants = () => {
+                const modalOverlay = document.getElementById('modal-overlay');
+                const participantForm = document.getElementById('participant-form');
+                const participantsTableBody = document.getElementById('participants-table-body');
+
+                const getStatusBadge = (status) => {
+                    const badges = {
+                        accepted: '<span style="color: green;"><i class="fas fa-check-circle"></i> Активно</span>',
+                        pending: '<span style="color: orange;"><i class="fas fa-clock"></i> Ожидание</span>',
+                        rejected: '<span style="color: red;"><i class="fas fa-times-circle"></i> Отклонено</span>'
+                    };
+                    return badges[status] || '';
+                };
+
+                const addParticipantToTable = (data) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
                 <td>${new Date().toLocaleDateString()}</td>
                 <td>${data.company}</td>
                 <td>${data.contact}</td>
@@ -2497,131 +2542,131 @@ function updateSubCategories() {
                     <button class="small secondary" onclick="deleteParticipant(this)"><i class="fas fa-trash"></i></button>
                 </td>
             `;
-            participantsTableBody.appendChild(row);
-        };
+                    participantsTableBody.appendChild(row);
+                };
 
-        document.getElementById('open-modal-btn').addEventListener('click', () => {
-            modalOverlay.style.display = 'flex';
-        });
+                document.getElementById('open-modal-btn').addEventListener('click', () => {
+                    modalOverlay.style.display = 'flex';
+                });
 
-        document.getElementById('modal-close').addEventListener('click', () => {
-            modalOverlay.style.display = 'none';
-        });
+                document.getElementById('modal-close').addEventListener('click', () => {
+                    modalOverlay.style.display = 'none';
+                });
 
-        document.getElementById('modal-cancel').addEventListener('click', () => {
-            modalOverlay.style.display = 'none';
-        });
+                document.getElementById('modal-cancel').addEventListener('click', () => {
+                    modalOverlay.style.display = 'none';
+                });
 
-        participantForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-           
-            const participantData = {
-                company: document.getElementById('modal-company').value,
-                contact: document.getElementById('modal-contact').value,
-                email: document.getElementById('modal-email').value,
-                terms: document.getElementById('modal-terms').value
+                participantForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const participantData = {
+                        company: document.getElementById('modal-company').value,
+                        contact: document.getElementById('modal-contact').value,
+                        email: document.getElementById('modal-email').value,
+                        terms: document.getElementById('modal-terms').value
+                    };
+
+                    addParticipantToTable(participantData);
+                    modalOverlay.style.display = 'none';
+                    this.reset();
+
+                    const emailInput = document.getElementById('modal-email');
+                    if (!validateEmail(emailInput.value)) {
+                        alert('Введите корректный email адрес');
+                        return;
+                    }
+                });
             };
 
-            addParticipantToTable(participantData);
-            modalOverlay.style.display = 'none';
-            this.reset();
+            // ================= ИНИЦИАЛИЗАЦИЯ ПРИЛОЖЕНИЯ =================
+            const init = () => {
+                setupTabHandlers();
+                setupParticipationText();
+                setupTimelineSection();
+                setupGoodsSection();
+                setupFileAnalysis();
+                setupFileHandlers();
+                setupParticipants();
+            };
 
-            const emailInput = document.getElementById('modal-email');
-            if (!validateEmail(emailInput.value)) {
-                alert('Введите корректный email адрес');
+            init();
+        });
+
+        // Глобальные функции для действий с участниками
+        window.deleteParticipant = function (btn) {
+            const row = btn.closest('tr');
+            row.parentNode.removeChild(row);
+        };
+
+        window.editParticipant = function (btn) {
+            const row = btn.closest('tr');
+            const cells = row.querySelectorAll('td');
+
+            document.getElementById('modal-company').value = cells[1].textContent;
+            document.getElementById('modal-contact').value = cells[2].textContent;
+            document.getElementById('modal-email').value = cells[3].textContent;
+
+            const status = cells[4].querySelector('span').textContent.includes('Активно') ? 'accepted' :
+                cells[4].querySelector('span').textContent.includes('Ожидание') ? 'pending' : 'rejected';
+            document.getElementById('modal-terms').value = status;
+
+            document.getElementById('modal-overlay').style.display = 'flex';
+        };
+
+
+        // Функции для модального окна подтверждения
+        function showConfirmModal() {
+            const tenderName = document.getElementById('event-name').value;
+            if (!tenderName) {
+                alert('Пожалуйста, заполните название события в форме!');
                 return;
             }
+
+            document.getElementById('confirm-modal').style.display = 'flex';
+            document.getElementById('invitation-text').value =
+                `Уважаемый поставщик!\n\nКомпания N приглашает Вас для участия в тендере "${tenderName}". Со сроками и описанием закупки Вы сможете ознакомиться в системе проведения онлайн-тендеров. Будем рады видеть Вас в качестве активного участника закупки!`;
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirm-modal').style.display = 'none';
+        }
+
+
+        function submitTender() {
+            // Закрываем модальное окно
+            closeConfirmModal();
+
+            // Показываем уведомление
+            alert('Тендер успешно запущен!');
+
+            // Переадресация на home.html через 1 секунду
+            setTimeout(() => {
+                window.location.href = 'home.html';
+            }, 1000);
+
+        }
+
+
+        // Обновляем обработчик кнопки подтверждения
+        document.getElementById('submit-btn').addEventListener('click', function () {
+            updateStatus(3); // Устанавливаем статус "Ожидает оценки"
+            showConfirmModal();
         });
-    };
 
-    // ================= ИНИЦИАЛИЗАЦИЯ ПРИЛОЖЕНИЯ =================
-    const init = () => {
-        setupTabHandlers();
-        setupParticipationText();
-        setupTimelineSection();
-        setupGoodsSection();
-        setupFileAnalysis();
-        setupFileHandlers();
-        setupParticipants();
-    };
+        // Функция обновления статуса
+        function updateStatus(step) {
+            const statusBar = document.querySelector('.status-bar');
+            const statusSteps = document.querySelectorAll('.status-step');
 
-    init();
-});
+            statusBar.setAttribute('data-step', step);
+            statusSteps.forEach((el, index) => {
+                index < step ? el.classList.add('active') : el.classList.remove('active');
+            });
 
-// Глобальные функции для действий с участниками
-window.deleteParticipant = function(btn) {
-    const row = btn.closest('tr');
-    row.parentNode.removeChild(row);
-};
-
-window.editParticipant = function(btn) {
-    const row = btn.closest('tr');
-    const cells = row.querySelectorAll('td');
-    
-    document.getElementById('modal-company').value = cells[1].textContent;
-    document.getElementById('modal-contact').value = cells[2].textContent;
-    document.getElementById('modal-email').value = cells[3].textContent;
-    
-    const status = cells[4].querySelector('span').textContent.includes('Активно') ? 'accepted' :
-        cells[4].querySelector('span').textContent.includes('Ожидание') ? 'pending' : 'rejected';
-    document.getElementById('modal-terms').value = status;
-
-    document.getElementById('modal-overlay').style.display = 'flex';
-};
-
-
-// Функции для модального окна подтверждения
-function showConfirmModal() {
-    const tenderName = document.getElementById('event-name').value;
-    if (!tenderName) {
-        alert('Пожалуйста, заполните название события в форме!');
-        return;
-    }
-
-    document.getElementById('confirm-modal').style.display = 'flex';
-    document.getElementById('invitation-text').value = 
-        `Уважаемый поставщик!\n\nКомпания N приглашает Вас для участия в тендере "${tenderName}". Со сроками и описанием закупки Вы сможете ознакомиться в системе проведения онлайн-тендеров. Будем рады видеть Вас в качестве активного участника закупки!`;
-}
-
-function closeConfirmModal() {
-    document.getElementById('confirm-modal').style.display = 'none';
-}
-
-
-function submitTender() {
-    // Закрываем модальное окно
-    closeConfirmModal();
-    
-    // Показываем уведомление
-    alert('Тендер успешно запущен!');
-    
-    // Переадресация на home.html через 1 секунду
-    setTimeout(() => {
-        window.location.href = 'home.html';
-    }, 1000);
-
-}
-
-
-// Обновляем обработчик кнопки подтверждения
-document.getElementById('submit-btn').addEventListener('click', function() {
-    updateStatus(3); // Устанавливаем статус "Ожидает оценки"
-    showConfirmModal();
-});
-
-// Функция обновления статуса
-function updateStatus(step) {
-    const statusBar = document.querySelector('.status-bar');
-    const statusSteps = document.querySelectorAll('.status-step');
-    
-    statusBar.setAttribute('data-step', step);
-    statusSteps.forEach((el, index) => {
-        index < step ? el.classList.add('active') : el.classList.remove('active');
-    });
-    
-    const statusTexts = ['Черновик', 'В процессе', 'Ожидает оценки', 'Закрыто'];
-    document.getElementById('status-text').textContent = statusTexts[step - 1];
-}
+            const statusTexts = ['Черновик', 'В процессе', 'Ожидает оценки', 'Закрыто'];
+            document.getElementById('status-text').textContent = statusTexts[step - 1];
+        }
 
 
 

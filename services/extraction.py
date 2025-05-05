@@ -41,7 +41,7 @@ FEW_SHOT = """ПРИМЕР ИЗВЛЕЧЕНИЯ: \n\n {
                 },
                 {
                     "$type": "Text",
-                    "id": "Бизнес-партнер",
+                    "id": "Бизнес_партнер",
                     "description": "Найди при наличии в ТЕКСТ бизнес-партнера. Бизнес-партнер этот тот, кто выдвигает требования к закупке. Это человек, а не компания. Обычно это отправитель одного из первых писем",
                     "many": true,
                     "value": ["Pakalo, Grigoriy /RU (Procurement Category & Efficiency Manager, Sanofi)", 
@@ -206,13 +206,13 @@ def process_result(raw_json_str):
 def extraction(input_file):
     # Обновленные настройки
     api_key = (
-        "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"
+        "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"
     )
     system_prompt = "Ты - специалист отдела закупок. Твоя задача - извлечь необходимую информацию из документа. Извлекать нужно по схеме, описанной ниже. Выводи извлечение в формате JSON\n\n"
 
     # Пути к схемам
-    msg_scheme_path = "C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\scheme_for_msg.json"
-    pdf_scheme_path = "C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\scheme_for_pdf.json"
+    msg_scheme_path = "C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\schemes\\scheme_for_msg.json"
+    pdf_scheme_path = "C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\schemes\\scheme_for_pdf.json"
 
     # # Путь к файлу (может быть .msg или .pdf)
     # input_file = (
