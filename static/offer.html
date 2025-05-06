@@ -592,14 +592,13 @@
 
         /* Блок Инструкции  */
         .title-container {
-    position: relative;
-    display: flex
-;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 20px;
-    margin-top: 20px;
-}
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 20px;
+            margin-top: 20px;
+        }
 
         .instruction-btn {
             background: #ab0630;
@@ -1249,80 +1248,239 @@
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
-        /* Стили для крупной таблицы тендеров */
-    .large-table {
-        font-size: 1.1em;
-    }
-    .large-table th {
-        padding: 18px 20px;
-    }
-    .large-table td {
-        padding: 15px 20px;
-    }
-    .large-table tr:hover {
-        transform: scale(1.005);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
 
-    /* Стили для списка событий */
-    .event-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    .event-item {
-        padding: 12px 15px;
-        margin: 8px 0;
-        background: white;
-        border-radius: 6px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: all 0.2s ease;
-    }
-    .event-item:hover {
-        transform: translateX(5px);
-        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    }
-    .event-date {
-        color: #666;
-        min-width: 90px;
-    }
-    .event-title {
-        flex-grow: 1;
-        margin: 0 20px;
-    }
-    .event-status {
-        min-width: 100px;
-        text-align: right;
-    }
-    .events-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-    .event-actions {
-        display: flex;
-        gap: 10px;
-    }
-    .event-search-input {
-        width: 200px;
-        padding: 8px 12px;
-        border: 1px solid #d3b8ff;
-        border-radius: 20px;
-        transition: all 0.3s ease;
-    }
-    .event-search-input:focus {
-        outline: none;
-        border-color: #4b0082;
-        box-shadow: 0 0 5px rgba(75, 0, 130, 0.2);
-    }
-    .hidden-section {
-    display: none !important;
+        /* Стили для крупной таблицы тендеров */
+        .large-table {
+            font-size: 1.1em;
+        }
+
+        .large-table th {
+            padding: 18px 20px;
+        }
+
+        .large-table td {
+            padding: 15px 20px;
+        }
+
+        .large-table tr:hover {
+            transform: scale(1.005);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Стили для списка событий */
+        .event-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .event-item {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .event-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-date {
+            color: #666;
+            min-width: 90px;
+        }
+
+        .event-title {
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .event-status {
+            min-width: 100px;
+            text-align: right;
+        }
+
+        .events-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .event-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .event-search-input {
+            width: 200px;
+            padding: 8px 12px;
+            border: 1px solid #d3b8ff;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .event-search-input:focus {
+            outline: none;
+            border-color: #4b0082;
+            box-shadow: 0 0 5px rgba(75, 0, 130, 0.2);
+        }
+
+        .hidden-section {
+            display: none !important;
+        }
+
+        /* Стили для вкладок */
+        .tabs-container {
+            margin: 20px 0;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid #4b0082;
+        }
+
+        .tab {
+            padding: 12px 25px;
+            background: #f0eaff;
+            border: none;
+            border-radius: 4px 4px 0 0;
+            cursor: pointer;
+            font-weight: bold;
+            color: #4b0082;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: #4b0082;
+            color: white;
+        }
+
+        /* Стили для чекбокса */
+        .privacy-checkbox {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .privacy-checkbox input {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Адаптивные стили для кнопок */
+        .download-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-content {
+            display: none;
+            /* Скрыть все вкладки по умолчанию */
+        }
+
+        .tab-content.active {
+            display: block;
+            /* Показать активную вкладку */
+        }
+
+        /* Стили для документов */
+        .doc-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #e0d0f0;
+            border-radius: 6px;
+            background: #f9f5ff;
+        }
+
+        .doc-description {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+
+        .download-button:hover {
+            transform: translateY(-1px);
+        }
+        /* Дополнительные стили для поля ввода */
+#supplier-name {
+    border: 2px solid #d3b8ff;
+    border-radius: 6px;
+    transition: all 0.3s ease;
 }
 
+#supplier-name:focus {
+    border-color: #4b0082;
+    box-shadow: 0 0 8px rgba(75, 0, 130, 0.2);
+    outline: none;
+}
+
+#supplier-name::placeholder {
+    color: #a0a0a0;
+    font-style: italic;
+    font-size: 0.95em;
+}
+/* Стили для лотов */
+.lots-container {
+    margin-top: 20px;
+    border: 2px solid #e0d0f0;
+    border-radius: 8px;
+    padding: 15px;
+    background: #ffffff;
+}
+
+.lot-form {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #e0d0f0;
+    border-radius: 6px;
+    background: #f9f5ff;
+}
+
+.lot-form:last-child {
+    margin-bottom: 0;
+}
+
+.lot-header {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4b0082;
+}
+
+.lot-number {
+    font-size: 1.2em;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Улучшенные стили для выпадающих списков */
+select {
+    background-color: #fff;
+    border: 2px solid #d3b8ff;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    border-color: #4b0082;
+    box-shadow: 0 0 8px rgba(75, 0, 130, 0.2);
+}
     </style>
     <title>Участие в тендере #51659</title>
 </head>
@@ -1332,7 +1490,16 @@
         <h1>Участие в ESGIT test - событие №51659</h1>
     </header>
     <div class="main-content">
-        <section class="form-container">
+        <!-- Вкладки -->
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab active" data-tab="info">Информация об участии</button>
+                <button class="tab" data-tab="proposal">Подача предложения</button>
+            </div>
+        </div>
+
+        <!-- Содержимое вкладки "Информация об участии" -->
+        <section class="form-container tab-content active" data-tab="info">
             <div style="position: relative;">
                 <button class="instruction-btn" style="display: flow;">
                     <i class="fas fa-info-circle"></i>
@@ -1354,6 +1521,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- Блок участия -->
             <div class="form-section">
                 <h3>Вы собираетесь принять участие в тендере?</h3>
@@ -1368,14 +1536,15 @@
             <!-- Условия и положения -->
             <div class="form-section">
                 <h3>Принять условия и положения</h3>
-                
+
                 <div class="form-row">
                     <div class="form-group1" style="flex: 1; border: none;">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span>Сроки: 90 дней</span>
                             <div style="display: inline-flex;">
-                                <label><input type="radio" name="terms" value="yes" > Да</label>
-                                <label><input type="radio" name="terms" value="no" style="margin-left: 15px; "> Нет</label>
+                                <label><input type="radio" name="terms" value="yes"> Да</label>
+                                <label><input type="radio" name="terms" value="no" style="margin-left: 15px; ">
+                                    Нет</label>
                             </div>
                         </div>
                     </div>
@@ -1386,18 +1555,26 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <div>
                                 <span>NDA </span>
-                                <button class="small download-button" style="margin-left: 10px; background-color: #e5155a;" onclick="downloadFile()">
-                                    <i class="fas fa-download"></i> Скачать шаблон
-                                </button>
+                                <div class="download-buttons">
+                                    <button class="small download-button" style="background-color: #e5155a;"
+                                        onclick="downloadFile()">
+                                        <i class="fas fa-download"></i> Скачать шаблон
+                                    </button>
+                                    <button class="small download-button" style="background-color: #4b0082;"
+                                        onclick="downloadCounteragentCard()">
+                                        <i class="fas fa-download"></i> Скачать карточку
+                                    </button>
+                                </div>
                             </div>
                             <div style="display: inline-flex;">
-                                <label><input type="radio" name="nda" value="yes" onchange="toggleSupplierAttachment()"> Да</label>
-                                <label><input type="radio" name="nda" value="no" style="margin-left: 15px;" onchange="toggleSupplierAttachment()"> Нет</label>
+                                <label><input type="radio" name="nda" value="yes" onchange="toggleSupplierAttachment()">
+                                    Да</label>
+                                <label><input type="radio" name="nda" value="no" style="margin-left: 15px;"
+                                        onchange="toggleSupplierAttachment()"> Нет</label>
                             </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
 
             <!-- Вложение закупщиков -->
@@ -1452,12 +1629,166 @@
                 </div>
             </div>
 
+            <!-- Согласие с обработкой данных -->
+            <div class="privacy-checkbox">
+                <input type="checkbox" id="privacy" required>
+                <label for="privacy">Согласен с обработкой персональных данных</label>
+            </div>
+
             <!-- Кнопка участия -->
             <div class="form-actions" id="participate-button" style="display: none; justify-content: center;">
                 <button type="button" class="tndr-sbmt large">Участвовать в тендере</button>
             </div>
         </section>
 
+        <!-- Содержимое вкладки "Подача предложения" -->
+        <section class="form-container tab-content" data-tab="proposal">
+            <div style="position: relative;">
+                <button class="instruction-btn" style="display: flow;">
+                    <i class="fas fa-info-circle"></i>
+                    Инструкция
+                </button>
+                <div class="instruction-overlay">
+                    <div class="instruction-content">
+                        <h3 style="color: #ab0630; margin: 0 0 15px 0; font-size: 1.3em;">📋 Инструкция</h3>
+                        <ol style="padding-left: 20px; margin: 0 0 15px 0;">
+                            <li>Ознакомьтесь с заданием тендера</li>
+                            <li>Загрузите файл с предложением в формате PDF в окно загрузки</li>
+                            <li>Проверьте корректность ввода данных предложения</li>
+                            <li>Подтвердите отправку</li>
+                            <li>Запустите тендер</li>
+                        </ol>
+                        <p style="color: #666; margin: 0; font-size: 0.9em;">
+                            ❗ Обязательные поля отмечены *
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Блок для скачивания файлов -->
+            <div class="form-section">
+                <h3>Документы для скачивания</h3>
+                <div class="download-docs">
+                    <div class="doc-item">
+                        <div class="doc-description">Техническое задание для тендера</div>
+                        <button class="small download-button" style="background-color: #4b0082;"
+                            onclick="downloadTechSpec()">
+                            <i class="fas fa-download"></i> Техническое задание
+                        </button>
+                    </div>
+                    <div class="doc-item" style="margin-top: 15px;">
+                        <div class="doc-description">Форма подачи предложения</div>
+                        <button class="small download-button" style="background-color: #4b0082;"
+                            onclick="downloadProposalForm()">
+                            <i class="fas fa-download"></i> Форма предложения
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок загрузки предложения -->
+            <div class="form-section">
+                <h3>Загрузите коммерческое предложение</h3>
+                <div class="file-upload" id="proposal-drag-drop">
+                    <div class="file-upload-title">Перетащите файл сюда</div>
+                    <div class="file-upload-subtitle">или</div>
+                    <input type="file" id="proposal-file" style="display: none;">
+                    <label for="proposal-file"><i class="fas fa-upload"></i> Выбрать файл</label>
+                    <div id="proposal-file-name" class="file-name"></div>
+                </div>
+                <div id="proposal-upload-confirmation" class="upload-success-message hidden">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="upload-details">
+                        <span class="file-name-text" id="proposal-uploaded-name"></span>
+                        <span class="file-status">Файл успешно загружен!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-section">
+                <h3>Информация о поставщике</h3>
+                <div class="form-row">
+                    <div class="form-group" style="flex: 1">
+                        <label class="required-field">Наименование поставщика</label>
+                        <input type="text" 
+                               id="supplier-name" 
+                               required
+                               placeholder="Введите официальное название компании"
+                               style="padding: 10px; font-size: 1em;">
+                    </div>
+                </div>
+            </div>
+            <!-- Блок лотов -->
+    <div class="form-section">
+        <h3>Лоты</h3>
+        
+        <!-- Контейнер для лотов -->
+        <div class="lots-container">
+            <!-- Шаблон одного лота -->
+            <div class="lot-form" data-lot-id="1">
+                <div class="lot-header">
+                    <span class="lot-number">Лот 1</span>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required-field">Название лота</label>
+                        <input type="text" 
+                               data-field="name" 
+                               required
+                               placeholder="Введите название лота">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Описание лота</label>
+                        <textarea data-field="description"
+                                  placeholder="Дополнительное описание"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required-field">Количество</label>
+                        <input type="text" 
+                               data-field="quantity" 
+                               required
+                               placeholder="Введите количество">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Единица измерения</label>
+                        <select data-field="unit">
+                            <option value="">Выберите из списка</option>
+                            <option value="pieces">штуки</option>
+                            <option value="kg">килограммы</option>
+                            <option value="meters">метры</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required-field">Предложенная цена</label>
+                        <input type="text" 
+                               data-field="price" 
+                               required
+                               placeholder="Введите цену">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required-field">Валюта</label>
+                        <select data-field="currency" required>
+                            <option value="">Выберите валюту</option>
+                            <option value="RUB">Рубли</option>
+                            <option value="USD">Доллары</option>
+                            <option value="EUR">Евро</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </section>
         <!-- Таймер -->
         <div class="form-section" style="margin-top: 30px; text-align: center;">
             <h3 style="color: #b5043f;">
@@ -1470,94 +1801,184 @@
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Проверка условий для отображения кнопки
-        function checkConditions() {
-            const termsYes = document.querySelector('input[name="terms"]:checked')?.value === 'yes';
-            const ndaYes = document.querySelector('input[name="nda"]:checked')?.value === 'yes';
-            const participateButton = document.getElementById('participate-button');
-            participateButton.style.display = (termsYes && ndaYes) ? 'flex' : 'none';
-        }
-
-        // Управление видимостью секции вложений
-        function toggleSupplierAttachment() {
-            const ndaYes = document.querySelector('input[name="nda"]:checked')?.value === 'yes';
-            const attachmentSection = document.getElementById('supplier-attachment-section');
-            const uploadConfirmation = document.getElementById('upload-confirmation');
-            
-            if(ndaYes) {
-                attachmentSection.classList.remove('hidden-section');
-            } else {
-                attachmentSection.classList.add('hidden-section');
-                uploadConfirmation.classList.add('hidden');
-                document.getElementById('supplier-file').value = '';
-                document.getElementById('supplier-file-name').textContent = '';
+        document.addEventListener('DOMContentLoaded', function () {
+            // Проверка условий для отображения кнопки
+            function checkConditions() {
+                const termsYes = document.querySelector('input[name="terms"]:checked')?.value === 'yes';
+                const ndaYes = document.querySelector('input[name="nda"]:checked')?.value === 'yes';
+                const participateButton = document.getElementById('participate-button');
+                participateButton.style.display = (termsYes && ndaYes) ? 'flex' : 'none';
             }
-            checkConditions();
-        }
 
-        // Обработчики для радио-кнопок
-        document.querySelectorAll('input[type="radio"][name="terms"], input[type="radio"][name="nda"]').forEach(radio => {
-            radio.addEventListener('change', () => {
+            // Управление видимостью секции вложений
+            function toggleSupplierAttachment() {
+                const ndaYes = document.querySelector('input[name="nda"]:checked')?.value === 'yes';
+                const attachmentSection = document.getElementById('supplier-attachment-section');
+                const uploadConfirmation = document.getElementById('upload-confirmation');
+
+                if (ndaYes) {
+                    attachmentSection.classList.remove('hidden-section');
+                } else {
+                    attachmentSection.classList.add('hidden-section');
+                    uploadConfirmation.classList.add('hidden');
+                    document.getElementById('supplier-file').value = '';
+                    document.getElementById('supplier-file-name').textContent = '';
+                }
                 checkConditions();
-                if(radio.name === 'nda') toggleSupplierAttachment();
+            }
+
+            // Обработчики для радио-кнопок
+            document.querySelectorAll('input[type="radio"][name="terms"], input[type="radio"][name="nda"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    checkConditions();
+                    if (radio.name === 'nda') toggleSupplierAttachment();
+                });
+            });
+
+            // Drag and drop обработчики
+            const dropZone = document.getElementById('drag-drop-zone');
+            const uploadConfirmation = document.getElementById('upload-confirmation');
+            const uploadedFileName = document.getElementById('uploaded-file-name');
+            const fileInput = document.getElementById('supplier-file');
+
+            function handleFiles(files) {
+                if (files.length > 0) {
+                    fileInput.files = files;
+                    document.getElementById('supplier-file-name').textContent = files[0].name;
+                    dropZone.style.display = 'none';
+                    uploadedFileName.textContent = files[0].name;
+                    uploadConfirmation.classList.remove('hidden');
+                }
+                dropZone.classList.remove('dragover');
+            }
+
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('dragover');
+            });
+
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('dragover');
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                handleFiles(e.dataTransfer.files);
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files);
+            });
+
+            // Обработчик кнопки участия
+            document.querySelector('#participate-button button').addEventListener('click', () => {
+                alert('Ваша заявка успешно отправлена!');
+            });
+
+            // Инициализация при загрузке
+            toggleSupplierAttachment();
+            checkConditions();
+
+            // Скачивание файла NDA
+            window.downloadFile = function () {
+                const link = document.createElement('a');
+                link.href = 'C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\Шаблон NDA.xlsx';
+                link.download = 'NDA_шаблон.xlsx';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+        });
+        // Переключение вкладок
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Убрать активный класс у всех вкладок и контента
+                document.querySelectorAll('.tab, .tab-content').forEach(el => {
+                    el.classList.remove('active');
+                });
+
+                // Активировать выбранную вкладку и контент
+                tab.classList.add('active');
+                const tabName = tab.dataset.tab;
+                document.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('active');
             });
         });
 
-        // Drag and drop обработчики
-        const dropZone = document.getElementById('drag-drop-zone');
-        const uploadConfirmation = document.getElementById('upload-confirmation');
-        const uploadedFileName = document.getElementById('uploaded-file-name');
-        const fileInput = document.getElementById('supplier-file');
-
-        function handleFiles(files) {
-            if (files.length > 0) {
-                fileInput.files = files;
-                document.getElementById('supplier-file-name').textContent = files[0].name;
-                dropZone.style.display = 'none';
-                uploadedFileName.textContent = files[0].name;
-                uploadConfirmation.classList.remove('hidden');
-            }
-            dropZone.classList.remove('dragover');
-        }
-
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('dragover');
-        });
-
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.classList.remove('dragover');
-        });
-
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            handleFiles(e.dataTransfer.files);
-        });
-
-        fileInput.addEventListener('change', (e) => {
-            handleFiles(e.target.files);
-        });
-
-        // Обработчик кнопки участия
-        document.querySelector('#participate-button button').addEventListener('click', () => {
-            alert('Ваша заявка успешно отправлена!');
-        });
-
-        // Инициализация при загрузке
-        toggleSupplierAttachment();
-        checkConditions();
-
-        // Скачивание файла NDA
-        window.downloadFile = function() {
+        window.downloadCounteragentCard = function () {
             const link = document.createElement('a');
-            link.href = 'C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\Шаблон NDA.xlsx';
-            link.download = 'NDA_шаблон.xlsx';
+            link.href = 'путь/к/файлу/карточка_контрагента.docx';
+            link.download = 'карточка_контрагента.docx';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         };
-    });
+        // Обработчики для загрузки предложения
+        const proposalDropZone = document.getElementById('proposal-drag-drop');
+        const proposalFileInput = document.getElementById('proposal-file');
+        const proposalUploadConfirmation = document.getElementById('proposal-upload-confirmation');
+
+        function handleProposalFiles(files) {
+            if (files.length > 0) {
+                document.getElementById('proposal-file-name').textContent = files[0].name;
+                proposalDropZone.style.display = 'none';
+                document.getElementById('proposal-uploaded-name').textContent = files[0].name;
+                proposalUploadConfirmation.classList.remove('hidden');
+            }
+            proposalDropZone.classList.remove('dragover');
+        }
+
+        proposalDropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            proposalDropZone.classList.add('dragover');
+        });
+
+        proposalDropZone.addEventListener('dragleave', () => {
+            proposalDropZone.classList.remove('dragover');
+        });
+
+        proposalDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            handleProposalFiles(e.dataTransfer.files);
+        });
+
+        proposalFileInput.addEventListener('change', (e) => {
+            handleProposalFiles(e.target.files);
+        });
+
+        // Функции для скачивания
+        window.downloadTechSpec = function () {
+            // Реальная реализация скачивания
+            const link = document.createElement('a');
+            link.href = 'path/to/tech-spec.pdf';
+            link.download = 'technical_specification.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+
+        window.downloadProposalForm = function () {
+            // Реальная реализация скачивания
+            const link = document.createElement('a');
+            link.href = 'path/to/proposal-form.docx';
+            link.download = 'proposal_form.docx';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+    document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.lots-container');
+    const template = document.querySelector('.lot-form').cloneNode(true);
+
+    // Очищаем контейнер и генерируем 20 лотов
+    container.innerHTML = '';
+    for(let i = 1; i <= 20; i++) {
+        const clone = template.cloneNode(true);
+        clone.dataset.lotId = i;
+        clone.querySelector('.lot-number').textContent = `Лот ${i}`;
+        container.appendChild(clone);
+    }
+});s
     </script>
 </body>
+
 </html>
