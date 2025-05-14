@@ -1,12 +1,12 @@
 import os
 import tempfile
+import time
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from services.extraction import extraction
 from services.comparation import TenderMatcher
 from services.contacts_matcher import CompanyContactMatcher
-
 app = FastAPI()
 
 # Подключаем статические файлы для HTML-шаблонов
@@ -38,25 +38,26 @@ async def match_tender(file: UploadFile = File(...)):
         temp_file.write(contents)
 
     try:
-        user_data = extraction(
-            temp_file_path
-        )  # Передаем путь к временно сохраненному файлу
+        time.sleep(5)
+        # user_data = extraction(
+        #     temp_file_path
+        # )  # Передаем путь к временно сохраненному файлу
 
-        matcher = TenderMatcher(
-            db_url="postgresql://postgres:12345@localhost:5433/postgres"
-        )
-        tenders_df, procurement_df = matcher.load_data()
-        processed_user_data = matcher.process_user_data(user_data)
-        procurement_codes = matcher.find_procurement_code(
-            processed_user_data, procurement_df
-        )
-        similar_tenders = matcher.find_similar_tenders(
-            processed_user_data, tenders_df, procurement_codes
-        )
-        contacts_matcher = CompanyContactMatcher(threshold=70, synonyms=None)
-        contacts = contacts_matcher.find_contacts(set(user_data["Тендер"]["Возможные_поставщики"]))
+        # matcher = TenderMatcher(
+        #     db_url="postgresql://postgres:12345@localhost:5433/postgres"
+        # )
+        # tenders_df, procurement_df = matcher.load_data()
+        # processed_user_data = matcher.process_user_data(user_data)
+        # procurement_codes = matcher.find_procurement_code(
+        #     processed_user_data, procurement_df
+        # )
+        # similar_tenders = matcher.find_similar_tenders(
+        #     processed_user_data, tenders_df, procurement_codes
+        # )
+        # contacts_matcher = CompanyContactMatcher(threshold=70, synonyms=None)
+        # contacts = contacts_matcher.find_contacts(set(user_data["Тендер"]["Возможные_поставщики"]))
 
-        return user_data, similar_tenders, contacts
+        return {}  
     finally:
         # Удаляем временный файл после обработки
         if os.path.exists(temp_file_path):

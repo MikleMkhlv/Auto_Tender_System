@@ -110,7 +110,6 @@
 
 
 
-
         .budget-currency-group {
             display: flex;
             gap: 20px;
@@ -976,9 +975,6 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-            table-layout: auto;
-            min-width: 100%;
-            overflow-x: auto;
         }
 
         .participants-table th,
@@ -986,34 +982,16 @@
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #e0d0f0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 200px;
-            padding: 12px 15px;
-            word-wrap: break-word;
-            /* Перенос длинных слов */
-            white-space: normal !important;
-            /* Разрешаем перенос */
-            overflow-wrap: break-word;
-            /* Альтернатива для word-wrap */
         }
 
         .participants-table th {
             background-color: #4b0082;
             color: white;
             font-weight: bold;
-            position: sticky;
-            top: 0;
         }
 
         .participants-table tr:hover {
             background-color: #f9f5ff;
-        }
-
-        .participants-table-container {
-            overflow-x: auto;
-            width: 100%;
         }
 
         .action-buttons {
@@ -1286,7 +1264,7 @@
     <div class="main-content">
         <section class="form-container">
             <div class="title-container">
-                <h2 style="color: #0051ff;">Sourcing - Event #51659</h2>
+                <h2>Sourcing - Event #51659</h2>
                 <div style="position: relative;">
                     <button class="instruction-btn">
                         <i class="fas fa-info-circle"></i>
@@ -1325,8 +1303,8 @@
 
             <div class="file-upload" id="file-upload-container">
                 <div class="file-upload-title">Загрузите файл</div>
-                <div style="color:#eb1010; font-size: large;" class="file-upload-subtitle"><b>Запрос на проведение
-                        тендера в формате MSG</b></div>
+                <div style="color:#870909; font-size: large;" class="file-upload-subtitle"><b>Запрос на проведение
+                        тендера.msg</b></div>
                 <input type="file" id="file-input" accept=".pdf,.doc,.docx,.xls,.xlsx,.msg" style="display: none;">
                 <label for="file-input"><i class="fas fa-upload"></i> Выберите файл</label>
                 <div id="file-name" class="file-name">Или перетащите файл сюда</div>
@@ -1784,28 +1762,28 @@
                     </div>
                 </div>
             </template>
-            <!--  раздел Participants -->
+            <!-- Обновленный раздел Participants -->
             <form id="participants-form" class="form-tab">
                 <div class="form-section">
                     <h3>Участники тендера</h3>
-                    <div class="participants-table-container">
-                        <table class="participants-table">
-                            <thead>
-                                <tr>
-                                    <th>Дата добавления</th>
-                                    <th>Название</th>
-                                    <th>Контакт</th>
-                                    <th>Email</th>
-                                    <th>Участие</th>
-                                    <th>Последняя активность</th>
-                                    <th>Действия</th>
-                                </tr>
-                            </thead>
-                            <tbody id="participants-table-body">
-                                <!-- Строки будут добавляться здесь -->
-                            </tbody>
-                        </table>
-                    </div>
+
+                    <table class="participants-table">
+                        <thead>
+                            <tr>
+                                <th>Дата добавления</th>
+                                <th>Название</th>
+                                <th>Контакт</th>
+                                <th>Email</th>
+                                <th>Участие</th>
+                                <th>Условия</th>
+                                <th>Последняя активность</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="participants-table-body">
+                            <!-- Строки будут добавляться здесь -->
+                        </tbody>
+                    </table>
 
                     <button type="button" class="add-participant-btn secondary" id="open-modal-btn">
                         <i class="fas fa-plus-circle"></i> Добавить участника
@@ -1922,7 +1900,7 @@
     </div>
 
     <script>
-        let lotCounter = 0;
+
 
 
         const categoriesData = {
@@ -2400,23 +2378,6 @@
 
                     lotsContainer.appendChild(newService);
                 };
-                // Добавляем этот блок для работы с командой тендера
-                const setupTeamMembers = () => {
-                    const container = document.getElementById('team-members-container');
-
-                    container.addEventListener('click', (e) => {
-                        if (e.target.closest('.add-member-btn')) {
-                            const template = container.querySelector('.team-member-input');
-                            const newMember = template.cloneNode(true);
-                            newMember.querySelector('input').value = '';
-                            newMember.querySelector('select').selectedIndex = 0;
-                            container.appendChild(newMember);
-                        }
-                    });
-                };
-
-                // Вызываем новую функцию
-                setupTeamMembers();
             };
 
             // 5. Анализ основного файла
@@ -2426,8 +2387,6 @@
                 const analyzeBtn = document.getElementById('analyze-btn');
                 const fileUploadContainer = document.getElementById('file-upload-container');
                 const analysisSuccess = document.getElementById('analysis-success');
-                const lotTemplate = document.getElementById('lot-template');
-                const participantsTableBody = document.getElementById('participants-table-body');
 
                 // Функция обновления статуса
                 const updateStatus = (step) => {
@@ -2463,142 +2422,53 @@
                         });
                         if (!response.ok) throw new Error('Ошибка при обращении к API');
 
-                        const data = await response.json();
-                        console.log(data); // Логируем данные для отладки
-
                         // Заполнение общих сведений
-                        document.getElementById('event-name').value = 'Закупка офисного оборудования 2024';
-                        document.getElementById('participation-text').value = 'Требуется предоставить документы компании и лицензии.';
+            document.getElementById('event-name').value = 'Закупка офисного оборудования 2024';
+            document.getElementById('participation-text').value = 'Требуется предоставить документы компании и лицензии.';
+            
+            // Категории
+            document.getElementById('mainCategory').value = 'CS';
+            updateSubCategories();
+            setTimeout(() => {
+                document.getElementById('subCategory').value = 'CS5004';
+            }, 100);
 
-                        // Категории
-                        document.getElementById('mainCategory').value = 'CS';
-                        updateSubCategories();
-                        setTimeout(() => {
-                            document.getElementById('subCategory').value = 'CS5004';
-                        }, 100);
+            // Финансовая информация
+            document.getElementById('purchase-budget').value = '500000';
+            document.getElementById('currency').value = 'RUB';
+            document.getElementById('planned-savings').value = '15%';
 
-                        // Финансовая информация
-                        document.getElementById('purchase-budget').value = '500000';
-                        document.getElementById('currency').value = 'RUB';
-                        document.getElementById('planned-savings').value = '15%';
+            // Бизнес-команда
+            document.getElementById('business-partner').value = 'ООО Поставщик Экспресс';
+            const teamContainer = document.getElementById('team-members-container');
+            teamContainer.querySelector('input').value = 'procurement@company.com';
+            teamContainer.querySelector('select').value = 'owner';
 
-                        // Бизнес-команда
-                        document.getElementById('business-partner').value = 'ООО Поставщик Экспресс';
-                        const teamContainer = document.getElementById('team-members-container');
-                        teamContainer.querySelector('input').value = 'procurement@company.com';
-                        teamContainer.querySelector('select').value = 'owner';
+            // Параметры тендера
+            document.getElementById('type-rfp').checked = true;
+            document.getElementById('param-option1-2').checked = true; // 5 мин
+            document.getElementById('param-option2-2').checked = true; // 2%
 
-                        // Параметры тендера
-                        document.getElementById('type-rfp').checked = true;
-                        document.getElementById('param-option1-2').checked = true; // 5 мин
-                        document.getElementById('param-option2-2').checked = true; // 2%
+            // Комментарии
+            document.getElementById('comments').value = 'Тестовые данные для демонстрации';
 
-                        // Комментарии
-                        document.getElementById('comments').value = 'Тестовые данные для демонстрации';
+            // Сроки тендера
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 7);
+            document.getElementById('end-date').value = endDate.toISOString().split('T')[0];
+            document.getElementById('end-time').value = '18:00';
 
-                        // Сроки тендера
-                        const endDate = new Date();
-                        endDate.setDate(endDate.getDate() + 7);
-                        document.getElementById('end-date').value = endDate.toISOString().split('T')[0];
-                        document.getElementById('end-time').value = '18:00';
+            // Участники (добавляем 3 тестовых)
+            const participants = [
+                {company: 'ООО ТехноПрофи', contact: 'Иван Петров', email: 'tech@example.com', terms: 'accepted'},
+                {company: 'ИП Смирнова', contact: 'Ольга Смирнова', email: 'smirnova@example.com', terms: 'pending'},
+                {company: 'АО Интеграл', contact: 'Алексей Воронов', email: 'voronov@integral.ru', terms: 'accepted'}
+            ];
+            participants.forEach(p => addParticipantToTable(p));
 
-                        // Оценка предложений
-                        document.getElementById('min-score').value = '0';
-                        document.getElementById('max-score').value = '100';
-
-                        // Добавление лотов (автоматически создаем их)
-                        const lotsContainer = document.getElementById('lots-container');
-                        lotsContainer.innerHTML = ''; // Очищаем контейнер
-
-                        // Функция для добавления лота
-                        const addLotForm = (name, description, quantity, unit, startPrice, currency) => {
-                            const lotClone = lotTemplate.content.cloneNode(true);
-                            const newLot = lotClone.querySelector('.lot-form');
-                            lotCounter++;
-                            // Заголовок лота
-                            newLot.querySelector('.lot-number').textContent = `Лот ${lotCounter}`;
-
-                            // Название лота
-                            newLot.querySelector('.form-row:nth-child(2) .form-group1:nth-child(1) input').value = name;
-
-                            // Описание лота
-                            newLot.querySelector('.form-row:nth-child(2) .form-group1:nth-child(2) input').value = description;
-
-                            // Количество
-                            newLot.querySelector('.form-row:nth-child(3) .form-group1:nth-child(1) input').value = quantity;
-
-                            // Единица измерения
-                            const unitSelect = newLot.querySelector('.form-row:nth-child(3) .form-group1:nth-child(2) select');
-                            if (unitSelect) unitSelect.value = unit;
-
-                            // Стартовая цена
-                            newLot.querySelector('.form-row:nth-child(4) .form-group1:nth-child(1) input').value = startPrice;
-
-                            // Валюта
-                            const currencySelect = newLot.querySelector('.form-row:nth-child(4) .form-group1:nth-child(2) select');
-                            if (currencySelect) currencySelect.value = currency;
-
-
-                            newLot.querySelector('.delete-lot-btn').addEventListener('click', (e) => {
-                                newLot.remove();
-                                lotCounter--;
-                                document.querySelectorAll('.lot-form').forEach((lot, index) => {
-                                    lot.querySelector('.lot-number').textContent = `Лот ${index + 1}`;
-                                });
-                            });
-
-                            lotsContainer.appendChild(newLot);
-                        };
-
-                        // Добавляем лоты
-                        addLotForm('Лот 1', 'Описание лота 1', 1, 'шт', 1000, 'RUB');
-                        addLotForm('Лот 2', 'Описание лота 2', 2, 'кг', 500, 'USD');
-                        addLotForm('Лот 3', 'Описание лота 3', 3, 'кг', 100, 'USD');
-                        addLotForm('Лот 4', 'Описание лота 4', 4, 'кг', 200, 'RUB');
-                        addLotForm('Лот 5', 'Описание лота 5', 5, 'кг', 300, 'USD');
-                        addLotForm('Лот 6', 'Описание лота 6', 6, 'кг', 400, 'RUB');
-                        addLotForm('Лот 7', 'Описание лота 7', 7, 'кг', 500, 'USD');
-                        addLotForm('Лот 8', 'Описание лота 8', 8, 'кг', 600, 'USD');
-                        addLotForm('Лот 9', 'Описание лота 9', 9, 'кг', 700, 'RUB');
-                        addLotForm('Лот 10', 'Описание лота 10', 19, 'кг', 800, 'RUB');
-                        addLotForm('Лот 11', 'Описание лота 11', 11, 'кг', 900, 'USD');
-                        addLotForm('Лот 12', 'Описание лота 12', 12, 'кг', 100, 'USD');
-                        addLotForm('Лот 13', 'Описание лота 13', 13, 'кг', 200, 'RUB');
-                        addLotForm('Лот 14', 'Описание лота 14', 14, 'кг', 300, 'USD');
-                        addLotForm('Лот 15', 'Описание лота 15', 5, 'кг', 550, 'USD');
-
-                        // Добавление участников
-                        const getStatusBadge = (status) => {
-                            const badges = {
-                                accepted: '<span style="color: green;"><i class="fas fa-check-circle"></i> Активно</span>',
-                                pending: '<span style="color: orange;"><i class="fas fa-clock"></i> Ожидание</span>',
-                                rejected: '<span style="color: red;"><i class="fas fa-times-circle"></i> Отклонено</span>'
-                            };
-                            return badges[status] || '';
-                        };
-
-                        const addParticipantToTable = (data) => {
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
-                    <td>${new Date().toLocaleDateString()}</td>
-                    <td>${data.company}</td>
-                    <td>${data.contact}</td>
-                    <td>${data.email}</td>
-                    <td>${getStatusBadge(data.terms)}</td>
-                    <td>Только что</td>
-                    <td class="action-buttons">
-                        <button class="small" onclick="editParticipant(this)"><i class="fas fa-edit"></i></button>
-                        <button class="small secondary" onclick="deleteParticipant(this)"><i class="fas fa-trash"></i></button>
-                    </td>
-                `;
-                            participantsTableBody.appendChild(row);
-                        };
-
-                        // Добавляем участников
-                        addParticipantToTable({ company: 'Компания 1', contact: 'Контакт 1', email: 'contact1@example.com', terms: 'accepted' });
-                        addParticipantToTable({ company: 'Компания 2', contact: 'Контакт 2', email: 'contact2@example.com', terms: 'pending' });
-                        addParticipantToTable({ company: 'Компания 3', contact: 'Контакт 3', email: 'contact3@example.com', terms: 'rejected' });
-
+            // Оценка предложений
+            document.getElementById('min-score').value = '0';
+            document.getElementById('max-score').value = '100';
                         // Обновляем статус после анализа
                         updateStatus(2);
 
@@ -2660,6 +2530,7 @@
                 <td>${data.contact}</td>
                 <td>${data.email}</td>
                 <td>${getStatusBadge(data.terms)}</td>
+                <td>${data.terms === 'accepted' ? 'Принято' : '-'}</td>
                 <td>Только что</td>
                 <td class="action-buttons">
                     <button class="small" onclick="editParticipant(this)"><i class="fas fa-edit"></i></button>
