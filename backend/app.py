@@ -6,9 +6,9 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from services.extraction import extraction
-from services.comparation import TenderMatcher
-from services.contacts_matcher import CompanyContactMatcher
+from backend.services.extraction import extraction
+from backend.services.comparation import TenderMatcher
+from backend.services.contacts_matcher import CompanyContactMatcher
 app = FastAPI()
 
 # Настройка CORS
@@ -20,7 +20,7 @@ app.add_middleware(
 )
 
 # Подключаем статические файлы для HTML-шаблонов
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
 
 @app.get("/", response_class=HTMLResponse)

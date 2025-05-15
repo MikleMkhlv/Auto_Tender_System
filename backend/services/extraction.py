@@ -1,11 +1,11 @@
 import json
 import os
 from openai import OpenAI
-from services.msg_parser import MsgParser
+from backend.services.msg_parser import MsgParser
 import json_repair
 import re
 from bs4 import BeautifulSoup
-from services.pdf_parser import PDFToStringConverter
+from backend.services.pdf_parser import PDFToStringConverter
 
 FEW_SHOT = """ПРИМЕР ИЗВЛЕЧЕНИЯ: \n\n {
     "Извлечение": {

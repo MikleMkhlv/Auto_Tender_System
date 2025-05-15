@@ -1,5 +1,5 @@
-from services.comparation import TenderMatcher
-from services.extraction import extraction
+from backend.services.comparation import TenderMatcher
+from backend.services.extraction import extraction
 import os
 import pandas as pd
 

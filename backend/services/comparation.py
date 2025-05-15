@@ -3,8 +3,8 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import re
-from services.extraction import extraction
-from services.contacts_matcher import CompanyContactMatcher
+from backend.services.extraction import extraction
+from backend.services.contacts_matcher import CompanyContactMatcher
 from sqlalchemy import create_engine
 
 class TenderMatcher:
