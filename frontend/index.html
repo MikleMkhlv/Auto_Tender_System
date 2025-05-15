@@ -2467,25 +2467,25 @@
                         console.log(data); // Логируем данные для отладки
 
                         // Заполнение общих сведений
-                        document.getElementById('event-name').value = 'Закупка офисного оборудования 2024';
+                        document.getElementById('event-name').value = 'Тендер на лабораторные реагенты 2025';
                         document.getElementById('participation-text').value = 'Требуется предоставить документы компании и лицензии.';
 
                         // Категории
-                        document.getElementById('mainCategory').value = 'CS';
+                        document.getElementById('mainCategory').value = 'RD';
                         updateSubCategories();
                         setTimeout(() => {
-                            document.getElementById('subCategory').value = 'CS5004';
+                            document.getElementById('subCategory').value = 'RD2002';
                         }, 100);
 
                         // Финансовая информация
-                        document.getElementById('purchase-budget').value = '500000';
+                        document.getElementById('purchase-budget').value = '5 000 000';
                         document.getElementById('currency').value = 'RUB';
                         document.getElementById('planned-savings').value = '15%';
 
                         // Бизнес-команда
-                        document.getElementById('business-partner').value = 'ООО Поставщик Экспресс';
+                        document.getElementById('business-partner').value = 'alina.popova@san.com';
                         const teamContainer = document.getElementById('team-members-container');
-                        teamContainer.querySelector('input').value = 'procurement@company.com';
+                        teamContainer.querySelector('input').value = 'procurement@san.com';
                         teamContainer.querySelector('select').value = 'owner';
 
                         // Параметры тендера
@@ -2494,7 +2494,7 @@
                         document.getElementById('param-option2-2').checked = true; // 2%
 
                         // Комментарии
-                        document.getElementById('comments').value = 'Тестовые данные для демонстрации';
+                        document.getElementById('comments').value = '';
 
                         // Сроки тендера
                         const endDate = new Date();
@@ -2551,28 +2551,28 @@
                         };
 
                         // Добавляем лоты
-                        addLotForm('Лот 1', 'Описание лота 1', 1, 'шт', 1000, 'RUB');
-                        addLotForm('Лот 2', 'Описание лота 2', 2, 'кг', 500, 'USD');
-                        addLotForm('Лот 3', 'Описание лота 3', 3, 'кг', 100, 'USD');
-                        addLotForm('Лот 4', 'Описание лота 4', 4, 'кг', 200, 'RUB');
-                        addLotForm('Лот 5', 'Описание лота 5', 5, 'кг', 300, 'USD');
-                        addLotForm('Лот 6', 'Описание лота 6', 6, 'кг', 400, 'RUB');
-                        addLotForm('Лот 7', 'Описание лота 7', 7, 'кг', 500, 'USD');
-                        addLotForm('Лот 8', 'Описание лота 8', 8, 'кг', 600, 'USD');
-                        addLotForm('Лот 9', 'Описание лота 9', 9, 'кг', 700, 'RUB');
-                        addLotForm('Лот 10', 'Описание лота 10', 19, 'кг', 800, 'RUB');
-                        addLotForm('Лот 11', 'Описание лота 11', 11, 'кг', 900, 'USD');
-                        addLotForm('Лот 12', 'Описание лота 12', 12, 'кг', 100, 'USD');
-                        addLotForm('Лот 13', 'Описание лота 13', 13, 'кг', 200, 'RUB');
-                        addLotForm('Лот 14', 'Описание лота 14', 14, 'кг', 300, 'USD');
-                        addLotForm('Лот 15', 'Описание лота 15', 5, 'кг', 550, 'USD');
+                        addLotForm('TRYPCASE SOY BROTH 12 BOTTLES, 12 х 100 мл', 'bioMérieux 44011', 1, 'шт', 1000, 'RUB');
+                        addLotForm('THIOGLYCOLATE BROTH 12 BOTTLES, 12 х 100 мл', 'bioMérieux 44001', 2, 'шт', 500, 'USD');
+                        addLotForm('RINSING SOL. (FLUIDA) 4X300ML', ' bioMérieux 42616', 3, 'шт', 100, 'USD');
+                        addLotForm('RINSING SOLUTION(0.1% PEPTONE) 12 х 100 мл', 'bioMérieux 42044', 4, 'шт', 200, 'RUB');
+                        addLotForm('TRYPCASE SOY AGAR 6X200ML', 'bioMérieux 41466', 5, 'шт', 300, 'USD');
+                        addLotForm('SABOURAUD DEXT AGAR 6X200 ML', 'bioMérieux 42641', 6, 'шт', 400, 'RUB');
+                        addLotForm('PEPTONE SOL. NEUTRALIZ. 6X90ML', 'bioMérieux 42623', 7, 'шт', 500, 'USD');
+                        addLotForm('CHAPMAN 2 MEDIUM 20 PLATES', 'bioMérieux 43671', 8, 'шт', 600, 'USD');
+                        addLotForm('CETRIMIDE AGAR, 2 х 10', 'bioMérieux 43565', 9, 'кг', 700, 'RUB');
+                        addLotForm('MAC CONKEY BROTH 6x100ML', 'bioMérieux 42622', 19, 'шт', 800, 'RUB');
+                        addLotForm('TAT BROTH 6X90ML', 'bioMérieux', 11, 'шт', 900, 'USD');
+                        addLotForm('RVS BROTH 20 TUBES', 'bioMérieux 42110', 12, 'шт', 100, 'USD');
+                        addLotForm('XLD AGAR, чашки 20 х 90 мм', 'bioMérieux 43563', 13, 'шт', 200, 'RUB');
+                        addLotForm('MOSSEL BROTH 6x100ML', 'bioMérieux 42621', 14, 'шт', 300, 'USD');
+                        addLotForm('R2A - GELOSE 20 PLATES', 'bioMérieux 43551', 5, 'шт', 550, 'USD');
 
                         // Добавление участников
                         const getStatusBadge = (status) => {
                             const badges = {
-                                accepted: '<span style="color: green;"><i class="fas fa-check-circle"></i> Активно</span>',
+                                accepted: '<span style="color: orange;"><i class="fas fa-check-circle"></i> Ожидание</span>',
                                 pending: '<span style="color: orange;"><i class="fas fa-clock"></i> Ожидание</span>',
-                                rejected: '<span style="color: red;"><i class="fas fa-times-circle"></i> Отклонено</span>'
+                                rejected: '<span style="color: orange;"><i class="fas fa-times-circle"></i> Ожидание</span>'
                             };
                             return badges[status] || '';
                         };
@@ -2595,9 +2595,9 @@
                         };
 
                         // Добавляем участников
-                        addParticipantToTable({ company: 'Компания 1', contact: 'Контакт 1', email: 'contact1@example.com', terms: 'accepted' });
-                        addParticipantToTable({ company: 'Компания 2', contact: 'Контакт 2', email: 'contact2@example.com', terms: 'pending' });
-                        addParticipantToTable({ company: 'Компания 3', contact: 'Контакт 3', email: 'contact3@example.com', terms: 'rejected' });
+                        addParticipantToTable({ company: 'AppScience', contact: 'Иванов Алексей', email: 'IAlexei@appscience.com', terms: 'pending' });
+                        addParticipantToTable({ company: 'Laverna XXI', contact: 'Кузьмин Константин', email: 'KKuzYur@levernaxxi.com', terms: 'pending' });
+                        addParticipantToTable({ company: 'COREX', contact: 'Захаров Максим', email: 'Max.Zah@corex.com', terms: 'pending' });
 
                         // Обновляем статус после анализа
                         updateStatus(2);

@@ -4,10 +4,20 @@ import time
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from services.extraction import extraction
 from services.comparation import TenderMatcher
 from services.contacts_matcher import CompanyContactMatcher
 app = FastAPI()
+
+# Настройка CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Подключаем статические файлы для HTML-шаблонов
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -16,7 +26,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 @app.get("/", response_class=HTMLResponse)
 async def index():
     with open(
-        "C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\static\\index.html",
+        "C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\frontend\\index.html",
         "r",
         encoding="utf-8",
         errors="ignore",
