@@ -4,7 +4,7 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import re
 
-from extraction import extraction
+from services.extraction import extraction
 
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
@@ -246,8 +246,7 @@ class ProcurementApp:
                 self.root.after(0, self.update_results, procurement_codes, similar_tenders)
                 self.root.after(0, lambda: self.status_label.config(text="Готово"))
                 
-            except Exception as ex:
-                self.root.after(0, lambda: messagebox.showerror("Ошибка", str(ex)))
+            except Exception as e:
                 self.root.after(0, lambda: self.status_label.config(text="Ошибка"))
 
         threading.Thread(target=process, daemon=True).start()

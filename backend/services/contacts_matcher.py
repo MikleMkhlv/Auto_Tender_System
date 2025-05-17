@@ -77,7 +77,7 @@ class CompanyContactMatcher:
             results_df['normalized_name'].apply(self._generate_email)
         )
         
-        return results_df
+        return results_df.to_dict(orient='list')
 
     def _find_best_match(self, norm_name):
         best_match = process.extractOne(

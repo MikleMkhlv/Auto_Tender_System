@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <!-- Все стили из первого сайта -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Хедер */
+        header {
+            background-color: #4b0082;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        /* Основное содержимое */
+        .main-content {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        
+
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2,
+        h3,
+        h4 {
+            margin-top: 0;
+            color: #4b0082;
+        }
+
+        h2 {
+            font-size: 2.3em;
+            margin-top: 0px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+        }
+
+        h6 {
+            font-size: 1.5em;
+            color: #41185e;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 1.2em;
+        }
+
+        .event-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .form-section {
+            margin-top: 1.5rem;
+            padding: 15px;
+            /* border: 2px solid #e0d0f0; */
+            border-radius: 5px;
+            background-color: #f9f5ff;
+        }
+
+        .form-section1 {
+            margin-top: 1.5rem;
+            padding: 15px;
+            /* border: 2px solid #e0d0f0; */
+            border-radius: 5px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            gap: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            border: 1px solid #d3b8ff;
+            border-radius: 5px;
+            background-color: #fefcff;
+            margin-bottom: 5px;
+        }
+
+        .form-group1 {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            border: 1px solid #e3dfe4;
+            border-radius: 5px;
+            background-color: #fefcff;
+            margin-bottom: 5px;
+        }
+
+
+
+        .budget-currency-group {
+            display: flex;
+            gap: 20px;
+            align-items: flex-end;
+            width: 100%;
+        }
+
+        .budget-field {
+            flex: 2;
+        }
+
+        .currency-field {
+            flex: 1;
+        }
+
+        .role-field {
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: medium;
+            color: #424242;
+        }
+
+        .label-two {
+            display: block;
+            margin-bottom: 0px;
+            font-weight: 100;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .required-field::after {
+            content: " *";
+            color: red;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #4b0082;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+
+        button:hover {
+            background-color: #6a1b9a;
+        }
+
+        button.secondary {
+            background-color: #3e3843;
+        }
+
+        button.tndr-sbmt {
+            background-color: #4233c9;
+        }
+
+        button.secondary:hover {
+            background-color: #5a6268;
+        }
+
+        button.large {
+            padding: 12px 30px;
+            font-size: 1.1em;
+        }
+
+        button.small {
+            padding: 10px 10px;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        button.analyze-btn {
+            background-color: #0e9b3d;
+        }
+
+        .file-upload {
+            margin: 20px 0;
+            padding: 30px;
+            border: 2px dashed #b388ff;
+            border-radius: 8px;
+            text-align: center;
+            background-color: #f3e5ff;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload.dragover {
+            background-color: #e6ceff;
+            border-color: #9c64ff;
+        }
+
+        .file-upload.hidden {
+            display: none;
+        }
+
+        .file-upload-title {
+            color: #4b0082;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .file-upload-subtitle {
+            color: #42484e;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .file-upload label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4b0082;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-upload label:hover {
+            background-color: #6a1b9a;
+        }
+
+        .file-name {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+
+        .title-container {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            padding-right: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* СТАТУС-БАР */
+        .status-bar {
+            display: flex;
+            position: relative;
+            margin-top: 40px;
+            padding-top: 20px;
+        }
+
+        .status-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: lightgray;
+            z-index: 0;
+        }
+
+        .status-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background-color: blue;
+            z-index: 1;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        /* Прогресс по шагам (1–4) */
+        .status-bar[data-step="1"]::after {
+            width: 25%;
+        }
+
+        .status-bar[data-step="2"]::after {
+            width: 50%;
+        }
+
+        .status-bar[data-step="3"]::after {
+            width: 75%;
+        }
+
+        .status-bar[data-step="4"]::after {
+            width: 100%;
+        }
+
+        .status-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            font-weight: normal;
+            color: black;
+            transition: color 0.3s ease, font-weight 0.3s ease;
+        }
+
+        .status-step.active {
+            font-weight: bold;
+            color: blue;
+        }
+
+        /* Новый стиль для радио-кнопок в столбик */
+        .radio-group-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .event-type-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 15px;
+        }
+
+        .event-type-column {
+            flex: 1;
+        }
+
+        .add-text-btn {
+            margin-top: 5px;
+            background-color: #6c757d;
+            padding: 7px 30px;
+            margin-left: 10px;
+            font-size: 0.9em;
+        }
+
+        .text-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .text-actions.hidden {
+            display: none;
+        }
+
+        #participation-text.hidden {
+            display: none;
+        }
+
+        .team-member-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .team-member-input input {
+            flex: 1;
+        }
+
+        .member-action-btn {
+            padding: 5px 8px;
+            min-width: 30px;
+            background-color: #4b0082;
+        }
+
+        .analyze-btn-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .form-actions {
+            margin-top: 30px;
+        }
+
+        /* Меню навигации */
+        .nav-menu-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: inline-flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-menu li {
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .nav-menu li a {
+            color: #4b0082;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+        }
+
+        .nav-menu li.active {
+            background-color: #e0d0f0;
+        }
+
+        .nav-menu li:hover {
+            background-color: #e0d0f0;
+        }
+
+        /* Сообщение об успешном анализе */
+        .analysis-success {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #e8f5e9;
+            text-align: center;
+            border: 1px solid #c8e6c9;
+            display: none;
+        }
+
+        .analysis-success i {
+            color: #4caf50;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .analysis-success h3 {
+            color: #2e7d32;
+            margin: 10px 0;
+        }
+
+        .analysis-success p {
+            color: #424242;
+            margin: 5px 0;
+        }
+
+        .radio-group-horizontal {
+            display: flex;
+            gap: 70px;
+            margin-top: 10px;
+        }
+
+        .radio-option-horizontal {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        /* Стили для двухколоночных полей в команде */
+        .team-member-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .team-member-input input {
+            flex: 1;
+            min-width: 188px;
+        }
+
+        /* Увеличиваем расстояние между блоками условий */
+        .condition-block {
+            margin-bottom: 20px;
+        }
+
+        /* Добавляем стили для кастомной кнопки загрузки файла */
+        .custom-file-input {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: #4b0082;
+            font-size: 0.9em;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 5px;
+            font-weight: 100;
+            height: 20px;
+            width: 150px;
+        }
+
+        .custom-file-input:hover {
+            background-color: #6a1b9a;
+        }
+
+        #participation-condition {
+            display: none;
+            /* Скрываем оригинальный инпут */
+        }
+
+        /* Стили для подсказок */
+        .tooltip-icon {
+            color: #4b0082;
+            margin-left: 5px;
+            cursor: help;
+        }
+
+        [data-tooltip] {
+            position: relative;
+        }
+
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: #fff;
+            border: 1px solid #4b0082;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 16px !important;
+            font-weight: normal;
+            color: #4d3c3d;
+            z-index: 1000;
+            white-space: pre-wrap;
+            min-width: 240px;
+            text-align: left;
+            line-height: 1.3;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Исправленные стили для полей участников */
+        .team-member-input input[type="email"] {
+            flex: 2;
+        }
+
+        .team-member-input select {
+            flex: 1;
+        }
+
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            top: calc(50% + 20px);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            border: 2px solid #4b0082;
+            padding: 20px;
+            border-radius: 8px;
+            z-index: 2147483647;
+            /* Максимальный возможный z-index */
+            white-space: pre-wrap;
+            width: 320px;
+            text-align: left;
+            line-height: 1.6;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            font-size: 14px;
+            pointer-events: none;
+            animation: tooltipFade 0.3s ease;
+        }
+
+        @keyframes tooltipFade {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+
+        /* Блок Инструкции  */
+        .title-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-right: 20px;
+            margin-top: 20px;
+        }
+
+        .instruction-btn {
+            background: #ab0630;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: help;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1em;
+            white-space: nowrap;
+            margin-left: auto;
+        }
+
+        .instruction-btn:hover {
+            background: #4a0315;
+            transform: scale(1.05);
+        }
+
+        .instruction-overlay {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            z-index: 2147483647;
+            display: none;
+            min-width: 400px;
+        }
+
+        .instruction-content {
+            background: white;
+            border: 2px solid #ab0630;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            line-height: 30px;
+        }
+
+        .instruction-btn:hover+.instruction-overlay,
+        .instruction-overlay:hover {
+            display: block;
+        }
+
+        .instruction-content::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            right: 15px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent transparent #4b0082 transparent;
+        }
+
+        .comment-sec {
+            margin-top: 20px;
+        }
+
+        /* Добавляем стили для управления формами */
+        .form-tab {
+            display: none;
+        }
+
+        .form-tab.active {
+            display: block;
+        }
+
+        .file-upload.small {
+            padding: 15px;
+            min-height: 80px;
+        }
+
+        .file-upload.small .file-upload-title {
+            font-size: 1.1em;
+        }
+
+        .file-upload.small label.small {
+            padding: 8px 15px;
+            font-size: 0.9em;
+        }
+
+        .file-name.small {
+            font-size: 0.8em;
+        }
+
+        /* Стили для синхронизации валюты */
+        #goods-currency {
+            background-color: #f0f0f0;
+            cursor: not-allowed;
+        }
+
+        .add-section {
+            position: relative;
+            width: 200px;
+        }
+
+        .add-type-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4b0082;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .type-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            margin-top: 5px;
+        }
+
+        .type-dropdown.show {
+            display: block;
+        }
+
+        .type-option {
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .type-option:hover {
+            background-color: #f5f5f5;
+        }
+
+        .lot-form.hidden {
+            display: none;
+        }
+
+        /* Стили для файлового инпута */
+        .file-upload.small label.small {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 5px 0;
+        }
+
+        /* Добавляем новые стили для товаров и услуг */
+        .simple-file-upload {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #4b0082;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.9em;
+        }
+
+        .add-section {
+            position: relative;
+            width: 200px;
+        }
+
+        .type-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            margin-top: 5px;
+        }
+
+        .type-dropdown.show {
+            display: block;
+        }
+
+        .type-option {
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .lot-form {
+            margin: 15px 0;
+            padding: 15px;
+            border: 2px solid #e0d0f0;
+            border-radius: 8px;
+            background: #ffffff;
+        }
+
+
+
+        .error {
+            border-color: #ff0000 !important;
+            box-shadow: 0 0 3px #ff0000;
+        }
+
+        .lot-form.visible {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .file-upload.small {
+            display: none;
+        }
+
+        .adding-label {
+            background-color: #4b0082;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            display: none;
+        }
+
+        .adding-label.visible {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lot-actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .adding-label {
+            background-color: #4b0082;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            display: none;
+            margin-bottom: 15px;
+        }
+
+        .lot-actions {
+            margin-top: 20px;
+            display: none;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .lot-actions.visible {
+            display: flex;
+        }
+
+        .adding-label.visible {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .adding-title {
+            background-color: #4b0082;
+            color: white !important;
+            padding: 12px 232%;
+            /* Вертикальные отступы */
+            width: 100%;
+            /* Занимает всю ширину */
+            text-align: center;
+            /* Центрирование текста */
+            border-radius: 4px;
+            font-size: 1.1em;
+            margin: 0 0 15px 0;
+            /* Отступ снизу */
+            display: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            /* Учитываем padding в ширине */
+        }
+
+        /* Для иконки внутри заголовка */
+        .adding-title i {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .add-type-btn.hidden {
+            display: none;
+        }
+
+        .type-dropdown {
+            display: none;
+            position: absolute;
+            /* остальные стили... */
+        }
+
+        .type-dropdown.show {
+            display: block;
+        }
+
+        .participant-block {
+            border: 2px solid #e0d0f0;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #f9f5ff;
+        }
+
+        .participant-block h4 {
+            color: #4b0082;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .add-participant-btn {
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234b0082'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/12px 12px;
+            padding-right: 2rem;
+        }
+
+        select:invalid {
+            color: #6c757d;
+        }
+
+        /* Стили для таблицы участников */
+        .participants-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .participants-table th,
+        .participants-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0d0f0;
+        }
+
+        .participants-table th {
+            background-color: #4b0082;
+            color: white;
+            font-weight: bold;
+        }
+
+        .participants-table tr:hover {
+            background-color: #f9f5ff;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* Стили для модального окна */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 500px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #4b0082;
+        }
+
+        .modal-form-group {
+            margin-bottom: 15px;
+        }
+
+        .modal-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4b0082;
+            font-weight: bold;
+        }
+
+        .modal-form-group input,
+        .modal-form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .required-star {
+            color: red;
+            margin-left: 3px;
+        }
+
+        /* ЛОТЫ */
+
+        .lot-header {
+            background-color: #4b0082;
+            /* Темно-фиолетовый */
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px 6px 0 0;
+            margin: -20px -20px 20px -20px;
+            font-weight: bold;
+        }
+
+        .lot-number {
+            font-size: 1.1em;
+            letter-spacing: 0.5px;
+        }
+
+
+        /* СРОКИ */
+
+        .start-select {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #4b0082;
+            border-radius: 4px;
+        }
+
+        #custom-date-fields {
+            background: #f8f5ff;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        #custom-date-fields .form-row {
+            margin: 0;
+        }
+
+
+        .timeline-container {
+            padding: 20px 0;
+        }
+
+        .timeline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            height: 80px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #450e69;
+            z-index: 1;
+        }
+
+        .timeline-item {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4b0082;
+            border: 3px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-label {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .timeline-label span:first-child {
+            display: block;
+            font-weight: bold;
+            color: #4b0082;
+            font-size: large;
+            margin-top: 10px;
+        }
+
+        #start-date-label,
+        #end-date-label {
+            font-size: 12px;
+            color: #888;
+            font-size: medium;
+            margin-top: 30px;
+        }
+
+        .timeline-item.submission {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .lot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+        }
+
+        .delete-lot-btn {
+            padding: 5px 10px;
+            font-size: 0.8em;
+            background-color: #b5043f !important;
+        }
+
+        .delete-lot-btn:hover {
+            background-color: #7a0229 !important;
+        }
+
+        /* Стили для подтверждения загрузки */
+        .upload-success-message {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin-top: 10px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .upload-success-message i {
+            color: #4caf50;
+            font-size: 1.5em;
+        }
+
+        .upload-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-name-text {
+            font-weight: 500;
+            color: #2e7d32;
+            font-size: 0.95em;
+        }
+
+        .file-status {
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 3px;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+
+        /* Стили для модального окна подтверждения */
+        .invitation-textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0d0f0;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            margin: 10px 0;
+            min-height: 200px;
+            resize: vertical;
+            background: #fff;
+        }
+
+        .invitation-textarea:focus {
+            outline: none;
+            border-color: #4b0082;
+            box-shadow: 0 0 5px rgba(75, 0, 130, 0.3);
+        }
+
+        .modal-content h3 {
+            border-bottom: 2px solid #4b0082;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Стили для крупной таблицы тендеров */
+        .large-table {
+            font-size: 1.1em;
+        }
+
+        .large-table th {
+            padding: 18px 20px;
+        }
+
+        .large-table td {
+            padding: 15px 20px;
+        }
+
+        .large-table tr:hover {
+            transform: scale(1.005);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Стили для списка событий */
+        .event-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .event-item {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .event-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-date {
+            color: #666;
+            min-width: 90px;
+        }
+
+        .event-title {
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .event-status {
+            min-width: 100px;
+            text-align: right;
+        }
+
+        .events-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .event-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .event-search-input {
+            width: 200px;
+            padding: 8px 12px;
+            border: 1px solid #d3b8ff;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .event-search-input:focus {
+            outline: none;
+            border-color: #4b0082;
+            box-shadow: 0 0 5px rgba(75, 0, 130, 0.2);
+        }
+
+        .hidden-section {
+            display: none !important;
+        }
+
+        /* Стили для вкладок */
+        .tabs-container {
+            margin: 20px 0;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid #4b0082;
+        }
+
+        .tab {
+            padding: 12px 25px;
+            background: #f0eaff;
+            border: none;
+            border-radius: 4px 4px 0 0;
+            cursor: pointer;
+            font-weight: bold;
+            color: #4b0082;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: #4b0082;
+            color: white;
+        }
+
+        /* Стили для чекбокса */
+        .privacy-checkbox {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .privacy-checkbox input {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Адаптивные стили для кнопок */
+        .download-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-content {
+            display: none;
+            /* Скрыть все вкладки по умолчанию */
+        }
+
+        .tab-content.active {
+            display: block;
+            /* Показать активную вкладку */
+        }
+
+        /* Стили для документов */
+        .doc-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #e0d0f0;
+            border-radius: 6px;
+            background: #f9f5ff;
+        }
+
+        .doc-description {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+
+        .download-button:hover {
+            transform: translateY(-1px);
+        }
+        /* Дополнительные стили для поля ввода */
+#supplier-name {
+    border: 2px solid #d3b8ff;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+#supplier-name:focus {
+    border-color: #4b0082;
+    box-shadow: 0 0 8px rgba(75, 0, 130, 0.2);
+    outline: none;
+}
+
+#supplier-name::placeholder {
+    color: #a0a0a0;
+    font-style: italic;
+    font-size: 0.95em;
+}
+/* Стили для лотов */
+.lots-container {
+    margin-top: 20px;
+    border: 2px solid #e0d0f0;
+    border-radius: 8px;
+    padding: 15px;
+    background: #ffffff;
+}
+
+.lot-form {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #e0d0f0;
+    border-radius: 6px;
+    background: #f9f5ff;
+}
+
+.lot-form:last-child {
+    margin-bottom: 0;
+}
+
+.lot-header {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4b0082;
+}
+
+.lot-number {
+    font-size: 1.2em;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Улучшенные стили для выпадающих списков */
+select {
+    background-color: #fff;
+    border: 2px solid #d3b8ff;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    border-color: #4b0082;
+    box-shadow: 0 0 8px rgba(75, 0, 130, 0.2);
+}
+
+/* Стили для поля условий доставки */
+textarea[data-field="delivery"] {
+    background-color: #f0f8ff;
+    border: 2px solid #4d90fe;
+    border-radius: 6px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+textarea[data-field="delivery"]:focus {
+    background-color: #e6f0ff;
+    border-color: #0066cc;
+    box-shadow: 0 0 8px rgba(0, 102, 204, 0.2);
+    outline: none;
+}
+
+/* Красная звездочка для обязательных полей */
+.required-field::after {
+    content: " *";
+    color: red;
+    font-size: 1.2em;
+}
+
+
+
+
+
+#supplier-name {
+        background-color: #e6f0ff;
+        border-color: #0066cc;
+        transition: all 0.3s ease;
+    }
+
+    /* Поля в лотах */
+    input[data-field="quantity"],
+    input[data-field="price"],
+    select[data-field="currency"] {
+        background-color: #f0f8ff !important;
+        border-color: #4d90fe !important;
+    }
+
+    /* Эффект при фокусе */
+    input[data-field="quantity"]:focus,
+    input[data-field="price"]:focus,
+    select[data-field="currency"]:focus {
+        background-color: #e6f0ff;
+        border-color: #0066cc;
+        box-shadow: 0 0 8px rgba(0, 102, 204, 0.2);
+    }
+
+    /* Для сохранения стилей при наведении */
+    input[data-field="quantity"]:hover,
+    input[data-field="price"]:hover,
+    select[data-field="currency"]:hover {
+        border-color: #0066cc;
+    }
+
+        /* Стили для кнопки */
+        #submit-btn {
+            background-color: #0066cc !important;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            transition: opacity 0.3s ease;
+            margin: 20px auto; /* Центрирование */
+        }
+
+        .upload-message {
+            margin-top: 10px;
+            color: green; /* Цвет текста сообщения */
+        }
+
+
+
+
+
+
+    </style>
+    <title>Участие в тендере #51659</title>
+</head>
+
+<body>
+    <header>
+        <h1>Участие в тендере - событие №51659</h1>
+    </header>
+    <div class="main-content">
+        <!-- Вкладки -->
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab active" data-tab="info">Информация об участии</button>
+                <button class="tab" data-tab="proposal">Подача предложения</button>
+            </div>
+        </div>
+
+        <!-- Содержимое вкладки "Информация об участии" -->
+        <section class="form-container tab-content active" data-tab="info">
+            <div style="position: relative;">
+                <button class="instruction-btn" style="display: flow;">
+                    <i class="fas fa-info-circle"></i>
+                    Инструкция
+                </button>
+                <div class="instruction-overlay">
+                    <div class="instruction-content">
+                        <h3 style="color: #ab0630; margin: 0 0 15px 0; font-size: 1.3em;">📋 Инструкция</h3>
+                        <ol style="padding-left: 20px; margin: 0 0 15px 0;">
+                            <li>Ознакомьтесь с условиями участия</li>
+                            <li>Подтвердите согласие с условиями участия</li>
+                            <li>Ознакомьтесь с условиями NDA</li>
+                            <li>В случае согласия загрузите заполненный шаблон с карточкой контрагента</li>
+                            <li>Перейдите на страницу подачи предложения</li>
+                        </ol>
+                        <p style="color: #666; margin: 0; font-size: 0.9em;">
+                            ❗ Обязательные поля отмечены *
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок участия -->
+            <div class="form-section">
+                <h3>Информация о тендере</h3>
+                <span><b>Дорогой участник!</b></span><br><br>
+                <span>Приглашаем принять участие в тендере по закупке лабораторной реагентики для производства фармацевтической компании. </span><br><br>
+                <span><i> Перед тем, как ознакомиться с деталями тендера, просим принять обязательные условия участия. </i></span>
+                <select style="margin-top: 15px;" id="participation-select">
+                    <option value="" disabled selected>Выберите вариант</option>
+                    <option value="plan">Планирую участвовать</option>
+                    <option value="undecided">Не определился с участием</option>
+                    <option value="refuse">Отказываюсь от участия</option>
+                </select>
+            </div>
+
+            <!-- Условия и положения -->
+            <div class="form-section">
+                <h3>Принять условия и положения</h3>
+
+                <div class="form-row">
+                    <div class="form-group1" style="flex: 1; border: none;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span><b>Срок отсрочки платежа: 90 дней</b></span>
+                            <div style="display: inline-flex;">
+                                <label><input type="radio" name="terms" value="yes"> Согласен</label>
+                                <label><input type="radio" name="terms" value="no" style="margin-left: 15px; ">
+                                    Не согласен</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group1" style="flex: 1; border: none;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span><b>Соглашение о неразглашении информации</b> NDA</span>
+                                <div class="download-buttons">
+                                    <button class="small download-button" style="background-color: #e5155a;"
+                                        onclick="downloadFile()">
+                                        <i class="fas fa-download"></i> Скачать шаблон карточки контрагента
+                                    </button>
+                                    <button class="small download-button" style="background-color: #4b0082;"
+                                        onclick="downloadNDA()">
+                                        <i class="fas fa-download"></i> Скачать шаблон NDA
+                                    </button>
+                                </div>
+                            </div>
+                            <div style="display: inline-flex;">
+                                <label><input type="radio" name="nda" value="yes" onchange="toggleSupplierAttachment()">
+                                    Подписать</label>
+                                <label><input type="radio" name="nda" value="no" style="margin-left: 15px;"
+                                        onchange="toggleSupplierAttachment()"> Не подписывать</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вложение закупщиков -->
+            <div class="form-section hidden-section" id="supplier-attachment-section">
+                <h3>Загрузите карточку контрагента</h3>
+                <div class="file-upload" id="drag-drop-zone">
+                    <div class="file-upload-title">Перетащите файлы сюда</div>
+                    <div class="file-upload-subtitle">или</div>
+                    <input type="file" id="supplier-file" style="display: none;">
+                    <label for="supplier-file"><i class="fas fa-upload"></i> Выбрать файл</label>
+                    <div id="supplier-file-name" class="file-name"></div>
+                </div>
+                <div id="upload-confirmation" class="upload-success-message hidden">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="upload-details">
+                        <span class="file-name-text" id="uploaded-file-name"></span>
+                        <span class="file-status">Файл успешно загружен!</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Таймлайн -->
+            <div class="form-section">
+                <h3>Сроки тендера</h3>
+                <div class="timeline-container">
+                    <div class="timeline">
+                        <div class="timeline-item start">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-label">
+                                <span>Начало</span>
+                                <span id="start-date-label">26.06.2025</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item submission">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-label">
+                                <span>Подача предложений</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-line"></div>
+
+                        <div class="timeline-item end">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-label">
+                                <span>Окончание</span>
+                                <span id="end-date-label">03.07.2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Согласие с обработкой данных -->
+            <div class="privacy-checkbox">
+                <input type="checkbox" id="privacy" required>
+                <label for="privacy">Согласен с обработкой персональных данных</label>
+            </div>
+
+            <!-- Кнопка участия -->
+            <div class="form-actions" id="participate-button" style="display: none; justify-content: center;">
+                <button type="button" class="tndr-sbmt large">Участвовать в тендере</button>
+            </div>
+        </section>
+
+        <!-- Содержимое вкладки "Подача предложения" -->
+        <section class="form-container tab-content" data-tab="proposal">
+            <div class="title-container">
+                <h2 style="text-align: left; color: #0051ff;">Тендер на лабораторные реагенты 2025</h2>
+                <div style="position: relative;">
+                    <button class="instruction-btn" style="display: flow;">
+                        <i class="fas fa-info-circle"></i>
+                        Инструкция
+                    </button>
+                    <div class="instruction-overlay">
+                        <div class="instruction-content">
+                            <h3 style="color: #ab0630; margin: 0 0 15px 0; font-size: 1.3em;">📋 Инструкция</h3>
+                            <ol style="padding-left: 20px; margin: 0 0 15px 0;">
+                                <li>Ознакомьтесь с заданием тендера</li>
+                                <li>Загрузите файл с предложением в формате PDF в окно загрузки</li>
+                                <li>Проверьте корректность ввода данных предложения</li>
+                                <li>Отправьте предложение</li>
+                            </ol>
+                            <p style="color: #666; margin: 0; font-size: 0.9em;">
+                                ❗ Обязательные поля отмечены *
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок для скачивания файлов -->
+            <div class="form-section">
+                <h6>1 - Документы для скачивания</h6>
+                <div class="download-docs">
+                    <div class="doc-item">
+                        <div class="doc-description">Техническое задание для тендера</div>
+                        <button class="small download-button" style="background-color: #4b0082;"
+                            onclick="downloadTechSpec()">
+                            <i class="fas fa-download"></i> Техническое задание
+                        </button>
+                        <labeL style="color:#01b92c; margin-top: 13px;">Для скачивания доступен 1 файл</labeL>
+                    </div>
+                    <div class="doc-item" style="margin-top: 15px;">
+                        <div class="doc-description">Форма подачи предложения</div>
+                        <button class="small download-button" style="background-color: #4b0082;"
+                            onclick="downloadProposalForm()">
+                            <i class="fas fa-download"></i> Форма предложения
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок загрузки предложения -->
+            <div class="form-section">
+                <h6>2 - Загрузите коммерческое предложение</h6>
+                <div class="file-upload" id="proposal-drag-drop">
+                    <div class="file-upload-title">Загрузите файл сюда</div>
+                    <div class="file-upload-subtitle">или</div>
+                    <input type="file" id="proposal-file" style="display: none;">
+                    <label for="proposal-file"><i class="fas fa-upload"></i> Выбрать файл</label>
+                    <div id="proposal-file-name" class="file-name"></div>
+                </div>
+                <div id="proposal-upload-confirmation" class="upload-success-message hidden">
+                    <i class="fas fa-check-circle"></i>
+                    
+                    <div id="proposal-upload-message" class="upload-message hidden"></div><br>
+                    <p><span id="proposal-file-name"></span></p>
+                </div>
+            </div>
+            <div class="form-section">
+                <h6>3 - Информация о поставщике</h6>
+                <div class="form-row">
+                    <div class="form-group" style="flex: 1">
+                        <label class="required-field">Наименование поставщика</label>
+                        <input type="text" 
+                               id="supplier-name" 
+                               required
+                               placeholder="Введите официальное название компании"
+                               style="padding: 10px; font-size: 1em;">
+                    </div>
+                </div>
+            
+            <!-- Блок лотов -->
+    
+        <h6>4 - Лоты</h6>
+        
+        <!-- Контейнер для лотов -->
+        <div class="lots-container">
+            <!-- Шаблон одного лота -->
+            <div class="lot-form" data-lot-id="1">
+                <div class="lot-header">
+                    <span class="lot-number">Лот 1</span>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required-field">Название лота</label>
+                        <input type="text" 
+                               data-field="name" 
+                               required
+                               placeholder="Введите название лота">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Описание лота</label>
+                        <textarea data-field="description"
+                                  placeholder="Дополнительное описание"></textarea>
+                    </div>
+                </div>
+            
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required-field">Количество</label>
+                        <input type="text" 
+                               data-field="quantity" 
+                               required
+                               placeholder="Введите количество">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Единица измерения</label>
+                        <select data-field="unit">
+                            <option value="">Выберите из списка</option>
+                            <option value="pieces">штуки</option>
+                            <option value="kg">килограммы</option>
+                            <option value="meters">метры</option>
+                        </select>
+                    </div>
+                </div>
+            
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required-field">Предложенная цена</label>
+                        <input type="text" 
+                               data-field="price" 
+                               required
+                               placeholder="Введите цену">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required-field">Валюта</label>
+                        <select data-field="currency" required>
+                            <option value="">Выберите валюту</option>
+                            <option value="RUB">Рубли</option>
+                            <option value="USD">Доллары</option>
+                            <option value="EUR">Евро</option>
+                        </select>
+                    </div>
+                </div>
+            
+                <!-- Новое поле условий доставки -->
+                <div class="form-row">
+                    <div class="form-group" style="flex: 2">
+                        <label class="required-field">Условия доставки</label>
+                        <textarea 
+                            data-field="delivery" 
+                            required
+                            placeholder="Укажите условия доставки, сроки, особенности"
+                            rows="3"
+                            style="width: 100%;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions" style="justify-content: center; margin-top: 30px;">
+            <button type="button" id="submit-btn" class="large">Отправить предложение</button>
+        </div>
+
+        </div>
+            </section>
+            <!-- Таймер -->
+            <div class="form-section" style="margin-top: 0px; text-align: center;">
+                <h3 style="color: #b5043f;">
+                    <i class="fas fa-clock"></i> До окончания приема предложений:
+                </h3>
+                <div id="countdown" style="font-size: 2em; color: #4b0082;">
+                    13д 3ч 14м
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Проверка условий для отображения кнопки участия
+                function checkConditions() {
+                    const termsYes = document.querySelector('input[name="terms"]:checked')?.value === 'yes';
+                    const ndaYes = document.querySelector('input[name="nda"]:checked')?.value === 'yes';
+                    const participateButton = document.getElementById('participate-button');
+                    participateButton.style.display = (termsYes && ndaYes) ? 'flex' : 'none';
+                }
+        
+                // Управление видимостью секции вложений
+                function toggleSupplierAttachment() {
+                    const ndaYes = document.querySelector('input[name="nda"]:checked')?.value === 'yes';
+                    const attachmentSection = document.getElementById('supplier-attachment-section');
+                    const uploadConfirmation = document.getElementById('upload-confirmation');
+        
+                    if (ndaYes) {
+                        attachmentSection.classList.remove('hidden-section');
+                    } else {
+                        attachmentSection.classList.add('hidden-section');
+                        uploadConfirmation.classList.add('hidden');
+                        document.getElementById('supplier-file').value = '';
+                        document.getElementById('supplier-file-name').textContent = '';
+                    }
+                    checkConditions();
+                }
+        
+                // Обработчики для радио-кнопок
+                document.querySelectorAll('input[type="radio"][name="terms"], input[type="radio"][name="nda"]').forEach(radio => {
+                    radio.addEventListener('change', () => {
+                        checkConditions();
+                        if (radio.name === 'nda') toggleSupplierAttachment();
+                    });
+                });
+        
+                // Drag and drop обработчики для карточки контрагента
+                const dropZone = document.getElementById('drag-drop-zone');
+                const fileInput = document.getElementById('supplier-file');
+        
+                function handleFiles(files) {
+                    if (files.length > 0) {
+                        fileInput.files = files;
+                        document.getElementById('supplier-file-name').textContent = files[0].name;
+                        dropZone.style.display = 'none';
+                        document.getElementById('upload-confirmation').classList.remove('hidden');
+                    }
+                    dropZone.classList.remove('dragover');
+                }
+        
+                dropZone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    dropZone.classList.add('dragover');
+                });
+        
+                dropZone.addEventListener('dragleave', () => {
+                    dropZone.classList.remove('dragover');
+                });
+        
+                dropZone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    handleFiles(e.dataTransfer.files);
+                });
+        
+                fileInput.addEventListener('change', (e) => {
+                    handleFiles(e.target.files);
+                });
+        
+                // Обработчик кнопки участия
+                document.querySelector('#participate-button button').addEventListener('click', () => {
+                    alert('Ваша заявка успешно отправлена!');
+                });
+        
+                // Переключение вкладок
+                document.querySelectorAll('.tab').forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        document.querySelectorAll('.tab, .tab-content').forEach(el => {
+                            el.classList.remove('active');
+                        });
+                        tab.classList.add('active');
+                        document.querySelector(`.tab-content[data-tab="${tab.dataset.tab}"]`).classList.add('active');
+                    });
+                });
+        
+                // Загрузка файла предложения
+                const proposalDropZone = document.getElementById('proposal-drag-drop');
+                const proposalFileInput = document.getElementById('proposal-file');
+                const proposalUploadConfirmation = document.getElementById('proposal-upload-confirmation');
+        
+                function handleProposalFiles(files) {
+                    const uploadMessage = document.getElementById('proposal-upload-message');
+                    if (files.length > 0) {
+                        const fileName = files[0].name;
+                        document.getElementById('proposal-file-name').textContent = fileName;
+                        uploadMessage.textContent = `Загружен файл: ${fileName}`; // Новое сообщение
+                        uploadMessage.classList.remove('hidden'); // Показываем сообщение
+                        proposalDropZone.style.display = 'none';
+                        document.getElementById('proposal-upload-confirmation').classList.remove('hidden');
+                    }
+                    proposalDropZone.classList.remove('dragover');
+                }
+        
+                proposalDropZone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    proposalDropZone.classList.add('dragover');
+                });
+        
+                proposalDropZone.addEventListener('dragleave', () => {
+                    proposalDropZone.classList.remove('dragover');
+                });
+        
+                proposalDropZone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    handleProposalFiles(e.dataTransfer.files);
+                });
+        
+                proposalFileInput.addEventListener('change', (e) => {
+                    handleProposalFiles(e.target.files);
+                });
+        
+                // Инициализация лотов
+                const initLots = () => {
+                    const container = document.querySelector('.lots-container');
+                    const template = document.querySelector('.lot-form').cloneNode(true);
+                    
+                    container.innerHTML = '';
+                    for(let i = 1; i <= 3; i++) {
+                        const clone = template.cloneNode(true);
+                        clone.dataset.lotId = i;
+                        clone.querySelector('.lot-number').textContent = `Лот ${i}`;
+                        container.appendChild(clone);
+                    }
+                };
+        
+                // Инициализация при загрузке
+                toggleSupplierAttachment();
+                checkConditions();
+                initLots();
+        
+                // Главный обработчик отправки формы
+                document.getElementById('submit-btn').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Предложение успешно отправлено!');
+                });
+            });
+        
+            // Функции для скачивания файлов
+            window.downloadFile = function () {
+                const link = document.createElement('a');
+                link.href = 'C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\Карточка_контрагента.xlsx';
+                link.download = 'Карточка_контрагента.xlsx';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+        
+            window.downloadNDA = function () {
+                const link = document.createElement('a');
+                link.href = 'C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\NDA.docx';
+                link.download = 'NDA.docx';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+        
+            window.downloadTechSpec = function () {
+                const link = document.createElement('a');
+                link.href = 'technical_specification.pdf';
+                link.download = 'technical_specification.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+        
+            window.downloadProposalForm = function () {
+                const link = document.createElement('a');
+                link.href = 'proposal_form.docx';
+                link.download = 'proposal_form.docx';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+        </script>
+    </body>
+
+</html>

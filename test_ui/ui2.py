@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QVBoxLayout, QFormLayout,
                             QLineEdit, QPushButton, QFileDialog, QLabel, 
                             QTableWidget, QTableWidgetItem, QMessageBox)
 from PyQt5.QtCore import Qt
-from comparation import TenderMatcher  # Импортируйте ваш класс из соответствующего модуля
+from services.comparation import TenderMatcher  # Импортируйте ваш класс из соответствующего модуля
 
 class TenderMatcherUI(QWidget):
     def __init__(self):
