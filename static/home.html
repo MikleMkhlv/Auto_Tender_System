@@ -1252,76 +1252,89 @@
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
-        /* Стили для крупной таблицы тендеров */
-    .large-table {
-        font-size: 1.1em;
-    }
-    .large-table th {
-        padding: 18px 20px;
-    }
-    .large-table td {
-        padding: 15px 20px;
-    }
-    .large-table tr:hover {
-        transform: scale(1.005);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
 
-    /* Стили для списка событий */
-    .event-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    .event-item {
-        padding: 12px 15px;
-        margin: 8px 0;
-        background: white;
-        border-radius: 6px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: all 0.2s ease;
-    }
-    .event-item:hover {
-        transform: translateX(5px);
-        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    }
-    .event-date {
-        color: #666;
-        min-width: 90px;
-    }
-    .event-title {
-        flex-grow: 1;
-        margin: 0 20px;
-    }
-    .event-status {
-        min-width: 100px;
-        text-align: right;
-    }
-    .events-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-    .event-actions {
-        display: flex;
-        gap: 10px;
-    }
-    .event-search-input {
-        width: 200px;
-        padding: 8px 12px;
-        border: 1px solid #d3b8ff;
-        border-radius: 20px;
-        transition: all 0.3s ease;
-    }
-    .event-search-input:focus {
-        outline: none;
-        border-color: #4b0082;
-        box-shadow: 0 0 5px rgba(75, 0, 130, 0.2);
-    }
+        /* Стили для крупной таблицы тендеров */
+        .large-table {
+            font-size: 1.1em;
+        }
+
+        .large-table th {
+            padding: 18px 20px;
+        }
+
+        .large-table td {
+            padding: 15px 20px;
+        }
+
+        .large-table tr:hover {
+            transform: scale(1.005);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Стили для списка событий */
+        .event-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .event-item {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .event-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-date {
+            color: #666;
+            min-width: 90px;
+        }
+
+        .event-title {
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .event-status {
+            min-width: 100px;
+            text-align: right;
+        }
+
+        .events-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .event-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .event-search-input {
+            width: 200px;
+            padding: 8px 12px;
+            border: 1px solid #d3b8ff;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .event-search-input:focus {
+            outline: none;
+            border-color: #4b0082;
+            box-shadow: 0 0 5px rgba(75, 0, 130, 0.2);
+        }
     </style>
 </head>
 
@@ -1333,16 +1346,17 @@
     <div class="main-content">
         <section class="form-container">
             <div class="title-container">
-                <h2 style="margin-bottom: 0px;">Главная</h2>
+                <h2 style="margin-bottom: 0px; color: #0051ff">Главная</h2>
             </div>
             <!-- Быстрые действия -->
             <div class="form-section">
                 <h3>Быстрые действия</h3>
                 <div class="form-row" style="gap: 10px; margin-top: 20px;">
-                    <button class="large" style="flex: 1; background-color: #0051ff;" onclick="location.href='index.html'">
+                    <button id="new-tender-btn" class="large" style="flex: 1; background-color: #0051ff;"
+                        onclick="window.location.href = '/'">
                         <i class="fas fa-plus"></i> Новый тендер
                     </button>
-                    <button class="large secondary" style="flex: 1;">
+                    <button class="large secondary" style="flex: 1; background-color: #b81b42;">
                         <i class="fas fa-file-import"></i> Импорт
                     </button>
                     <button class="large analyze-btn" style="flex: 1;">
@@ -1380,14 +1394,14 @@
                     </tbody>
                 </table>
             </div>
-            
+
 
             <!-- Последние события -->
             <div class="form-section">
                 <div class="events-header">
                     <h3>История событий</h3>
                     <div class="event-actions">
-                        
+
                         <button class="small">
                             <i class="fas fa-filter"></i> Фильтр
                         </button>
@@ -1396,13 +1410,13 @@
                         </button>
                     </div>
                 </div>
-                
+
                 <ul class="event-list" id="event-history">
                     <!-- События будут добавляться через JS -->
                 </ul>
             </div>
-             <!-- Статистика -->
-             <div class="form-section">
+            <!-- Статистика -->
+            <div class="form-section">
                 <h3>Ключевые показатели</h3>
                 <div class="form-row" style="gap: 15px;">
                     <div class="form-group" style="text-align: center; background: #f3e5ff;">
@@ -1458,7 +1472,7 @@
                 statusColor: "#4caf50"
             }
         ];
-        
+
         function renderEvents() {
             const container = document.getElementById('event-history');
             container.innerHTML = historicalEvents.map(event => `
@@ -1471,8 +1485,9 @@
                 </li>
             `).join('');
         }
-        
+
         document.addEventListener('DOMContentLoaded', renderEvents);
-        </script>
+    </script>
 </body>
+
 </html>

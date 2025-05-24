@@ -1256,10 +1256,29 @@
         }
 
         .file-name {
-            color: #666;
-            font-size: 14px;
+            color: #1d4ce9;
+            font-size: 18px;
             margin-top: 10px;
             transition: all 0.3s;
+        }
+
+        header {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .home-icon {
+            position: absolute;
+            left: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffffff;
+            font-size: 40px;
+            transition: color 0.3s ease;
+        }
+
+        .home-icon:hover {
+            color: #0033a0;
         }
 
         /* Стили для модального окна подтверждения */
@@ -1292,6 +1311,9 @@
 
 <body>
     <header>
+        <a href="/home" class="home-icon">
+            <i class="fas fa-home"></i>
+        </a>
         <h1>Система автоматизации тендеров</h1>
     </header>
 
@@ -2812,10 +2834,10 @@
             // Показываем уведомление
             alert('Тендер успешно запущен!');
 
-            // Переадресация на home.html через 1 секунду
-            setTimeout(() => {
-                window.location.href = 'home.html';
-            }, 1000);
+            // // Переадресация на home.html через 1 секунду
+            // setTimeout(() => {
+            //     window.location.href = '/home';
+            // }, 1000);
 
         }
 
