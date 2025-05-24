@@ -1249,6 +1249,18 @@
             display: none !important;
         }
 
+        /* Стили для drag and drop */
+        .file-upload.dragover {
+            background-color: #f0f5ff;
+            border: 2px dashed #0051ff;
+        }
+
+        .file-name {
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
 
         /* Стили для модального окна подтверждения */
         .invitation-textarea {
@@ -2702,6 +2714,41 @@
                     }
                 });
             };
+            // 8. Управление отображением имени файла
+            const setupFileUploadDisplay = () => {
+                const fileInput = document.getElementById('file-input');
+                const fileNameDiv = document.getElementById('file-name');
+                const fileUploadContainer = document.getElementById('file-upload-container');
+
+                // Обработчик для выбора файла через кнопку
+                fileInput.addEventListener('change', function (e) {
+                    if (this.files.length > 0) {
+                        fileNameDiv.textContent = this.files[0].name;
+                    }
+                });
+
+                // Обработчики для drag and drop
+                fileUploadContainer.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    fileUploadContainer.classList.add('dragover');
+                });
+
+                fileUploadContainer.addEventListener('dragleave', () => {
+                    fileUploadContainer.classList.remove('dragover');
+                });
+
+                fileUploadContainer.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    fileUploadContainer.classList.remove('dragover');
+
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        fileInput.files = files;
+                        fileNameDiv.textContent = files[0].name;
+                        fileInput.dispatchEvent(new Event('change'));
+                    }
+                });
+            };
 
             // ================= ИНИЦИАЛИЗАЦИЯ ПРИЛОЖЕНИЯ =================
             const init = () => {
@@ -2712,6 +2759,7 @@
                 setupFileAnalysis();
                 setupFileHandlers();
                 setupParticipants();
+                setupFileUploadDisplay();
             };
 
             init();
