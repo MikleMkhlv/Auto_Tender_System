@@ -1306,6 +1306,71 @@
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
+
+        .custom-alert {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .alert-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .alert-title {
+            color: #4CAF50;
+            margin: 0 0 15px 0;
+        }
+
+        .alert-close {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Добавьте в ваш CSS файл */
+        .proposals-scroll-container {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+
+        .proposals-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .proposals-table th,
+        .proposals-table td {
+            padding: 12px;
+            border: 1px solid #eee;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .proposals-table th {
+            background: #f8f9fa;
+            position: sticky;
+            top: 0;
+        }
     </style>
 </head>
 
@@ -1811,6 +1876,13 @@
                             </select>
                         </div>
                     </div>
+                    <!-- строка для общей стоимости -->
+                    <div class="form-row">
+                        <div class="form-group1">
+                            <label>Общая стоимость</label>
+                            <input type="text" class="total-cost" readonly>
+                        </div>
+                    </div>
 
                     <div class="lot-actions">
                         <button type="button" class="save-lot">Сохранить</button>
@@ -1922,6 +1994,23 @@
                         </div>
                     </div>
                 </div>
+                <!-- НОВАЯ СЕКЦИЯ ▼▼▼ -->
+                <div class="form-section" id="proposals-section" style="display: none;">
+                    <h3>Предложения участников</h3>
+                    <div class="proposals-scroll-container">
+                        <table class="proposals-table">
+                            <thead>
+                                <tr>
+                                    <th>Лоты \ Поставщики</th>
+                                    <th>Поставщик 1</th>
+                                    <th>Поставщик 2</th>
+                                    <th>Поставщик 3</th>
+                                </tr>
+                            </thead>
+                            <tbody id="proposals-body"></tbody>
+                        </table>
+                    </div>
+                </div>
 
                 <div class="comment-sec">
                     <h3>Комментарии</h3>
@@ -1953,6 +2042,13 @@
             </div>
         </div>
 
+    </div>
+    <div id="custom-alert" class="custom-alert">
+        <div class="alert-content">
+            <h2 class="alert-title">✅ Успешно!</h2>
+            <p class="alert-text"></p>
+            <button class="alert-close">OK</button>
+        </div>
     </div>
 
     <script>
@@ -2501,26 +2597,28 @@
                         console.log(data); // Логируем данные для отладки
 
                         // Заполнение общих сведений
-                        document.getElementById('event-name').value = 'Закупка офисного оборудования 2024';
+                        document.getElementById('event-name').value = 'Закупка лабораторных реагентов 2025';
                         document.getElementById('participation-text').value = 'Требуется предоставить документы компании и лицензии.';
 
                         // Категории
-                        document.getElementById('mainCategory').value = 'CS';
+                        document.getElementById('mainCategory').value = 'RD';
                         updateSubCategories();
                         setTimeout(() => {
-                            document.getElementById('subCategory').value = 'CS5004';
+                            document.getElementById('subCategory').value = 'RD2002';
                         }, 100);
 
                         // Финансовая информация
-                        document.getElementById('purchase-budget').value = '500000';
+                        document.getElementById('purchase-budget').value = '5 000 000';
                         document.getElementById('currency').value = 'RUB';
                         document.getElementById('planned-savings').value = '15%';
 
                         // Бизнес-команда
-                        document.getElementById('business-partner').value = 'ООО Поставщик Экспресс';
+                        document.getElementById('business-partner').value = 'alina.popova@sanofi.com';
                         const teamContainer = document.getElementById('team-members-container');
-                        teamContainer.querySelector('input').value = 'procurement@company.com';
+                        teamContainer.querySelector('input').value = 'procurement@sanofi.com';
                         teamContainer.querySelector('select').value = 'owner';
+                        teamContainer.querySelector('input').value = 'business-partner@sanofi.com';
+                        teamContainer.querySelector('select').value = 'watcher';
 
                         // Параметры тендера
                         document.getElementById('type-rfp').checked = true;
@@ -2543,6 +2641,24 @@
                         // Добавление лотов (автоматически создаем их)
                         const lotsContainer = document.getElementById('lots-container');
                         lotsContainer.innerHTML = ''; // Очищаем контейнер
+
+
+                        // Функция для расчета общей стоимости
+                        function calculateTotalCost(lotForm) {
+                            const quantity = parseFloat(lotForm.querySelector('.lot-quantity').value) || 0;
+                            const price = parseFloat(lotForm.querySelector('.lot-price').value) || 0;
+                            const currency = lotForm.querySelector('.lot-currency').value;
+                            
+                            const total = quantity * price;
+                            const currencySymbol = {
+                                'RUB': '₽',
+                                'USD': '$',
+                                'EUR': '€'
+                            }[currency] || '';
+
+                            lotForm.querySelector('.total-cost').value = 
+                                total ? `${total.toFixed(2)} ${currencySymbol}` : '';
+                        }
 
                         // Функция для добавления лота
                         const addLotForm = (name, description, quantity, unit, startPrice, currency) => {
@@ -2570,9 +2686,9 @@
 
                             // Валюта
                             const currencySelect = newLot.querySelector('.form-row:nth-child(4) .form-group1:nth-child(2) select');
+                            
                             if (currencySelect) currencySelect.value = currency;
-
-
+                            
                             newLot.querySelector('.delete-lot-btn').addEventListener('click', (e) => {
                                 newLot.remove();
                                 lotCounter--;
@@ -2585,21 +2701,21 @@
                         };
 
                         // Добавляем лоты
-                        addLotForm('Лот 1', 'Описание лота 1', 1, 'шт', 1000, 'RUB');
-                        addLotForm('Лот 2', 'Описание лота 2', 2, 'кг', 500, 'USD');
-                        addLotForm('Лот 3', 'Описание лота 3', 3, 'кг', 100, 'USD');
-                        addLotForm('Лот 4', 'Описание лота 4', 4, 'кг', 200, 'RUB');
-                        addLotForm('Лот 5', 'Описание лота 5', 5, 'кг', 300, 'USD');
-                        addLotForm('Лот 6', 'Описание лота 6', 6, 'кг', 400, 'RUB');
-                        addLotForm('Лот 7', 'Описание лота 7', 7, 'кг', 500, 'USD');
-                        addLotForm('Лот 8', 'Описание лота 8', 8, 'кг', 600, 'USD');
-                        addLotForm('Лот 9', 'Описание лота 9', 9, 'кг', 700, 'RUB');
-                        addLotForm('Лот 10', 'Описание лота 10', 19, 'кг', 800, 'RUB');
-                        addLotForm('Лот 11', 'Описание лота 11', 11, 'кг', 900, 'USD');
-                        addLotForm('Лот 12', 'Описание лота 12', 12, 'кг', 100, 'USD');
-                        addLotForm('Лот 13', 'Описание лота 13', 13, 'кг', 200, 'RUB');
-                        addLotForm('Лот 14', 'Описание лота 14', 14, 'кг', 300, 'USD');
-                        addLotForm('Лот 15', 'Описание лота 15', 5, 'кг', 550, 'USD');
+                        addLotForm('TRYPCASE SOY BROTH 12 BOTTLES, 12 х 100 мл', ' Питательная среда для культивирования микроорганизмов', 1, 'шт', 397, 'EUR');
+                        addLotForm('THIOGLYCOLATE BROTH 12 BOTTLES, 12 х 100 мл', 'Среда для анаэробного роста бактерий', 2, 'шт', 500, 'EUR');
+                        addLotForm('RINSING SOL. (FLUIDA) 4X300ML', 'Раствор для промывки лабораторного оборудования', 3, 'шт', 100, 'EUR');
+                        addLotForm('RINSING SOLUTION (0.1% PEPTONE) 12 х 100 мл', 'Нейтрализующий раствор для микробиологических проб', 4, 'шт', 200, 'EUR');
+                        addLotForm('TRYPCASE SOY AGAR 6X200ML', 'Агар для выделения и культивирования бактерий', 5, 'шт', 300, 'EUR');
+                        addLotForm('SABOURAUD DEXT AGAR 6X200 ML', 'Среда для выращивания грибов и дрожжей', 6, 'шт', 400, 'EUR');
+                        addLotForm('PEPTONE SOL. NEUTRALIZ. 6X90ML', 'Пептонная среда для нейтрализации образцов', 7, 'шт', 500, 'EUR');
+                        addLotForm('CHAPMAN 2 MEDIUM 20 PLATES', 'Селективная среда для стафилококков', 8, 'шт', 600, 'EUR');
+                        addLotForm('CETRIMIDE AGAR, 2 х 10', 'Среда для выделения Pseudomonas aeruginosa', 9, 'шт', 700, 'EUR');
+                        addLotForm('MAC CONKEY BROTH 6x100ML', 'Жидкая среда для энтеробактерий', 3, 'шт', 800, 'EUR');
+                        addLotForm('TAT BROTH 6X90ML', 'Среда для транспорта и хранения биопроб', 11, 'шт', 900, 'EUR');
+                        addLotForm('RVS BROTH 20 TUBES', 'Обогатительная среда для Salmonella', 12, 'шт', 100, 'EUR');
+                        addLotForm('XLD AGAR, чашки 20 х 90 мм', 'Селективный агар для Salmonella и Shigella', 13, 'шт', 200, 'EUR');
+                        addLotForm('MOSSEL BROTH 6x100ML', 'Среда для обнаружения энтеробактерий в пище', 14, 'шт', 300, 'EUR');
+                        addLotForm('R2A - GELOSE 20 PLATES', 'Агар для контроля микробов в воде', 5, 'шт', 550, 'EUR');
 
                         // Добавление участников
                         const getStatusBadge = (status) => {
@@ -2629,9 +2745,11 @@
                         };
 
                         // Добавляем участников
-                        addParticipantToTable({ company: 'Компания 1', contact: 'Контакт 1', email: 'contact1@example.com', terms: 'accepted' });
-                        addParticipantToTable({ company: 'Компания 2', contact: 'Контакт 2', email: 'contact2@example.com', terms: 'pending' });
-                        addParticipantToTable({ company: 'Компания 3', contact: 'Контакт 3', email: 'contact3@example.com', terms: 'rejected' });
+                        addParticipantToTable({ company: 'Эпсайнс', contact: 'Максим Ильин', email: 'max_il@appscience.com', terms: 'pending' });
+                        addParticipantToTable({ company: 'Лаверна 21', contact: 'Иван Иванов', email: 'IvIvanov@laverna.com', terms: 'pending' });
+                        addParticipantToTable({ company: 'Корекс', contact: 'Егор Кузьмин', email: 'Egor_Quzmin@corex.com', terms: 'pending' });
+                        addParticipantToTable({ company: 'Биокар', contact: 'Надежда Кобетс', email: 'N_Kobets@biocar.com', terms: 'pending' });
+                        addParticipantToTable({ company: 'Фарм2Б', contact: 'Алла Воронина', email: 'tender@pharm2b.com', terms: 'pending' });
 
                         // Обновляем статус после анализа
                         updateStatus(2);
@@ -2826,18 +2944,94 @@
             document.getElementById('confirm-modal').style.display = 'none';
         }
 
+        // Функция для показа кастомного алерта
+        function showCustomAlert(text) {
+            const alert = document.getElementById('custom-alert');
+            alert.querySelector('.alert-text').textContent = text;
+            alert.style.display = 'flex';
+
+            // Закрытие по кнопке
+            alert.querySelector('.alert-close').addEventListener('click', () => {
+                alert.style.display = 'none';
+            });
+        }
 
         function submitTender() {
             // Закрываем модальное окно
             closeConfirmModal();
+            document.querySelector('#evaluation-form .form-section:first-child').style.display = 'none';
+            // ПОКАЗЫВАЕМ СЕКЦИЮ С ТАБЛИЦЕЙ
+            document.getElementById('proposals-section').style.display = 'block';
+
+            // ГЕНЕРИРУЕМ ТАБЛИЦУ
+           const tbody = document.getElementById('proposals-body');
+    tbody.innerHTML = '';
+
+    for(let i = 1; i <= 15; i++) {
+        const prices = Array.from({length: 3}, () => 
+            Math.random() * 1000 + 500 // Генерация цен от 500 до 1500
+        );
+        
+        const formattedPrices = prices.map(p => ({
+            value: p,
+            display: `${p.toFixed(2)} ₽`
+        }));
+
+        const min = Math.min(...prices);
+        const max = Math.max(...prices);
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><strong>Лот ${i}</strong></td>
+            ${formattedPrices.map(p => `
+                <td data-value="${p.value}">${p.display}</td>
+            `).join('')}
+        `;
+
+        // Добавляем цветовую кодировку
+        row.querySelectorAll('td').forEach((td, index) => {
+            if(index === 0) return; // Пропускаем ячейку с названием лота
+            
+            const value = parseFloat(td.getAttribute('data-value'));
+            const range = max - min;
+            
+            if(range === 0) {
+                td.style.background = '#f8f9fa'; // Все цены равны
+                return;
+            }
+
+            if(value === min) {
+                td.style.background = '#e6f4ea'; // Светло-зеленый
+                td.style.color = '#137333'; // Темно-зеленый
+            } 
+            else if(value === max) {
+                td.style.background = '#fce8e6'; // Светло-красный
+                td.style.color = '#c5221f'; // Темно-красный
+            }
+            else {
+                // Градиент желтого в зависимости от позиции между min и max
+                const ratio = (value - min) / range;
+                const hue = 50; // Желтый цвет
+                const saturation = 90; 
+                const lightness = 90 - (ratio * 30); // От 90% до 60%
+                
+                td.style.background = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                td.style.color = '#5c4400'; // Темно-желтый
+            }
+        });
+
+        tbody.appendChild(row);
+    }
+
 
             // Показываем уведомление
-            alert('Тендер успешно запущен!');
+            showCustomAlert('Тендер успешно запущен!');
+            // Скрываем блок анализа
+            document.getElementById('analysis-success').style.display = 'none';
+            // Дополнительно можно скрыть кнопку подтверждения
+            document.getElementById('submit-btn').classList.add('hidden');
 
-            // // Переадресация на home.html через 1 секунду
-            // setTimeout(() => {
-            //     window.location.href = '/home';
-            // }, 1000);
+            
 
         }
 
