@@ -63,6 +63,7 @@ FEW_SHOT = """ПРИМЕР ИЗВЛЕЧЕНИЯ: \n\n {
 }"""
 
 
+
 class DeepSeekAPI:
     def __init__(self, api_key, base_url="https://openrouter.ai/api/v1"):
         self.client = OpenAI(api_key=api_key, base_url=base_url)

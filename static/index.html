@@ -7,6 +7,7 @@
     <title>Sourcing - Event</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -1188,6 +1189,8 @@
             padding: 12px 20px;
         }
 
+        
+
         .delete-lot-btn {
             padding: 5px 10px;
             font-size: 0.8em;
@@ -1361,9 +1364,9 @@
         .proposals-table th,
         .proposals-table td {
             padding: 12px;
-            border: 1px solid #eee;
+            border: 1px solid #f69393;
             text-align: center;
-            min-width: 120px;
+            width: 70px;
         }
 
         .proposals-table th {
@@ -1371,6 +1374,410 @@
             position: sticky;
             top: 0;
         }
+
+
+        /* Добавить в секцию стилей */
+        .total-cost-container {
+            margin-top: 15px;
+            text-align: right;
+            padding: 10px;
+            background: #f8f5ff;
+            border-radius: 4px;
+        }
+
+        .total-cost-value {
+            font-weight: bold;
+            color: #4b0082;
+            margin: 0 5px;
+        }
+
+        .total-cost-currency {
+            color: #666;
+        }
+
+        .total-sum-container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f5ff;
+            border-radius: 8px;
+            border: 1px solid #4b0082;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .total-sum-text {
+            color: #4b0082;
+            
+        }
+
+        .total-sum-value {
+            color: #4649ff;
+            margin: 0 5px;
+            font-weight: 700;
+        }
+
+        .total-sum-currency {
+            color: #4b0082;
+        }
+
+        .checkbox-container {
+            display: block;
+            width: 100%;
+            height: 40px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .checkmark {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: #f8f8f8;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-weight: 500;
+            color: #666;
+            transition: background-color 0.2s;
+        }
+
+        .checkmark:before {
+            content: "Выбрать";
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background: #e8f5e9;
+            border-color: #81c784;
+            color: #2e7d32;
+        }
+
+        .checkbox-container input:checked ~ .checkmark:before {
+            content: "✓";
+        }
+
+        /* Состояние при нажатии */
+        .checkbox-container input:active ~ .checkmark {
+            background: #e8f5e9;
+            border-color: #81c784;
+            color: #2e7d32;
+        }
+
+        .recommendations-output {
+    background: #e0d0f0;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+}
+
+.recommendation-block {
+    margin-bottom: 25px;
+}
+
+.recommendation-header {
+    color: #4b0082;
+    font-weight: 500;
+    margin: 15px 0 10px;
+    font-size: 1.1em;
+}
+
+.recommendation-text {
+    line-height: 1.6;
+    margin: 0;
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.loading-dots:after {
+    content: '.';
+    animation: dots 1.5s infinite steps(4, end);
+}
+
+@keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60% { content: '...'; }
+    80%, 100% { content: ''; }
+}
+
+.progress-bar {
+    height: 6px;
+    background: #f0f0f0;
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.progress {
+    width: 0;
+    height: 100%;
+    background: #4b0082;
+    transition: width 10s linear;
+}
+
+.recommendation-block {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.error {
+    color: #dc3545;
+    padding: 15px;
+    border: 1px solid #dc3545;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin-top: 20px;
+}
+
+.proposals-scroll-container {
+    max-height: 500px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.checkbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.checkbox-container input {
+    cursor: pointer;
+}
+
+.mode-btn {
+    background-color: #0051ff;
+}
+
+.procurement-recommendation {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.recommendation-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: #4b0082;
+    border-bottom: 2px solid #4b0082;
+    padding-bottom: 15px;
+}
+
+.recommendation-header i {
+    font-size: 28px;
+}
+
+.detail-item {
+    margin: 15px 0;
+    padding: 15px;
+    background: white;
+    border-radius: 6px;
+}
+
+.detail-label {
+    display: block;
+    font-weight: 600;
+    color: #4b0082;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+
+.detail-value {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.success {
+    color: #28a745;
+}
+
+.advantages-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 10px 0;
+}
+
+.advantages-list li {
+    padding: 8px 15px;
+    margin: 5px 0;
+    background: #f1f1f1;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.justification-text {
+    line-height: 1.6;
+    color: #444;
+    margin: 10px 0;
+    padding: 15px;
+    background: #fff;
+    border-left: 3px solid #4b0082;
+}
+
+/* Стили для бейджа экономии */
+.economy-badge {
+    background: #773cff;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.economy-percent {
+    display: block;
+    font-size: 2.5em;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.economy-text {
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.justification-text p {
+    position: relative;
+    padding-left: 25px;
+    margin: 10px 0;
+}
+
+.justification-text p::before {
+    content: "•";
+    color: #4b0082;
+    font-weight: 700;
+    position: absolute;
+    left: 0;
+    top: -1px;
+}
+
+.advantages-list li {
+    position: relative;
+    padding-left: 30px;
+}
+
+.advantages-list li i {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4b0082;
+}
+
+#loading-container {
+    margin: 20px 0;
+    width: 300px;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #4b0082;
+    width: 0;
+    transition: width 7s linear;
+    border-radius: 4px;
+}
+
+.loading-text {
+    text-align: center;
+    color: #666;
+    margin-top: 8px;
+    font-size: 0.9em;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Стили для строк с экономией */
+.proposals-table tr.budget-diff,
+.proposals-table tr.budget-percent {
+    background-color: #e6f4ff; /* Нежно-голубой */
+    border-top: 2px solid #b6dfff;
+}
+
+/* Стиль для последней строки с выбором победителя */
+.proposals-table tr.selection-row {
+    background-color: #f3e8ff; /* Фиолетовый */
+    border-top: 2px solid #d0b2ff;
+    font-weight: 500;
+}
+
+/* Дополнительные улучшения для читаемости */
+.proposals-table tr:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
+
+.proposals-table td {
+    padding: 12px 15px;
+}
+
+.proposals-table tr {
+    transition: background-color 0.3s ease;
+}
+
+/* Стили для таймера и кнопки */
+#timer-display {
+    color: #364ed9;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 4px;
+    background: #e7e6ff;
+    display: inline-block;
+}
+
+.status-controls {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #4b0082;
+    width: 0;
+    border-radius: 4px;
+    transform-origin: left;
+}
+
+#loading-container.hidden {
+    display: none;
+}
+        
     </style>
 </head>
 
@@ -1418,17 +1825,24 @@
             </div>
             <div class="event-status">
                 <span>Статус: <span id="status-text">Черновик</span></span>
-                <button id="edit-btn">Редактировать событие</button>
+                <button id="edit-btn" class="hidden">Редактировать событие</button>
+            </div>
+
+            <div class="status-controls">
+                <div id="timer-display" class="hidden"></div>
+                <button id="close-btn" class="hidden secondary" style="margin-top: 10px;">
+                    <i class="fas fa-lock"></i> Закрыть
+                </button>
             </div>
 
 
             <div class="file-upload" id="file-upload-container">
-                <div class="file-upload-title">Загрузите файл</div>
-                <div style="color:#eb1010; font-size: large;" class="file-upload-subtitle"><b>Запрос на проведение
-                        тендера в формате MSG</b></div>
+                <div class="file-upload-title">Загрузите заявку </div>
+                <div style="color:#eb1010; font-size: large;" class="file-upload-subtitle">на проведение
+                        тендера в формате MSG</div>
                 <input type="file" id="file-input" accept=".pdf,.doc,.docx,.xls,.xlsx,.msg" style="display: none;">
                 <label for="file-input"><i class="fas fa-upload"></i> Выберите файл</label>
-                <div id="file-name" class="file-name">Или перетащите файл сюда</div>
+                <div id="file-name" class="file-name">Или перенесите файл сюда</div>
             </div>
 
             <div class="analysis-success" id="analysis-success">
@@ -1470,7 +1884,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="event-name" class="required-field">Название события</label>
-                            <input type="text" id="event-name" name="event-name" required>
+                            <input type="text" id="event-name" name="event-name" style="font-size: medium;" required>
                         </div>
                         <div class="form-group">
                             <label for="participation-condition">Условия участия в тендере</label>
@@ -1781,6 +2195,12 @@
                         <!-- Лоты будут добавляться сюда -->
                     </div>
 
+                    <div class="total-sum-container">
+                        <span class="total-sum-text">Общая сумма: </span>
+                        <span class="total-sum-value">0</span>
+                        <span class="total-sum-currency">RUB</span>
+                    </div>
+
                     <div class="add-section">
                         <button type="button" class="add-type-btn" id="add-type-btn">
                             <i class="fas fa-plus"></i> Добавить
@@ -1864,8 +2284,8 @@
                     <!-- Строка 3 -->
                     <div class="form-row">
                         <div class="form-group1">
-                            <label class="required-field">Стартовая цена</label>
-                            <input type="number" step="0.01" required>
+                            <label class="required-field">Базовая цена</label>
+                            <input type="number" step="1" required>
                         </div>
                         <div class="form-group1">
                             <label>Валюта</label>
@@ -1876,12 +2296,11 @@
                             </select>
                         </div>
                     </div>
-                    <!-- строка для общей стоимости -->
-                    <div class="form-row">
-                        <div class="form-group1">
-                            <label>Общая стоимость</label>
-                            <input type="text" class="total-cost" readonly>
-                        </div>
+                    <!-- Блок с общей стоимостью -->
+                    <div class="total-cost-container">
+                        <span class="total-cost-text">Стоимость: </span>
+                        <span class="total-cost-value">0</span>
+                        <span class="total-cost-currency">RUB</span>
                     </div>
 
                     <div class="lot-actions">
@@ -1969,30 +2388,7 @@
 
             <form id="evaluation-form" class="form-tab">
                 <div class="form-section">
-                    <h3>Способ оценки предложений</h3>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="min-score" class="required-field">Минимальная оценка</label>
-                            <select id="min-score" name="min-score" required>
-                                <option value="">Выберите</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="max-score" class="required-field">Максимальная оценка</label>
-                            <select id="max-score" name="max-score" required>
-                                <option value="">Выберите</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                 </div>
                 <!-- НОВАЯ СЕКЦИЯ ▼▼▼ -->
                 <div class="form-section" id="proposals-section" style="display: none;">
@@ -2002,13 +2398,43 @@
                             <thead>
                                 <tr>
                                     <th>Лоты \ Поставщики</th>
-                                    <th>Поставщик 1</th>
-                                    <th>Поставщик 2</th>
-                                    <th>Поставщик 3</th>
+                                    <th>Эпсайнс</th>
+                                    <th>Лаверна 21</th>
+                                    <th>Корекс</th>
                                 </tr>
                             </thead>
                             <tbody id="proposals-body"></tbody>
                         </table>
+                    </div>
+                </div>
+
+                <div class="form-section" id="recommendations-section" style="display: none;">
+                    <h3>Анализ предложений</h3>
+                    <button id="analyze-proposals-btn" class="analyze-btn large">
+                        <i class="fas fa-chart-bar"></i> Анализировать предложения
+                    </button>
+
+                    <div id="loading-container" class="hidden">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="loading-text">Идет анализ предложений...</div>
+                    </div>
+                    
+                    <div id="analysis-results" style="display: none;">
+                        <div class="recommendation-block">
+                    
+                            <div id="winner-recommendation"></div>
+                            
+                            <div class="chart-mode-toggle">
+                                <button class="mode-btn active" data-mode="total">Стоимость предложений</button>
+                                <button class="mode-btn" data-mode="lots">Детализация по лотам</button>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <canvas id="analysis-chart"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -2031,8 +2457,8 @@
                 <h3 style="color: #4b0082; margin-top: 0;">Подтвердите запуск тендера</h3>
 
                 <div class="modal-form-group">
-                    <label>Приглашение для участия</label>
-                    <textarea id="invitation-text" class="invitation-textarea"></textarea>
+                    <h4>Приглашение для участия</h4>
+                    <textarea id="invitation-text" class="invitation-textarea" style="font-size: 15px;";></textarea>
                 </div>
 
                 <div style="text-align: right; margin-top: 20px;">
@@ -2045,7 +2471,7 @@
     </div>
     <div id="custom-alert" class="custom-alert">
         <div class="alert-content">
-            <h2 class="alert-title">✅ Успешно!</h2>
+            <h2 class="alert-title">Успешно!</h2>
             <p class="alert-text"></p>
             <button class="alert-close">OK</button>
         </div>
@@ -2054,6 +2480,7 @@
     <script>
         let lotCounter = 0;
 
+        
 
         const categoriesData = {
             "CS": [
@@ -2608,7 +3035,7 @@
                         }, 100);
 
                         // Финансовая информация
-                        document.getElementById('purchase-budget').value = '5 000 000';
+                        document.getElementById('purchase-budget').value = '70 000';
                         document.getElementById('currency').value = 'RUB';
                         document.getElementById('planned-savings').value = '15%';
 
@@ -2634,9 +3061,7 @@
                         document.getElementById('end-date').value = endDate.toISOString().split('T')[0];
                         document.getElementById('end-time').value = '18:00';
 
-                        // Оценка предложений
-                        document.getElementById('min-score').value = '0';
-                        document.getElementById('max-score').value = '100';
+                        
 
                         // Добавление лотов (автоматически создаем их)
                         const lotsContainer = document.getElementById('lots-container');
@@ -2665,6 +3090,7 @@
                             const lotClone = lotTemplate.content.cloneNode(true);
                             const newLot = lotClone.querySelector('.lot-form');
                             lotCounter++;
+                            
                             // Заголовок лота
                             newLot.querySelector('.lot-number').textContent = `Лот ${lotCounter}`;
 
@@ -2675,30 +3101,84 @@
                             newLot.querySelector('.form-row:nth-child(2) .form-group1:nth-child(2) input').value = description;
 
                             // Количество
-                            newLot.querySelector('.form-row:nth-child(3) .form-group1:nth-child(1) input').value = quantity;
+                            const quantityInput = newLot.querySelector('.form-row:nth-child(3) .form-group1:nth-child(1) input');
+                            quantityInput.value = quantity;
 
                             // Единица измерения
                             const unitSelect = newLot.querySelector('.form-row:nth-child(3) .form-group1:nth-child(2) select');
                             if (unitSelect) unitSelect.value = unit;
 
-                            // Стартовая цена
-                            newLot.querySelector('.form-row:nth-child(4) .form-group1:nth-child(1) input').value = startPrice;
+                            // Базовая цена
+                            const priceInput = newLot.querySelector('.form-row:nth-child(4) .form-group1:nth-child(1) input');
+                            priceInput.value = startPrice;
 
                             // Валюта
                             const currencySelect = newLot.querySelector('.form-row:nth-child(4) .form-group1:nth-child(2) select');
-                            
                             if (currencySelect) currencySelect.value = currency;
-                            
-                            newLot.querySelector('.delete-lot-btn').addEventListener('click', (e) => {
+
+                            // Элементы для отображения стоимости
+                            const totalValue = newLot.querySelector('.total-cost-value');
+                            const totalCurrency = newLot.querySelector('.total-cost-currency');
+
+                            // Функция расчета
+                            const calculateTotal = () => {
+                                const quantityVal = parseFloat(quantityInput.value) || 0;
+                                const priceVal = parseFloat(priceInput.value) || 0;
+                                const total = quantityVal * priceVal;
+                                
+                                totalValue.textContent = total.toLocaleString('ru-RU', {
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2
+                                });
+                                
+                                totalCurrency.textContent = currencySelect.value;
+                            };
+
+                            const updateTotals = () => {
+                                updateTotalSum();
+                                calculateTotalCost(newLot);
+                            };
+
+                            // Назначение обработчиков
+                            quantityInput.addEventListener('input', calculateTotal);
+                            priceInput.addEventListener('input', calculateTotal);
+                            currencySelect.addEventListener('change', calculateTotal);
+
+                            // Первоначальный расчет
+                            calculateTotal();
+
+                            // Удаление лота
+                            newLot.querySelector('.delete-lot-btn').addEventListener('click', () => {
                                 newLot.remove();
                                 lotCounter--;
+                                // Обновляем нумерацию оставшихся лотов
                                 document.querySelectorAll('.lot-form').forEach((lot, index) => {
                                     lot.querySelector('.lot-number').textContent = `Лот ${index + 1}`;
                                 });
+                                updateTotalSum(); // Обновить при удалении лота
                             });
 
                             lotsContainer.appendChild(newLot);
+                            updateTotalSum(); // Обновить при добавлении нового лота
                         };
+
+                        function updateTotalSum() {
+                            const lots = document.querySelectorAll('.lot-form');
+                            let total = 0;
+                            let mainCurrency = 'RUB';
+
+                            lots.forEach((lot, index) => {
+                                const quantity = parseFloat(lot.querySelector('.form-row:nth-child(3) input').value) || 0;
+                                const price = parseFloat(lot.querySelector('.form-row:nth-child(4) input').value) || 0;
+                                const currency = lot.querySelector('.form-row:nth-child(4) select').value;
+                                
+                                if(index === 0) mainCurrency = currency;
+                                total += quantity * price;
+                            });
+
+                            document.querySelector('.total-sum-value').textContent = total.toLocaleString('ru-RU');
+                            document.querySelector('.total-sum-currency').textContent = mainCurrency;
+                        }
 
                         // Добавляем лоты
                         addLotForm('TRYPCASE SOY BROTH 12 BOTTLES, 12 х 100 мл', ' Питательная среда для культивирования микроорганизмов', 1, 'шт', 397, 'EUR');
@@ -2957,83 +3437,691 @@
         }
 
         function submitTender() {
-            // Закрываем модальное окно
-            closeConfirmModal();
-            document.querySelector('#evaluation-form .form-section:first-child').style.display = 'none';
-            // ПОКАЗЫВАЕМ СЕКЦИЮ С ТАБЛИЦЕЙ
-            document.getElementById('proposals-section').style.display = 'block';
+            // Собираем данные о всех лотах
+            const lots = Array.from(document.querySelectorAll('.lot-form')).map(lot => {
+                return {
+                    name: lot.querySelector('.form-row:nth-child(2) .form-group1:first-child input').value,
+                    description: lot.querySelector('.form-row:nth-child(2) .form-group1:nth-child(2) input').value,
+                    quantity: lot.querySelector('.form-row:nth-child(3) .form-group1:first-child input').value,
+                    unit: lot.querySelector('.form-row:nth-child(3) .form-group1:nth-child(2) select').value,
+                    price: lot.querySelector('.form-row:nth-child(4) .form-group1:first-child input').value,
+                    currency: lot.querySelector('.form-row:nth-child(4) .form-group1:nth-child(2) select').value
+                };
+            });
 
-            // ГЕНЕРИРУЕМ ТАБЛИЦУ
-           const tbody = document.getElementById('proposals-body');
-    tbody.innerHTML = '';
+            const tbody = document.getElementById('proposals-body');
+            tbody.innerHTML = '';
 
-    for(let i = 1; i <= 15; i++) {
-        const prices = Array.from({length: 3}, () => 
-            Math.random() * 1000 + 500 // Генерация цен от 500 до 1500
-        );
+            // Обновляем статусы участников
+    const participants = document.querySelectorAll('#participants-table-body tr');
+    const approvedSuppliers = ['Эпсайнс', 'Лаверна 21', 'Корекс'];
+
+    participants.forEach(participant => {
+        const companyName = participant.querySelector('td:nth-child(2)').textContent.trim();
+        const statusCell = participant.querySelector('td:nth-child(5)');
         
-        const formattedPrices = prices.map(p => ({
-            value: p,
-            display: `${p.toFixed(2)} ₽`
-        }));
+        if(approvedSuppliers.includes(companyName)) {
+            statusCell.innerHTML = '<span style="color: #28a745;"><i class="fas fa-check-circle"></i> Принято</span>';
+        } else {
+            statusCell.innerHTML = '<span style="color: #dc3545;"><i class="fas fa-times-circle"></i> Отклонено</span>';
+        }
+    });
 
-        const min = Math.min(...prices);
-        const max = Math.max(...prices);
+    const editBtn = document.getElementById('edit-btn');
+    const timerDisplay = document.getElementById('timer-display');
+    const closeBtn = document.getElementById('close-btn');
+    
+    editBtn.classList.add('hidden');
+    timerDisplay.classList.remove('hidden');
+    closeBtn.classList.remove('hidden');
 
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td><strong>Лот ${i}</strong></td>
-            ${formattedPrices.map(p => `
-                <td data-value="${p.value}">${p.display}</td>
-            `).join('')}
-        `;
+    // Запускаем таймер
+    let totalSeconds = 173 * 3600; // 7 дней 5 часов = 173 часа
 
-        // Добавляем цветовую кодировку
-        row.querySelectorAll('td').forEach((td, index) => {
-            if(index === 0) return; // Пропускаем ячейку с названием лота
+    const updateTimer = () => {
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        timerDisplay.innerHTML = `До окончания: ${days} дней ${hours} часов`;
+        
+        if(totalSeconds <= 0) {
+            clearInterval(timerInterval);
+            timerDisplay.innerHTML = "Время редактирования истекло";
+            closeBtn.disabled = true;
+        }
+        totalSeconds--;
+    };
+
+    const timerInterval = setInterval(updateTimer, 1000);
+    updateTimer(); // Первоначальный вызов
+
+    // Обработчик для кнопки закрытия
+    closeBtn.addEventListener('click', () => {
+        clearInterval(timerInterval);
+        timerDisplay.innerHTML = "Тендер закрыт для изменений";
+        closeBtn.disabled = true;
+        editBtn.classList.add('hidden');
+    });
             
-            const value = parseFloat(td.getAttribute('data-value'));
-            const range = max - min;
-            
-            if(range === 0) {
-                td.style.background = '#f8f9fa'; // Все цены равны
-                return;
-            }
 
-            if(value === min) {
-                td.style.background = '#e6f4ea'; // Светло-зеленый
-                td.style.color = '#137333'; // Темно-зеленый
-            } 
-            else if(value === max) {
-                td.style.background = '#fce8e6'; // Светло-красный
-                td.style.color = '#c5221f'; // Темно-красный
-            }
-            else {
-                // Градиент желтого в зависимости от позиции между min и max
-                const ratio = (value - min) / range;
-                const hue = 50; // Желтый цвет
-                const saturation = 90; 
-                const lightness = 90 - (ratio * 30); // От 90% до 60%
+            // Создаем строки таблицы
+            lots.forEach((lot, index) => {
+                // Генерируем случайные цены в валюте лота
+                const basePrice = parseFloat(lot.price) || 0;
+                const prices = Array.from({length: 3}, () => 
+                    (basePrice * (5 + Math.random() * 10)).toFixed(2)
+                );
+
+                // Создаем строку
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="lot-name-cell">
+                        Лот ${index + 1}
+                        <div class="lot-tooltip">
+                            <h4>${lot.name || `Лот ${index + 1}`}</h4>
+                            <p>${lot.description || 'Нет описания'}</p>
+                            <div class="lot-details">
+                                <span>Количество: ${lot.quantity} ${lot.unit}</span>
+                                <span>Базовая цена: ${lot.price} ${lot.currency}</span>
+                            </div>
+                        </div>
+                    </td>
+                    ${prices.map(p => `
+                        <td data-value="${p}">
+                            ${parseFloat(p).toLocaleString('ru-RU')} ${lot.currency}
+                        </td>
+                    `).join('')}
+                `;
+
+                // Цветовое кодирование
+                const values = prices.map(p => parseFloat(p));
+                const min = Math.min(...values);
+                const max = Math.max(...values);
+
+                row.querySelectorAll('td').forEach((td, idx) => {
+                    if(idx === 0) return; // Пропускаем ячейку с названием
+                    
+                    const value = parseFloat(td.getAttribute('data-value'));
+                    
+                    if(value === min) {
+                        td.style.backgroundColor = '#e6f4ea';
+                        td.style.color = '#137333';
+                    } 
+                    else if(value === max) {
+                        td.style.backgroundColor = '#fce8e6';
+                        td.style.color = '#c5221f';
+                    }
+                    else {
+                        const ratio = (value - min) / (max - min);
+                        const hue = 50;
+                        const saturation = 90;
+                        const lightness = 90 - (ratio * 30);
+                        td.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                        td.style.color = '#5c4400';
+                    }
+                });
+
+                tbody.appendChild(row);
+            });
+
+
+            // Добавляем строку с общей суммой
+            const footerRow = document.createElement('tr');
+            footerRow.className = 'total-row';
+            footerRow.innerHTML = `
+                <td><strong>Общая сумма</strong></td>
+                <td id="total-supplier-1">0.00</td>
+                <td id="total-supplier-2">0.00</td>
+                <td id="total-supplier-3">0.00</td>
+            `;
+
+            tbody.appendChild(footerRow);
+
+                const BUDGET = 70000; // Жестко заданный бюджет
+                const CURRENCY = 'EUR'; // Валюта бюджета
+
+
+            // ▼▼▼ ДОБАВЛЕННЫЕ СТРОКИ ▼▼▼ 
+            // Строка 1: Бюджет - Итого
+            const diffRow = document.createElement('tr');
+            diffRow.className = 'budget-diff';
+            diffRow.innerHTML = `
+                <td><strong>Абсолютная экономия / перерасход</strong></td>
+                ${[1, 2, 3].map(i => `
+                    <td id="budget-diff-${i}">0.00 EUR</td>
+                `).join('')}
+            `;
+            tbody.appendChild(diffRow);
+
+            // Строка 2: Проценты
+            const percentRow = document.createElement('tr');
+            percentRow.className = 'budget-percent';
+            percentRow.innerHTML = `
+                <td><strong>Экономия / Перерасход (%)</strong></td>
+                ${[1, 2, 3].map(i => `
+                    <td id="budget-percent-${i}">0.00%</td>
+                `).join('')}
+            `;
+            tbody.appendChild(percentRow);
+
+            const checkboxRow = document.createElement('tr');
+                checkboxRow.className = 'selection-row';
+                checkboxRow.innerHTML = `
+                    <td style="background-color:#b582da;"><strong>Выбор победителя</strong></td>
+                    ${[1,2,3].map(() => `
+                    <td>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="supplier-check">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                    `).join('')}
+                `;
+                tbody.appendChild(checkboxRow);
+            // ▲▲▲ КОНЕЦ ДОБАВЛЕННЫХ СТРОК ▲▲▲
+
+            // Сохраняем оригинальную функцию calculateTotals
+            const calculateTotals = () => {
+            try {
+                const BUDGET = 70000;
+                const totals = [0, 0, 0];
                 
-                td.style.background = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-                td.style.color = '#5c4400'; // Темно-желтый
+                // Считаем суммы предложений
+                document.querySelectorAll('#proposals-body tr:not(.total-row, .budget-diff, .budget-percent, .selection-row)').forEach(row => {
+                    const cells = row.querySelectorAll('td:not(:first-child)');
+                    cells.forEach((cell, index) => {
+                        const value = parseFloat(cell.dataset.value.replace(/\s/g, '')) || 0;
+                        totals[index] += value;
+                    });
+                });
+
+                // Обновляем итоговые суммы
+                totals.forEach((total, index) => {
+                    const totalElement = document.getElementById(`total-supplier-${index + 1}`);
+                    if (totalElement) {
+                        totalElement.textContent = `${total.toLocaleString('ru-RU')} ${CURRENCY}`;
+                    }
+                });
+
+                // Расчет экономии/перерасхода
+                totals.forEach((total, index) => {
+                    const diff = BUDGET - total;
+                    const percent = ((diff / BUDGET) * 100).toFixed(2);
+
+                    const diffElement = document.getElementById(`budget-diff-${index + 1}`);
+                    const percentElement = document.getElementById(`budget-percent-${index + 1}`);
+
+                    if (diffElement && percentElement) {
+                        diffElement.textContent = `${diff.toLocaleString('ru-RU')} ${CURRENCY}`;
+                        diffElement.style.color = diff < 0 ? '#c5221f' : '#137333';
+                        
+                        percentElement.textContent = `${percent}%`;
+                        percentElement.style.color = percent < 0 ? '#c5221f' : '#137333';
+                    }
+                });
+            } catch (e) {
+                console.error('Ошибка в calculateTotals:', e);
+            }
+        };
+
+            // ▼▼▼ Добавляем обработчики для чекбоксов ▼▼▼
+            document.addEventListener('change', function(e) {
+                if(e.target.classList.contains('supplier-check')) {
+                    const checkmark = e.target.nextElementSibling;
+                    
+                }
+            });
+
+            // Добавляем обработчики для тултипов
+            document.querySelectorAll('.lot-name-cell').forEach(cell => {
+                const tooltip = cell.querySelector('.lot-tooltip');
+                
+                cell.addEventListener('mouseenter', (e) => {
+                    const rect = cell.getBoundingClientRect();
+                    tooltip.style.display = 'block';
+                    
+                    // Позиционирование тултипа
+                    const rightEdge = window.innerWidth - rect.right;
+                    if(rightEdge > 320) {
+                        tooltip.style.left = `${rect.right + 10}px`;
+                        tooltip.style.top = `${rect.top}px`;
+                    } else {
+                        tooltip.style.left = `${rect.left - 310}px`;
+                        tooltip.style.top = `${rect.top}px`;
+                    }
+                });
+
+                cell.addEventListener('mouseleave', () => {
+                    tooltip.style.display = 'none';
+                });
+            });
+
+            // Добавляем стили для тултипа
+            const style = document.createElement('style');
+            style.textContent = `
+                .lot-tooltip {
+                    display: none;
+                    position: fixed;
+                    background: white;
+                    border: 1px solid #4b0082;
+                    border-radius: 6px;
+                    padding: 15px;
+                    width: 300px;
+                    z-index: 1000;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    font-size: 0.9em;
+                }
+                
+                .lot-tooltip h4 {
+                    color: #4b0082;
+                    margin: 0 0 10px 0;
+                    font-size: 1.1em;
+                }
+                
+                .lot-tooltip p {
+                    margin: 0 0 10px 0;
+                    color: #666;
+                }
+                
+                .lot-details {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                }
+                
+                .lot-title {
+                    color: #4b0082;
+                    font-weight: 500;
+                    cursor: help;
+                    position: relative;
+                    padding: 4px;
+                }
+                
+                .lot-title:hover {
+                    background: #f8f5ff;
+                    border-radius: 4px;
+                }
+
+                thead th {
+                    background: #4b0082 !important;
+                    color: white !important;
+                    border-color: #4b0082 !important;
+                }
+                
+                .supplier-header, 
+                .supplier-header *, 
+                .supplier-rank, 
+                .supplier-rank * {
+                    color: white !important;
+                    font-weight: 500 !important;
+                }
+                
+                .supplier-header {
+                    min-width: 140px;
+                    padding: 15px !important;
+                    vertical-align: bottom !important;
+                }
+            `;
+            document.head.appendChild(style);
+
+    initializeAnalysis(); // Переносим вызов сюда
+           
+            calculateTotals();
+            closeConfirmModal();
+            document.getElementById('proposals-section').style.display = 'block';
+            showCustomAlert('Тендер успешно запущен!');
+            document.getElementById('analysis-success').style.display = 'none';
+            document.getElementById('submit-btn').classList.add('hidden');
+        }
+
+        let currentChart = null;
+
+function initializeAnalysis() {
+    const recommendationsSection = document.getElementById('recommendations-section');
+    if (!recommendationsSection) return;
+
+    recommendationsSection.style.display = 'block';
+    
+    // Инициализация кнопки анализа
+    const analyzeBtn = document.getElementById('analyze-proposals-btn');
+    if (analyzeBtn) {
+        analyzeBtn.addEventListener('click', async function() {
+            try {
+                this.disabled = true;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Анализ...';
+                
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                generateRecommendations();
+                renderChart('total');
+                
+                setTimeout(() => {
+                    document.getElementById('analysis-results').style.display = 'block';
+                    this.style.display = 'none';
+                    }, 7000);
+            } catch (error) {
+                console.error('Ошибка анализа:', error);
+                this.disabled = false;
+                this.innerHTML = '<i class="fas fa-chart-line"></i> Повторить анализ';
             }
         });
-
-        tbody.appendChild(row);
     }
 
+    document.getElementById('analyze-proposals-btn').addEventListener('click', async function(e) {
+    e.preventDefault();
+    const loadingContainer = document.getElementById('loading-container');
+    const progressFill = document.querySelector('.progress-fill');
+    const analyzeBtn = this;
+    
+    try {
+        // Сброс предыдущего состояния
+        progressFill.style.transition = 'none';
+        progressFill.style.width = '0';
+        void progressFill.offsetHeight; // Принудительный рефлоу
 
-            // Показываем уведомление
-            showCustomAlert('Тендер успешно запущен!');
-            // Скрываем блок анализа
-            document.getElementById('analysis-success').style.display = 'none';
-            // Дополнительно можно скрыть кнопку подтверждения
-            document.getElementById('submit-btn').classList.add('hidden');
+        // Настройка анимации
+        analyzeBtn.disabled = true;
+        loadingContainer.classList.remove('hidden');
+        progressFill.style.transition = 'width 7s linear';
+        
+        // Запуск анимации
+        setTimeout(() => {
+            progressFill.style.width = '100%';
+        }, 10);
 
+        // Таймер обновления текста
+        let seconds = 0;
+        const timer = setInterval(() => {
+            seconds++;
+            document.querySelector('.loading-text').textContent = 
+                `Идет анализ предложений... ${seconds}/7 сек.`;
+        }, 1000);
+
+        // Основная задержка
+        await new Promise(resolve => setTimeout(resolve, 7000));
+        
+        // Финализация
+        clearInterval(timer);
+        generateRecommendations();
+        renderChart('total');
+        
+        document.getElementById('analysis-results').style.display = 'block';
+        analyzeBtn.style.display = 'none';
+        loadingContainer.classList.add('hidden');
+        
+        // Сброс прогресса
+        setTimeout(() => {
+            progressFill.style.transition = 'none';
+            progressFill.style.width = '0';
+        }, 1000);
+        
+    } catch (error) {
+        console.error('Ошибка анализа:', error);
+        clearInterval(timer);
+        loadingContainer.classList.add('hidden');
+        progressFill.style.width = '0';
+        analyzeBtn.disabled = false;
+        analyzeBtn.innerHTML = '<i class="fas fa-chart-line"></i> Повторить анализ';
+    }
+});
+
+// Сброс прогресс-бара при повторном запуске
+function resetProgress() {
+    const progressFill = document.querySelector('.progress-fill');
+    progressFill.style.width = '0';
+    progressFill.style.transition = 'none';
+    void progressFill.offsetWidth; // Trigger reflow
+    progressFill.style.transition = 'width 7s linear';
+}
+
+
+
+
+
+
+
+
+    // Инициализация переключателя режимов
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault(); // Предотвращаем действие по умолчанию
+        e.stopPropagation();
+        
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        renderChart(this.dataset.mode);
+    });
+});
+}
+
+function generateRecommendations() {
+    try {
+        const suppliers = Array.from(document.querySelectorAll('.proposals-table thead th:not(:first-child)'))
+            .map(th => th.textContent.trim());
+
+        const totals = Array.from(document.querySelectorAll('.total-row td:not(:first-child)'))
+            .map(td => {
+                const valueText = td.textContent.replace(/[^\d,]/g, '').replace(',', '.');
+                return parseFloat(valueText) || 0;
+            });
+
+        const BUDGET = 70000;
+        const minTotal = Math.min(...totals);
+        const winnerIndex = totals.indexOf(minTotal);
+        const winnerName = suppliers[winnerIndex];
+        
+        // Корректный расчет экономии
+        const economy = BUDGET - minTotal;
+        const economyPercent = ((economy / BUDGET) * 100).toFixed(1);
+
+        // Анализ лотов
+        const lotRows = Array.from(document.querySelectorAll('#proposals-body tr:not(.total-row, .budget-diff, .budget-percent, .selection-row)'));
+        
+        const winnerLots = lotRows.map(row => {
+            const cells = row.querySelectorAll('td');
+            return {
+                name: cells[0].textContent.trim(),
+                price: parseFloat(cells[winnerIndex + 1].dataset.value.replace(/[^\d,]/g, '').replace(',', '.'))
+            };
+        });
+
+        // Находим 3 лота с максимальной экономией
+        const bestLots = winnerLots
+            .map(lot => ({
+                ...lot,
+                economy: BUDGET/lotRows.length - lot.price // Экономия на лоте
+            }))
+            .sort((a, b) => b.economy - a.economy)
+            .slice(0, 3);
+
+        // Форматирование лотов
+        const topLotsHTML = bestLots.map(lot => `
+            <li>
+                <i class="fas fa-star"></i>
+            ${lot.name} - 
+                Цена: ${lot.price.toLocaleString('de-DE')} €
+            </li>
+        `).join('');
+
+        // Расчет влияния на KPI
+        const kpiIncrease = (economyPercent * 0.2).toFixed(1); // Пример формулы влияния
+
+        // Генерация HTML
+        const recommendationHTML = `
+            <div class="procurement-recommendation">
+                <div class="recommendation-card">
+                    <div class="recommendation-header">
+                        <i class="fas fa-trophy" style="margin-bottom:10px;"></i>
+                        <h3>Рекомендованный победитель: ${winnerName}</h3>
+                    </div>
+                    
+                    <div class="recommendation-details">
+                        <div class="detail-item">
+                            <div class="economy-badge">
+                                <span class="economy-percent" style="color: "green";"><b>${economyPercent}%</b></span>
+                                <span class="economy-text style="font-size:1em;color: "green";"><b>Экономия против бюджета</b></span>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Топ-3 лота:</span>
+                            <ul class="advantages-list">
+                                ${topLotsHTML}
+                            </ul>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Обоснование выбора:</span>
+                            <div class="justification-text">
+                                <p> Экономия в ${economyPercent}% позволит повысить KPI по сэйвингам в категории RD-Recurring Savings на ${kpiIncrease}%</p>
+                                <p> Наилучшие условия доставки - гарантированные 10 рабочих дней</p>
+                                <p> 67% лотов содержат цены ниже среднерыночных</p>
+                                <p> Подтвержденная репутация в реализации аналогичных проектов</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('winner-recommendation').innerHTML = recommendationHTML;
+
+    } catch (error) {
+        console.error('Ошибка генерации рекомендаций:', error);
+        document.getElementById('winner-recommendation').innerHTML = `
+            <div class="error-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                Ошибка формирования рекомендаций: ${error.message}
+            </div>
+        `;
+    }
+}
+
+function renderChart(mode) {
+    const ctx = document.getElementById('analysis-chart');
+    if (currentChart) currentChart.destroy();
+    if (!ctx) return;
+
+    try {
+        const suppliers = Array.from(document.querySelectorAll('.proposals-table thead th:not(:first-child)'))
+            .map(th => th.textContent.trim());
+
+        if (mode === 'total') {
+            const totals = Array.from(document.querySelectorAll('.total-row td:not(:first-child)'))
+                .map(td => {
+                    const valueText = td.textContent.replace(/[^\d,]/g, '').replace(',', '.');
+                    return parseFloat(valueText) || 0;
+                });
+
+            const BUDGET = 70000;
             
+            currentChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [...suppliers, 'Бюджет'],
+                    datasets: [{
+                        label: 'Сумма предложения (€)',
+                        data: [...totals, BUDGET],
+                        backgroundColor: ['#4b0082', '#4b0082', '#4b0082', '#ff6b6b']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: value => `${value.toLocaleString('de-DE')} €`
+                            }
+                        }
+                    }
+                }
+            });
+        } else {
+            // Получаем данные по лотам
+            const lotsData = Array.from(document.querySelectorAll('#proposals-body tr:not(.total-row, .budget-diff, .budget-percent, .selection-row)'))
+                .map(row => ({
+                    name: row.querySelector('td:first-child').textContent.trim().substring(0, 20),
+                    values: Array.from(row.querySelectorAll('td:not(:first-child)'))
+                        .map(td => {
+                            const valueText = td.textContent.replace(/[^\d,]/g, '').replace(',', '.');
+                            return parseFloat(valueText) || 0;
+                        })
+                }));
 
+            // Цвета для поставщиков
+            const supplierColors = ['#4d4671', '#4e4fff', '#b89aff'];
+            
+            currentChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: lotsData.map(lot => lot.name),
+                    datasets: suppliers.map((supplier, index) => ({
+                        label: supplier,
+                        data: lotsData.map(lot => lot.values[index]),
+                        backgroundColor: supplierColors[index],
+                        borderWidth: 1,
+                        categoryPercentage: 0.8, // Ширина группы столбцов
+                        barPercentage: 0.9 // Ширина отдельного столбца
+                    }))
+                },
+                options: {
+                    indexAxis: 'x',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                            },
+                            stacked: false,
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                align: 'start', // Выравнивание меток к началу
+                                autoSkip: false, // Показывать все метки
+                                maxRotation: 45, // Максимальный угол поворота
+                                minRotation: 45, // Минимальный угол поворота
+                                padding: 5, // Отступ от оси
+                                font: {
+                                    size: 12 // Размер шрифта
+                                }
+                             }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Сумма предложения (€)'
+                            },
+                            beginAtZero: true,
+                            ticks: {
+                                callback: value => `${value.toLocaleString('de-DE')} €`
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => {
+                                    const label = context.dataset.label || '';
+                                    const value = context.parsed.y.toLocaleString('de-DE');
+                                    return `${label}: ${value} €`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
         }
+    } catch (error) {
+        console.error('Ошибка построения графика:', error);
+        ctx.innerHTML = `<div class="chart-error">Ошибка: ${error.message}</div>`;
+    }
+}
 
 
         // Обновляем обработчик кнопки подтверждения

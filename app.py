@@ -10,7 +10,6 @@ from services.contacts_matcher import CompanyContactMatcher
 from services.mapper import ContractFiller
 app = FastAPI()
 
-# Подключаем статические файлы для HTML-шаблонов
 app.mount("/static", StaticFiles(directory="C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\Auto_Tender_System\\static"), name="static")
 
 
@@ -112,7 +111,19 @@ async def fill_NDA(file: UploadFile = File(...)):
         if os.path.exists(temp_file_path):
             os.remove(temp_file_path)
 
+@app.get("/Auto_Tender_System/NDA.docx")
+async def download_NDA():
+    return FileResponse(
+            path="C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\Auto_Tender_System\\NDA.docx",
+            filename="NDA.docx"
+        )
 
+@app.get("/Auto_Tender_System/vendor_card")
+async def download_vendor_card():
+    return FileResponse(
+            path="C:\\Users\\mi\\Documents\\Diplom_Ali4i4\\Auto_Tender_System\\Карточка_контрагента.xlsx",
+            filename="Карточка_контрагента.xlsx"
+        )
 
 if __name__ == "__main__":
     import uvicorn
